@@ -31,6 +31,36 @@ Run — do not reason about — at least:
 
 Capture the command and its output. A hostile case that "would obviously be handled" but was never run is an open gate.
 
+## Source gate
+
+Any current or external fact that shaped the quality target, implementation direction, or final claim must have a source pointer:
+
+- official docs, source code, specs, first-party APIs, changelogs, standards, or repo-owned artifacts.
+- date/version when the fact can drift.
+- uncertainty called out when the primary source is unreachable.
+
+Secondary articles, memory, or confident prose do not pass this gate when a primary source is reachable.
+
+## Test-seam gate (code)
+
+New or changed tests pass this gate only when:
+
+- the tested seam is public and agreed for the mission.
+- the test observes behavior through the seam, not private internals.
+- expected values come from a known literal, worked example, spec, fixture, prior observed behavior, or another independent source.
+- the assertion is not tautological: it must not recompute the expected value the same way the implementation does.
+
+If a test would still pass when the implementation repeats its own mistake, it is not proof.
+
+## Frontier gate
+
+For multi-slice work, implementation cannot be called quality-ready unless:
+
+- blockers are explicit.
+- the current frontier is visible.
+- each ticket describes end-to-end behavior and proof, not only layer work.
+- wide refactors use expand-contract instead of pretending one vertical slice can stay green.
+
 ## First-impression gate (visual)
 
 Apply the five-second read from `critique.md` on an actual screenshot at both a desktop and a mobile width. Both must pass.
@@ -89,4 +119,7 @@ When the user invokes obsession, asks to exceed the request, or the mission ente
 - No ritual with no teeth. Council, grilling, docs, and reviewers are good when they change the artifact, decision, proof, or cuts.
 - No self-graded rubrics or scores. Numbers you assign yourself prove nothing; only external evidence does.
 - No subagent-count theater. Multiple reviewers prove nothing unless their findings change the artifact or decision.
+- No research theater. A source list proves nothing unless it changes a decision, artifact, risk, or claim.
+- No ticket theater. A ticket list proves nothing unless blockers, frontier, and proof make the next action safer.
+- No negation-only target. Say what the artifact should become, not only what it must avoid.
 - No softened failure states. If a gate is open at the end, the status is `failed`, and the report says which gate and why.

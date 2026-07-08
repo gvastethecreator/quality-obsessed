@@ -15,6 +15,10 @@ Quality target:
 Selected layers:
 Signature move or ambition leap:
 Proof required:
+Primary-source facts:
+Decision map / wayfinding:
+Spec / tickets / frontier:
+Test seams:
 Council roles:
 Grilling decisions:
 Delegated review:
@@ -68,6 +72,19 @@ Good expansion is visible, usable, testable, or decision-improving. Bad expansio
 
 Ask before crossing product direction, durable architecture, spending, external dependencies, data/security posture, brand identity, release/versioning, or irreversible scope.
 
+## Route And Frontier
+
+Before implementation, classify the work:
+
+- **Facts:** repo/source/API/standard facts that can be researched. Record the primary source and date/version when the fact is current or external.
+- **Decisions:** user/product/architecture calls the repo cannot settle. Resolve through grilling or a documented default.
+- **Fog:** in-scope uncertainty that cannot yet be phrased as a sharp ticket. Use wayfinding or a decision map; do not pretend it is implementation-ready.
+- **Frontier:** tickets with every blocker resolved. Work the frontier one ticket at a time.
+
+For clear multi-slice work, write a compact spec and tickets before execution. Each ticket needs end-to-end behavior, blockers, proof, and whether it is human-in-the-loop or agent-ready.
+
+Wide refactors are the vertical-slice exception: use expand-contract. Add the new form beside the old, migrate callers in green batches sized by blast radius, then remove the old form after every migrate batch is done.
+
 ## Task Record
 
 Create or update a task record when the work is assigned, delegated, resumable, multi-slice, risky, quality-gated, or likely to cross sessions. Prefer the repo's existing workplan, issue, `plans/`, `.scratch/planning`, or `.planning`; do not create a parallel planning system.
@@ -85,6 +102,8 @@ Verification:
 Proof artifacts:
 Delegated review findings:
 Council/grilling record:
+Primary-source facts:
+Spec/tickets/frontier:
 Deferred work:
 Open decisions:
 ```
