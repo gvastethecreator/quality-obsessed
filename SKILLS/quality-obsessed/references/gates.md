@@ -1,0 +1,57 @@
+# Evidence gates
+
+A gate passes only with captured evidence. "I checked it" is not evidence. Evidence is an artifact someone else could inspect: a screenshot, a test run's output, a command's output, a diff.
+
+## Side-by-side gate
+
+- Baseline = the state of the artifact before this mission (or, for greenfield work, the competent default any tool would produce).
+- Put final next to baseline — literally, when visual: two screenshots viewed together.
+- Pass condition: a neutral reviewer could name the improvement in one sentence. "It's cleaner" does not count; "the dashboard now shows live totals with per-category breakdown instead of a static list" counts.
+- Automatic fail: the artifact is materially the same and only process output grew (plans, docs, logs, comments, README). This is the cardinal failure mode of fake quality work.
+
+## States gate
+
+Every user-visible surface must have been **seen** (screenshot or executed render) in:
+
+- Empty (zero items, no data yet)
+- Loading
+- Error (and the error message must be useful, not "Something went wrong" alone)
+- Overflow: longest realistic text, 3× expected item count, and 1 item
+- Happy path with realistic data — never lorem ipsum, never "Item 1 / Item 2"
+
+If a state cannot occur by design, state why in one line instead of skipping silently.
+
+## Hostile-input gate (code)
+
+Run — do not reason about — at least:
+
+- Malformed/missing input on every public entry point touched
+- Boundary values (0, 1, max, negative, empty string, unicode)
+- The failure path: what does the caller/user actually see when the dependency fails?
+
+Capture the command and its output. A hostile case that "would obviously be handled" but was never run is an open gate.
+
+## First-impression gate (visual)
+
+Apply the five-second read from `critique.md` on an actual screenshot at both a desktop and a mobile width. Both must pass.
+
+## Verdict discipline
+
+After every fix, issue exactly one verdict:
+
+- `substantially better` — the evidence shows a difference a reviewer would name unprompted.
+- `mixed` — improved one thing, regressed or muddied another. Name both.
+- `flat` — evidence shows no meaningful change. Do not dress this up.
+- `worse` — admit it, revert or redirect.
+
+Rules:
+- Verdicts are issued against evidence, never against effort. A pass that took an hour and produced no visible change is `flat`.
+- Two consecutive `flat`/`worse` → direction reset (see `critique.md`). Continuing to polish is forbidden.
+- The final report may not contain a verdict that lacks its evidence artifact.
+
+## Anti-theater rules
+
+- No pass counting as a metric. "I did 12 passes" is meaningless; 12 verdicts with evidence is the claim.
+- No documentation growth as an outcome. Docs are only written when the user's deliverable is documentation.
+- No self-graded rubrics or scores. Numbers you assign yourself prove nothing; only external evidence does.
+- No softened failure states. If a gate is open at the end, the status is `failed`, and the report says which gate and why.
