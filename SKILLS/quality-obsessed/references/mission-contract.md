@@ -12,6 +12,7 @@ Artifact type:
 Audience/user:
 Baseline to beat:
 Quality target:
+Autonomy target:
 Selected layers:
 Signature move or ambition leap:
 Proof required:
@@ -71,6 +72,25 @@ Fallback if the leap fails:
 Good expansion is visible, usable, testable, or decision-improving. Bad expansion hides a broken core path, adds unneeded dependencies, makes proof vague, or grows a product shell around a weak artifact.
 
 Ask before crossing product direction, durable architecture, spending, external dependencies, data/security posture, brand identity, release/versioning, or irreversible scope.
+
+## Product Autonomy
+
+Before broad or ambitious work, decide how much discovery the mission needs:
+
+```text
+Literal request:
+User outcome:
+Discoverable product improvements:
+Facts the agent can verify:
+Fog the agent must map:
+Boundaries requiring user decision:
+Autonomous expansion allowed:
+Autonomous expansion blocked:
+```
+
+Default to action when a discoverable fact, adjacent state, or proof gap clearly affects the same artifact and can be verified within the mission. Default to one focused question when the next move chooses product direction, architecture, brand, spending, security/data posture, release/versioning, or irreversible scope.
+
+Read `product-autonomy.md` when the mission needs automatic research, wayfinding, or adjacent product improvement.
 
 ## Route And Frontier
 

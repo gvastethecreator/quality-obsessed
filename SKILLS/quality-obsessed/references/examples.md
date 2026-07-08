@@ -93,3 +93,29 @@ Every item names a place and a failure; the fix is implied by the criticism.
 
 **Good (route first):**
 > "Research note confirmed from official SDK docs that retries are caller-owned. Wayfinding split the fog into one decision ticket: keep current retry wrapper or adopt SDK middleware. After the decision, tickets expose the frontier: expand wrapper, migrate API clients in two green batches, contract old helper. Proof per ticket: focused retry tests plus one runtime failure-path capture."
+
+## Example 12 — Product autonomy
+
+**Bad (literal tunnel vision):**
+> "The request was to improve the save button, so I changed the label and stopped. The form still loses the draft when save fails."
+
+**Good (bounded autonomy):**
+> "Inspection showed the weak save button was a symptom: users had no recovery path after a failed save. Autonomous expansion stayed inside the same form: label, disabled/loading/error states, retry copy, and draft preservation. Research was not needed; wayfinding was not needed because the route was clear. Proof: failed-save test plus before/after screenshot of the retry state."
+
+## Example 13 — Adversarial result analysis
+
+**Bad (soft critique):**
+> "The result is cleaner and more polished. A few details could still be improved, but the main work is done."
+
+**Good (autopsy with teeth):**
+> "I am not calling this done. Strongest remaining failure: the report claims to explain churn risk, but the first screen prioritizes raw account rows over the actual risk drivers. User harm: a reader still has to do the analysis manually. Likely cause: the table became the artifact instead of the decision summary. Severity: P1. Cut/fix: promote the top 3 risk drivers with account examples above the table, collapse raw rows behind the explanation, and prove with a side-by-side screenshot plus a query output showing the driver calculation."
+
+The good version attacks the result, names the source cause, and forces the next artifact move.
+
+## Example 14 — Cosmetic patch rejected
+
+**Bad (symptom patch):**
+> "The error page looked harsh, so I softened the copy and changed the accent color. Tests pass."
+
+**Good (root-cause patch):**
+> "The harsh copy was not the real blocker. The error page offered no recovery path and lost the user's input. Fixed the state model so failed submit preserves draft data, added a retry action, and verified by forcing the API to fail. Verdict: `substantially better`; proof: before screenshot showed dead-end error, after screenshot shows preserved draft plus retry."
