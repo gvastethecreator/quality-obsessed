@@ -36,6 +36,12 @@ Triggered by two consecutive `flat`/`worse` verdicts, or the user calling the re
 3. Pick a new direction with one concrete signature: a specific layout structure, a specific interaction, a specific visual device, a specific data presentation. "More modern" is not a direction; "dense two-column ledger layout with a sticky running total" is.
 4. Rebuild from the new direction, then re-enter the core loop.
 
+If the user explicitly rejects the result or the baseline still wins, use `recovery.md` instead of doing a small direction tweak.
+
+## Visual horizon trigger
+
+If the critique says "generic", "template", "bland", "flat", "default canvas", "same dark panels", or "unclear target read", read `visual-horizon.md` before visual polish. Text-only critique is not enough when the failure is visual direction.
+
 ## Anti-patterns in critique
 
 - **Adjective critique:** "it feels bland" with no location. Useless — convert to a located failure or discard.
