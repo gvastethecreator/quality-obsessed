@@ -1,23 +1,33 @@
 ---
 name: quality-obsessed
-description: "Evidence-gated quality obsession: spend the effort on the artifact, prove every improvement with before/after evidence, and never self-certify. Use for any task where the user wants standout, visibly better results."
+description: "Evidence-gated quality obsession. Use when the user wants standout quality, polish, completeness, baseline-beating work, persistent improvement, or recovery from weak/bland output."
 ---
 
 # Quality Obsessed
 
-Obsession with quality is measured in the artifact, not in the process. A quality-obsessed agent looks at the real artifact more times than anyone else — screenshots, states, edge cases, real output — and fixes what it sees. It does not write plans, ledgers, or logs as a substitute for improving the thing.
+Obsession with quality is measured in the artifact, not in the process. A quality-obsessed agent looks at the real artifact more times than anyone else: screenshots, states, edge cases, real output, and proof. It fixes what it sees. It does not write plans, ledgers, or logs as a substitute for improving the thing.
 
 **The one rule that governs everything: at least 70% of your actions must directly change or directly inspect the artifact.** Reading references, writing plans, and logging progress belong to the other 30%. If you notice your recent actions are mostly process, stop and touch the artifact.
 
 ## Core loop
 
-Repeat until every evidence gate passes. There is no fixed number of passes — evidence decides, not a quota.
+Repeat until every evidence gate passes. Small work can finish as soon as the gates pass. Substantial, quality-sensitive, broad, visual/product/code, or user-declared obsessive work enters persistence mode; read `references/persistence.md` before claiming done.
 
 1. **Look at the real thing.** Render it, run it, screenshot it, execute it. Never critique from memory or from the code alone. If it has a UI, take a screenshot before judging. If it is code, run it against real inputs including hostile ones.
 2. **Name one concrete weakness.** Not "could be more polished" — instead "the empty state is a blank white div", "the error path swallows the exception", "the headline and the CTA say the same thing". If you cannot name a weakness a reviewer would also name, run the critique pass in `references/critique.md`.
 3. **Fix it in the artifact.** The fix must change what a user sees or what a test observes. Comments, docs, and renames do not count as fixes.
 4. **Prove it.** Capture before/after evidence: screenshot pair, test output, measured diff. A pass with no evidence did not happen.
 5. **Issue a verdict:** `substantially better | mixed | flat | worse`. Two consecutive `flat` or `worse` verdicts mean the current direction is wrong — change direction, do not keep polishing it (see `references/critique.md` → Direction reset).
+
+## Mission setup
+
+Before broad work, define a compact contract: artifact, user goal, baseline to beat, quality target, proof, scope, and stop conditions. Read `references/mission-contract.md` when the work is broad, resumable, delegated, risky, baseline-comparison, or likely to span multiple slices.
+
+For every quality mission, inspect the surrounding impact surface before final status. Read `references/adjacent-impact.md` when the named target has nearby states, analogs, call sites, docs, tests, UI context, or workflow consequences.
+
+Use the right domain and proof tools. Read `references/orchestration.md` when the task spans UI, product, game, code, docs, data, automation, visual design, or another specialized domain. A domain skill or proof skill counts only when it changes the artifact, critique, or evidence.
+
+For visual/UI/prototype/game work where the target read is unclear or ambitious, read `references/visual-horizon.md` and compare before, feasible horizon, and after. If the user says the prior result is poor, bland, generic, conformist, softened, or not obsessive enough, read `references/recovery.md` before patching.
 
 ## Evidence gates (all must pass before declaring done)
 
@@ -30,7 +40,7 @@ Repeat until every evidence gate passes. There is no fixed number of passes — 
 ## Final status (pick one, honestly)
 
 - `quality win` — all gates passed with captured evidence.
-- `failed` — gates not met; say exactly which and why. Never soften this to "solid progress".
+- `failed` or `red/failed` — gates not met; say exactly which and why. Use `red/failed` when recovery mode or baseline comparison says the result still does not win. Never soften this to "solid progress".
 - `blocked` — an external constraint prevents a gate; name it and what would unblock.
 
 ## Environment mapping
@@ -47,6 +57,12 @@ If a capability is genuinely unavailable, say so and downgrade the affected gate
 
 Read only what the task needs — reading references is process budget, not artifact budget.
 
-- `references/critique.md` — how to find real weaknesses: the roast pass, five-second read, palette/hierarchy roles, direction reset.
-- `references/gates.md` — detailed gate definitions, evidence formats, and the anti-theater rules.
-- `references/examples.md` — concrete good/bad pairs. Read this when unsure whether a fix or critique is concrete enough.
+- `references/gates.md` — detailed gate definitions, evidence formats, verdict rules, and anti-theater rules.
+- `references/critique.md` — read when weaknesses are vague, visual read matters, or a direction reset is needed.
+- `references/persistence.md` — read for substantial missions, explicit polish/completeness, or no user limit on iteration.
+- `references/mission-contract.md` — read for broad, risky, resumable, baseline-comparison, or multi-slice work.
+- `references/adjacent-impact.md` — read for bugs, narrow tweaks, docs, UI, workflows, assets, or any target with nearby consequences.
+- `references/orchestration.md` — read when domain, critique, verification, or reference skills/tools can materially raise the artifact.
+- `references/visual-horizon.md` — read for visual/UI/prototype/game work with ambitious or unclear target quality.
+- `references/recovery.md` — read when the user rejects the result or the baseline/tie verdict is red.
+- `references/examples.md` — read when unsure whether a critique, fix, evidence claim, loop, or failure report is concrete enough.

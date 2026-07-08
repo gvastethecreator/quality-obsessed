@@ -49,6 +49,23 @@ Rules:
 - Two consecutive `flat`/`worse` → direction reset (see `critique.md`). Continuing to polish is forbidden.
 - The final report may not contain a verdict that lacks its evidence artifact.
 
+## Persistence gate
+
+For substantial missions, explicit polish/completeness, or no user limit on iteration, `persistence.md` must be satisfied before `quality win`:
+
+- the persistence target or explicit user limit is met.
+- Loop 30, when reached, has a `continue`, `ask`, or `stop` verdict.
+- at least 60% of counted loops are material-change loops.
+- any early stop has a blocker or no-padding verdict with evidence.
+
+## Adjacent gate
+
+For quality work with nearby consequences, `adjacent-impact.md` must be satisfied:
+
+- the named target and immediate surface were inspected.
+- root cause, analogous cases, or nearby states/tests/docs were checked when cheap.
+- bounded nearby fixes were made, offered, deferred, or skipped with a reason.
+
 ## Anti-theater rules
 
 - No pass counting as a metric. "I did 12 passes" is meaningless; 12 verdicts with evidence is the claim.
