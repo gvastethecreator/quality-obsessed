@@ -9,6 +9,26 @@ A gate passes only with captured evidence. "I checked it" is not evidence. Evide
 - Pass condition: a neutral reviewer could name the improvement in one sentence. "It's cleaner" does not count; "the dashboard now shows live totals with per-category breakdown instead of a static list" counts.
 - Automatic fail: the artifact is materially the same and only process output grew (plans, docs, logs, comments, README). This is the cardinal failure mode of fake quality work.
 
+## Adversarial critique gate
+
+For broad, quality-sensitive, recovery, visual/product/code/docs, audit/review, or user-declared obsessive work, run the result autopsy in `critique.md` before final status.
+
+Pass condition:
+
+- the top objections are located in the artifact or executed output.
+- each objection names user harm, likely/source cause, cut/fix, proof needed, status, and severity.
+- in-scope blocker/P1 findings are fixed, blocked by a named external constraint, or scoped out by explicit user limit.
+- repeated/systemic P2 findings have another loop, a bounded deferral, or evidence that they are outside the mission.
+- the final report does not praise the artifact before naming open severity.
+
+Automatic fail:
+
+- "looks better" or "overall solid" without evidence.
+- advice-only output when the artifact was editable and the user asked for improvement.
+- a generic critique that could apply to any artifact.
+- a detector/test/screenshot treated as the verdict instead of evidence for a conclusion.
+- cosmetic changes while the named source cause remains untouched.
+
 ## States gate
 
 Every user-visible surface must have been **seen** (screenshot or executed render) in:
