@@ -25,6 +25,8 @@ Mission control:
 Baseline:
 Quality contract:
 Advisor autonomy:
+Advisor checkpoints:
+Grilling:
 Adjacent audit:
 Improvement ledger:
 Loop records:
@@ -46,6 +48,8 @@ For plans another agent will execute, include:
 
 - current-state evidence with file paths and line references where practical.
 - vetted findings with impact, effort, risk, confidence, and rejected options.
+- advisor interpretation, orientation/final checkpoints, consult budget or fallback, and accepted/rejected advice.
+- grilling decision tree, one-question-at-a-time user decisions, settled decisions, rejected paths, safe defaults, unresolved branches, and execution gate.
 - adjacent impact audit: named target, root cause/underlying need, immediate surface, analogs, accepted improvements, offered/deferred scope, and proof.
 - one recommended decision with default assumptions.
 - exact files allowed in scope.
@@ -54,6 +58,7 @@ For plans another agent will execute, include:
 - drift check against current repo state.
 - escape hatches: what to stop on instead of improvising.
 - docs to update when done.
+- context docs or ADRs to update when settled vocabulary or durable decisions changed.
 
 If the work may be resumed or delegated, include a drift check against the current commit or touched paths. If the drift check fails, the executor must compare current-state excerpts against the live files before editing.
 
@@ -107,6 +112,8 @@ For quality loops, store records beside the improvement ledger or link to their 
 
 - Update status before and after execution slices.
 - Record accepted, rejected, and deferred decisions.
+- Record advisor checkpoints, fallback mode, accepted advice, rejected advice, and any evidence that overrode advice.
+- Record grilling branches, user-confirmed answers, safe defaults, rejected paths, unresolved questions, and whether execution is released.
 - Record adjacent surfaces inspected, improved, offered, deferred, or skipped.
 - Record proof paths, not only "tested".
 - Before each execution slice, pick the highest-impact accepted/open ledger item.

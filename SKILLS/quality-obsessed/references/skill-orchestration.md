@@ -14,6 +14,8 @@ Reference/horizon skill:
 Adjacent impact audit:
 Quality Contract:
 Advisor autonomy:
+Advisor checkpoints:
+Grilling:
 Task documentation:
 Mission control:
 Improvement ledger:
@@ -75,7 +77,8 @@ The stack is ready when:
 - selected skills are mapped to transformation layers and proof.
 - adjacent impact audit names inspected, improved, offered, deferred, and skipped surfaces.
 - the Quality Contract has baseline, layers, signature moves, proof, and STOP conditions.
-- when autonomy, challenge, or `improve` applies, the advisor brief has evidence, vetted findings, rejected options, one recommended decision, scope boundaries, verification expected results, and STOP conditions.
+- when autonomy, challenge, or `improve` applies, the advisor brief has evidence, portable advisor checkpoints or fallback, vetted findings, rejected options, one recommended decision, accepted/rejected advice, scope boundaries, verification expected results, and STOP conditions.
+- when grilling applies, the council has inspected repo/docs, built a decision tree, asked at most one current material question with a recommended answer, and recorded settled decisions, rejected paths, unresolved branches, and the execution gate.
 - iterative or ambitious work has mission-control state: objective, loop, next action, proof, learning, project opportunity, and STOP conditions.
 - assigned, delegated, resumable, multi-slice, risky, or quality-gated work has a task documentation path.
 - accepted improvements, tasks, risks, cuts, and loop sources have a ledger path or final-response record.
