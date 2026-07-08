@@ -69,3 +69,19 @@ Every item names a place and a failure; the fix is implied by the criticism.
 
 **Good (red until proof):**
 > "Status: `red/failed`. The first screen still reads like a generic admin template beside the baseline. Kill list: repeated stat cards, fake activity feed, weak CTA. New direction: alert-first operational console with one real decision path. Proof needed: side-by-side desktop/mobile screenshots."
+
+## Example 9 — Delegated review
+
+**Bad (subagent theater):**
+> "Asked three reviewers. They all said it looks good, so the quality gate passes."
+
+**Good (independent findings):**
+> "Delegated visual review found the mobile error state hides the retry button and the primary action color is used on non-actions. Accepted both. Rejected the suggestion to add a second chart because it does not support the main task. Proof: 375px before/after screenshot plus updated color-role diff."
+
+## Example 10 — Useful council and grilling
+
+**Bad (avoiding ceremony):**
+> "This was a small request, so I only changed the button label and stopped once tests passed."
+
+**Good (obsessive but aligned):**
+> "Council pass found the label was only a symptom: the whole empty state failed to tell users what to do next. Grilling decision: keep scope inside the empty state, but add a one-click recovery path and proof. Result: label, CTA hierarchy, empty copy, and retry state changed; screenshot and test attached."
