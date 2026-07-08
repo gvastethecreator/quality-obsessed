@@ -16,7 +16,7 @@ Use it when a task needs more than a competent first pass:
 - UI, prototype, visual, product, code, docs, and output polish.
 - Work where "looks better" or "more robust" must be backed by screenshots, tests, command output, or reviewed diffs.
 - Tasks where hidden edge cases, empty states, hostile inputs, or weak first impressions would make the result feel unfinished.
-- Situations where the agent should keep iterating until evidence gates pass, not until a pass count or plan says enough.
+- Situations where the agent should keep iterating until evidence gates pass, including persistence missions with a 30-loop floor when the user does not set limits and meaningful weaknesses remain.
 
 Do not use it to turn every tiny task into ceremony. The point is better artifacts, not bigger process.
 
@@ -40,7 +40,9 @@ The skill runs a tight evidence loop:
 4. Prove the fix with captured evidence.
 5. Issue an honest verdict: `substantially better`, `mixed`, `flat`, or `worse`.
 
-There is no fixed number of passes. Evidence decides whether the work is done. Two consecutive `flat` or `worse` verdicts mean the current direction needs to change instead of receiving more polish.
+Small work can finish as soon as the gates pass. Substantial, quality-sensitive, broad, visual/product/code, or user-declared obsessive work enters persistence mode: 30 valid loops by default when the user does not set limits, no hard maximum, and a Loop 30 verdict of `continue`, `ask`, or `stop`.
+
+Two consecutive `flat` or `worse` verdicts mean the current direction needs to change instead of receiving more polish.
 
 ## Evidence Gates
 
@@ -52,20 +54,35 @@ The skill treats these gates as required before a quality win:
 - **First impression:** for visual work, inspect real screenshots at desktop and mobile widths.
 - **No self-certification:** every improvement claim needs evidence, not optimistic prose.
 
-Final status must be one of `quality win`, `failed`, or `blocked`.
+Final status must be one of `quality win`, `failed`, `red/failed`, or `blocked`.
+
+## Modes
+
+- **Quick quality pass:** use the core loop and evidence gates for bounded work.
+- **Persistence mission:** use [`references/persistence.md`](./SKILLS/quality-obsessed/references/persistence.md) for substantial quality, polish, completeness, or no explicit user limit.
+- **Recovery mode:** use [`references/recovery.md`](./SKILLS/quality-obsessed/references/recovery.md) when the user rejects the result or baseline comparison is red.
+- **Visual horizon:** use [`references/visual-horizon.md`](./SKILLS/quality-obsessed/references/visual-horizon.md) when visual direction is unclear or ambitious.
+- **Mission contract:** use [`references/mission-contract.md`](./SKILLS/quality-obsessed/references/mission-contract.md) for broad, risky, resumable, delegated, or baseline-comparison work.
 
 ## What's Inside
 
 - [`SKILL.md`](./SKILLS/quality-obsessed/SKILL.md): the main artifact-first quality loop, evidence gates, verdict discipline, and environment mapping.
+- [`references/README.md`](./SKILLS/quality-obsessed/references/README.md): map of branch-specific references.
 - [`references/gates.md`](./SKILLS/quality-obsessed/references/gates.md): detailed gate definitions, evidence formats, verdict rules, and anti-theater rules.
 - [`references/critique.md`](./SKILLS/quality-obsessed/references/critique.md): concrete critique, five-second visual read, palette and hierarchy checks, and direction reset.
-- [`references/examples.md`](./SKILLS/quality-obsessed/references/examples.md): good and bad examples for critique, fixes, evidence, side-by-side verdicts, honest failure, and direction reset.
+- [`references/persistence.md`](./SKILLS/quality-obsessed/references/persistence.md): 30-loop floor, no hard cap, Loop 30 continuation verdict, mission control, and no-padding rule.
+- [`references/mission-contract.md`](./SKILLS/quality-obsessed/references/mission-contract.md): baseline, quality layers, ambition, task record, and final claim rules.
+- [`references/adjacent-impact.md`](./SKILLS/quality-obsessed/references/adjacent-impact.md): root cause, analogs, nearby surfaces, proof gaps, and safe expansion boundary.
+- [`references/orchestration.md`](./SKILLS/quality-obsessed/references/orchestration.md): smallest useful domain, critique, proof, and reference stack.
+- [`references/visual-horizon.md`](./SKILLS/quality-obsessed/references/visual-horizon.md): before/horizon/after workflow for visual quality.
+- [`references/recovery.md`](./SKILLS/quality-obsessed/references/recovery.md): red status, kill list, direction reset, and hyperfocus after weak output.
+- [`references/examples.md`](./SKILLS/quality-obsessed/references/examples.md): good and bad examples for critique, fixes, evidence, loops, adjacent audit, honest failure, and recovery.
 
 ## Status
 
 Preview skill pack.
 
-- The previous council-style reference set has been replaced by a smaller evidence-gated skill.
+- The older large reference set has been replaced by a smaller evidence-gated skill with compact persistence, contract, adjacent-impact, orchestration, visual-horizon, and recovery references.
 - Best for substantial, review-sensitive, visual, product, code, docs, and prototype work.
 - Not meant to turn every tiny task into a ceremony.
 

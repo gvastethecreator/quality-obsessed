@@ -45,3 +45,27 @@ Every item names a place and a failure; the fix is implied by the criticism.
 
 **Good (kill and redirect):**
 > "Two flat verdicts. Admission: the card-grid direction fails because every metric looks equally important — the layout has no answer to 'what's wrong today?'. Kill list: the 8-card grid, the decorative sparklines. New direction: single alert-first column — the worst metric gets the top slot at 3× size with its cause, everything else collapses into a compact ranked list. Rebuilt, screenshot pair attached." Verdict: `substantially better`.
+
+## Example 6 — Persistence without theater
+
+**Bad (quota theater):**
+> "Completed 30 loops. Most were verification passes and README edits, but the checklist is done."
+
+**Good (valid persistence):**
+> "Loop 30 verdict: `continue`. 21/30 loops changed behavior, state coverage, visual read, or proof tooling. Remaining high-leverage item: mobile overflow still hides the retry action. Next loop: rebuild the error footer and capture 375px before/after."
+
+## Example 7 — Adjacent impact
+
+**Bad (named target only):**
+> "Fixed the broken upload button."
+
+**Good (impact surface):**
+> "Fixed upload retry. Adjacent audit found the same timeout path in avatar upload and document upload; avatar shared the helper and got the regression test, document uses a different service and is deferred with reason. Proof: timeout test plus manual retry screenshot."
+
+## Example 8 — Recovery honesty
+
+**Bad (comfort framing):**
+> "The result is much improved even though it may still feel a little generic."
+
+**Good (red until proof):**
+> "Status: `red/failed`. The first screen still reads like a generic admin template beside the baseline. Kill list: repeated stat cards, fake activity feed, weak CTA. New direction: alert-first operational console with one real decision path. Proof needed: side-by-side desktop/mobile screenshots."
