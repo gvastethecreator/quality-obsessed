@@ -14,7 +14,8 @@ Turn a rough prompt, project, prototype, or plan into an execution-grade quality
    - Define the quality stack needed to execute: domain/build skill, critique skill, verification/proof skill, and horizon/reference skill.
    - Define the exceptional bar: target level, signature moves, experience direction, and failure condition.
    - Read `references/council/relentless-critic.md` when the user criticizes a result as poor, bland, conformist, softened, not creative, or not obsessive enough.
-   - Read `references/council/advisor-autonomy.md` when the user asks the agent to decide, challenge the request, use `improve`, operate autonomously, or hand work to another agent.
+   - Read `references/council/advisor-autonomy.md` when the user asks the agent to decide, challenge the request, use `improve`, operate autonomously, or hand work to another agent; treat advisor as a portable stronger-review checkpoint, not a Claude Code dependency.
+   - Read `references/council/grilling.md` when the user asks to grill, the plan has unresolved material branches, a question round is likely, or `CONTEXT.md`/ADR/domain vocabulary may change.
    - Read `references/council/ambition-escalation.md` when the user asks for standout quality, permits broader scope, or the literal artifact would be competent but forgettable.
    - Read `references/council/mission-control.md` when work is iterative, quality-gated, ambitious, resumable, or should improve the broader project while executing.
    - For existing work, inspect available code, docs, screenshots, running UI, logs, or artifacts before judging when practical.
@@ -26,6 +27,7 @@ Turn a rough prompt, project, prototype, or plan into an execution-grade quality
    - Read `references/council/personas.md` before selecting personas.
    - Use the smallest council that covers the risk: Product Strategist, Real User, Implementer, Reality Judge, Transformation Judge, Quality-Obsessed Reviewer, Skeptic, and Ponytail are the common core.
    - Add Relentless Critic when recovery mode applies, target level is 5, or previous quality work failed to differentiate.
+   - Add Plan Griller when unresolved decisions, user confirmation, domain vocabulary, or one-question-at-a-time clarification would change execution.
    - For assigned, resumable, multi-slice, delegated, or AFK work, include Task Documentarian.
    - For UI, prototype, game, visual, brand, interaction, product surface, dashboard, or design work, include Interface Design Critic, Art Direction Critic, and Experience Director.
    - Add Creative Director, Technical Art Director, Domain Specialist, Architect, or QA Lead when the task needs them.
@@ -37,12 +39,13 @@ Turn a rough prompt, project, prototype, or plan into an execution-grade quality
    - Reality Judge compares against the baseline or expected competent output and can mark the mission red.
    - Define the transformation thesis: selected artifact-specific layers, required margin over baseline, evidence, and failure condition.
    - Run the adjacent impact audit: ask what nearby root cause, analog, state, asset, doc, test, or workflow would make a narrow answer feel negligent.
+   - When `grilling.md` applies, build the decision tree from repo/docs, split repo-settled branches from user-required branches, and ask one material question at a time with a recommended answer.
    - For UI/prototype/game/visual work, run a roast pass from evidence: Interface Design Critic attacks usability, hierarchy, layout, interaction, and accessibility; Art Direction Critic attacks mood, composition, palette, materiality, originality, and visual memorability.
    - Experience Director attacks first-five-second read, next action, reward cadence, recovery confidence, and sensory pacing.
    - Each roast must name current read, target read, gap, concrete fix, and before/after proof needed.
    - If the target read is hard to judge from prose, require a feasible `$imagegen` visual horizon: current screenshot edited/generated into a stronger target reference inside the actual implementation envelope.
    - Run an ambition ladder: better literal, expanded depth, stronger product, signature leap, showcase result; reject expansions that do not serve the user outcome or cannot be proved.
-   - When `advisor-autonomy.md` applies, convert critique into vetted findings with evidence, impact, effort, risk, confidence, fix sketch, and rejected alternatives.
+   - When `advisor-autonomy.md` applies, run the orientation checkpoint after evidence gathering and convert critique into vetted findings with evidence, impact, effort, risk, confidence, fix sketch, rejected alternatives, consult budget, and fallback.
    - Force at least one disagreement about ambition vs scope, craft vs implementation cost, or user value vs novelty.
    - When `relentless-critic.md` applies, run the failure diagnosis, kill list, direction reset, and hyperfocus target before accepting the next direction.
    - Do not let Ponytail veto accepted user-visible quality gates; use Ponytail to cut waste after the bar is set.
@@ -58,7 +61,7 @@ Turn a rough prompt, project, prototype, or plan into an execution-grade quality
    - For recovery mode, the recommended decision must either reset direction or explicitly prove why the old direction can still beat the baseline.
    - Define color/material/pacing decisions when the artifact has a visual or experiential surface.
    - Define the Loop 1 foundation lift: the first iteration's major cross-axis upgrade before any smaller loop can count.
-   - Produce a Quality Contract with baseline, target, mission control, ambition escalation, layers, signature moves, quality stack, documentation path, improvement ledger, loop checkpoint cadence, scope, verification, reality verdict gate, and STOP conditions.
+   - Produce a Quality Contract with baseline, target, mission control, ambition escalation, layers, signature moves, quality stack, advisor checkpoints, grilling decisions, documentation path, improvement ledger, loop checkpoint cadence, scope, verification, reality verdict gate, and STOP conditions.
    - Include adjacent audit decisions: inspected surface, accepted nearby improvements, offered bigger moves, deferred items, and safe expansion boundary.
    - Done when a builder would not need to reinvent the brief, guess what "better" means, or guess where task state lives.
 
@@ -67,7 +70,8 @@ Turn a rough prompt, project, prototype, or plan into an execution-grade quality
    - Read `references/council/output-contract.md` before writing question rounds, reviews, plans, prototype briefs, or execution packets.
    - For new work, include baseline, quality delta, deliverables, acceptance criteria, implementation slices, cuts, risks, and verification.
    - For reviews, include evidence, critical issues, missed opportunities, design/art roast, council disagreement, priority improvements, and next slice.
-   - For advisor-style outputs, include vetted findings, rejected options, decision, self-contained execution plan, verification gates with expected results, and STOP conditions.
+   - For advisor-style outputs, include inspected evidence, advisor interpretation, checkpoints, consult budget/fallback, vetted findings, rejected options, decision, self-contained execution plan, verification gates with expected results, and STOP conditions.
+   - For grilling outputs, include docs inspected, decision tree, one current user question with recommended answer, settled decisions, rejected paths, defaults, unresolved branches, and domain docs to update.
    - For assigned or resumable tasks, create or update the task documentation before handoff or execution; prefer existing repo trackers/workplans/plans over new parallel docs.
    - Task documentation must include goal, mission control, baseline, Quality Contract, improvement ledger, loop records, scope, steps, acceptance criteria, verification, proof artifacts, STOP conditions, progress, learning, and open decisions.
    - Accepted improvements, tasks, cuts, risks, and follow-ups must be ledger entries with status, evidence, proof needed, and next action; do not leave them only in chat.
@@ -75,8 +79,9 @@ Turn a rough prompt, project, prototype, or plan into an execution-grade quality
    - Done when the output has decisions, not just options, and the task document can be executed without this chat.
 
 6. Execute only with alignment.
-   - If the user asked for planning/review, stop at the council output.
-   - If the user asked to build, proceed once critical questions are answered or safe defaults are chosen.
+- If the user asked for planning/review, stop at the council output.
+- If the user asked for a grilling session, stop after the current question or confirmed shared understanding; do not execute the plan until the user releases the gate.
+- If the user asked to build, proceed once critical questions are answered or safe defaults are chosen.
    - When execution follows, use `quality-obsessed` gates: quality stack, exceptional bar, quality delta, red-team matrix, craft pass, Loop 1 foundation lift, 10-loop mission record, baseline challenge, and proof.
    - Done when the next action matches consent and has a checkable definition of done.
 
@@ -108,6 +113,9 @@ Turn a rough prompt, project, prototype, or plan into an execution-grade quality
 - No "ask everything": choose safe defaults unless the answer would materially alter the result.
 - No generic options dump: output must contain a recommended decision and rejected alternatives with reasons.
 - No unvetted finding in an advisor-style brief: evidence, impact, effort, risk, confidence, and fix sketch are required.
+- No Claude-only advisor plan: if the runtime lacks a real advisor tool, use internal council checkpoints and record the fallback.
+- No grilling without repo/docs recon: ask only questions that evidence and safe defaults cannot settle.
+- No multiple-question grill dump: one material question at a time, with a recommended answer and impact.
 - No handoff or execution packet without self-contained context, exact scope boundaries, verification with expected results, done criteria, and STOP conditions.
 - No quality theater: recommendations must be observable in the artifact, tests, screenshots, docs, or final proof.
 - No process-as-success: council/loops/imagegen do not matter if the actual artifact is worse than baseline.
@@ -121,7 +129,8 @@ Turn a rough prompt, project, prototype, or plan into an execution-grade quality
 - `references/council/personas.md`: read before selecting or simulating council personas.
 - `references/council/adjacent-impact-audit.md`: read for any quality mission to inspect nearby surfaces, root cause, analogous cases, proof, and safe expansion.
 - `references/council/relentless-critic.md`: read when the user reports blandness, conformity, softness, weak creativity, or insufficient obsessive critique.
-- `references/council/advisor-autonomy.md`: read when the user asks for autonomous decision-making, `improve`-style planning, challenge, or executor-grade handoff.
+- `references/council/advisor-autonomy.md`: read when the user asks for autonomous decision-making, `improve`-style planning, challenge, executor-grade handoff, or portable advisor checkpoints.
+- `references/council/grilling.md`: read when the user asks to grill, unresolved decisions block quality, or domain/task docs need settled decision capture.
 - `references/council/ambition-escalation.md`: read when the user asks for exceptional quality, broader scope, or a result that should beat the literal ask.
 - `references/council/mission-control.md`: read when work needs goal-like state, constant iteration, project improvement, learning, or resumable control.
 - `references/council/quality-contract.md`: read before producing build/review direction, task docs, execution packets, or quality-gated handoffs.

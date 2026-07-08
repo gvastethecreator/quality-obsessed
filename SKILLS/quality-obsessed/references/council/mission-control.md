@@ -11,6 +11,8 @@ Objective:
 User outcome:
 Current artifact/project state:
 Target level:
+Advisor checkpoints:
+Grilling branches:
 Ambition escalation:
 Transformation layers:
 Current loop:
@@ -64,13 +66,17 @@ Learning must be short, evidence-backed, and tied to next action. Do not write d
 Run mission-control checkpoints:
 
 - before Loop 1: objective, ambition, first action, proof.
+- after orientation: whether the advisor checkpoint changed the decision, scope, proof, or STOP conditions.
+- after grilling: settled decisions, unresolved branches, and whether execution is released.
 - after Loop 1: whether the foundation lift changed the artifact/project.
 - after Loop 5: whether the mission is on track or needs a direction change.
-- final: reality verdict, project improvement, learning, remaining tradeoffs.
+- final: durable proof, final advisor/reality reconciliation when required, reality verdict, project improvement, learning, remaining tradeoffs.
 
 ## Hard Gates
 
 - No hidden objective drift: if the work changes direction, update the mission record.
+- No hidden advice drift: if advisor guidance is accepted, rejected, overridden, or unavailable, update the mission record or task doc.
+- No hidden grilling drift: if a user answer, safe default, rejected path, or unresolved branch changes execution, update the mission record or task doc.
 - No endless iteration: each loop must name a next action and proof target.
 - No project scaling without artifact leverage: future-facing work must support the current user outcome or be deferred.
 - No learning log without evidence or action.
