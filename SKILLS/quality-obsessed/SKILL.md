@@ -29,6 +29,8 @@ For every quality mission, inspect the surrounding impact surface before final s
 
 Use the right domain and proof tools. Read `references/orchestration.md` when the task spans UI, product, game, code, docs, data, automation, visual design, or another specialized domain. A domain skill or proof skill counts only when it changes the artifact, critique, or evidence.
 
+Separate facts from decisions. Current docs, APIs, standards, library behavior, or external claims need primary-source research before they shape the quality bar. Foggy large work needs wayfinding or a decision map before implementation. Clear multi-slice work needs spec/tickets with blockers and a visible frontier.
+
 When the environment exposes subagents or delegated reviewers, use them for real independence on substantial missions: critique, adversarial review, domain review, visual review, verification review, or orchestration planning. Read `references/delegated-review.md` when a fresh reviewer could catch what the main agent is likely to miss.
 
 For visual/UI/prototype/game work where the target read is unclear or ambitious, read `references/visual-horizon.md` and compare before, feasible horizon, and after. If the user says the prior result is poor, bland, generic, conformist, softened, or not obsessive enough, read `references/recovery.md` before patching.
@@ -38,6 +40,7 @@ For visual/UI/prototype/game work where the target read is unclear or ambitious,
 - **Side-by-side gate:** put the final artifact next to the baseline (the version before you started, or a competent default). A reviewer must be able to name the improvement in one sentence without your help. If the artifact is basically the same and only plans/docs/logs grew, the mission failed.
 - **States gate:** empty, loading, error, overflow (long text, many items, zero items), and the happy path all exist and were actually seen or executed — not assumed.
 - **Hostile-input gate (code):** the obvious abuse cases were run: bad input, missing data, concurrent use, boundary values. "It should handle that" is not evidence; only executed proof counts.
+- **Test-seam gate (code):** new or changed tests exercise agreed public seams, and expected values come from an independent source of truth — not a restatement of the implementation.
 - **First-impression gate (visual work):** apply the five-second read in `references/critique.md`. If the first five seconds read as "template", it fails.
 - **No self-certification:** optimistic prose cannot turn a weak artifact green. Every claim of improvement must point to a captured artifact (screenshot, test run, diff). If evidence is missing, the claim is false.
 

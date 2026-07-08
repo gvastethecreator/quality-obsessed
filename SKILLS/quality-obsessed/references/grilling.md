@@ -8,6 +8,9 @@ Grilling is not a question dump. It is pressure applied one material decision at
 
 Grill the artifact, plan, backlog, and evidence before grilling the user:
 
+- Which claims are facts that should be researched instead of asked?
+- Which claims are decisions only the user/product owner can make?
+- Which uncertainty is still fog and needs a decision map before execution?
 - Is the literal request enough to satisfy the real user outcome?
 - What assumption would make this work fail?
 - What would a competent baseline also do?
@@ -17,6 +20,8 @@ Grill the artifact, plan, backlog, and evidence before grilling the user:
 - What must be killed, not adjusted?
 
 Ask the user only when repo inspection, evidence, and a safe default cannot decide.
+
+Do not ask the user for facts that official docs, source code, specs, first-party APIs, or repo artifacts can answer. Research those first and ask only for decisions.
 
 ## Question Shape
 
@@ -58,6 +63,7 @@ Execution released:
 ## Hard Rules
 
 - No repo-answerable questions.
+- No source-answerable questions when primary sources are reachable.
 - No question dumps.
 - No execution after a requested grilling session until shared understanding is confirmed or the user releases the gate.
 - No endless grilling: continue when decisions are repo-settled, safely defaulted, user-confirmed, or blocked by one named decision.

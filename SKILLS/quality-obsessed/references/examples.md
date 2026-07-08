@@ -85,3 +85,11 @@ Every item names a place and a failure; the fix is implied by the criticism.
 
 **Good (obsessive but aligned):**
 > "Council pass found the label was only a symptom: the whole empty state failed to tell users what to do next. Grilling decision: keep scope inside the empty state, but add a one-click recovery path and proof. Result: label, CTA hierarchy, empty copy, and retry state changed; screenshot and test attached."
+
+## Example 11 — Facts, fog, and frontier
+
+**Bad (execution from fog):**
+> "Implemented the API migration in one pass. I assumed the new SDK handles retries and split the work into backend, frontend, and docs tickets."
+
+**Good (route first):**
+> "Research note confirmed from official SDK docs that retries are caller-owned. Wayfinding split the fog into one decision ticket: keep current retry wrapper or adopt SDK middleware. After the decision, tickets expose the frontier: expand wrapper, migrate API clients in two green batches, contract old helper. Proof per ticket: focused retry tests plus one runtime failure-path capture."
