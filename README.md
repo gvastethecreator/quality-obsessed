@@ -11,6 +11,8 @@ Quality Obsessed is a workflow skill for making work visibly better, not just mo
 
 - Define the floor, ceiling, and quality contract before broad work.
 - Use the council pass internally for adjacent impact, ambition, mission control, and critique.
+- Adapt advisor-style checkpoints without requiring Claude Code or provider-specific tooling.
+- Grill unresolved plans one question at a time and capture durable decisions in task/docs context.
 - Push beyond competent when the user asks for polish, excellence, or a stronger direction.
 - Keep proof attached to the artifact: tests, screenshots, reviewed output, or clear blockers.
 - Stop honestly when the result does not beat the baseline.

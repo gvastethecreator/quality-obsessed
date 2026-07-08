@@ -13,23 +13,25 @@ Create a quality delta: a visible or testable improvement a reviewer can name. T
    - Read `references/skill-orchestration.md` for substantial quality work or any task spanning UI, code, product, game, docs, data, workflow, visual design, or verification.
    - If a council pass produced a Quality Contract, consume it as the execution source. If not, read `references/council/quality-contract.md` and write the minimum contract before broad work.
    - Read `references/council/adjacent-impact-audit.md` for every quality mission; quality execution must inspect the named target plus the surrounding impact surface before final status.
-   - Read `references/council/advisor-autonomy.md` when the user named `improve`, asked for autonomy, asked the agent to challenge the request, or the work needs a self-contained execution plan.
+   - Read `references/council/advisor-autonomy.md` when the user named `improve`, asked for autonomy, asked the agent to challenge the request, or the work needs a self-contained execution plan; use its portable advisor checkpoints without assuming Claude Code.
+   - Read `references/council/grilling.md` when the user asks to grill a plan, the council finds unresolved decisions, or task/domain docs need settled vocabulary, rejected paths, and one-question-at-a-time clarification.
    - Read `references/council/ambition-escalation.md` when the user asks for standout quality, permits broader scope, or the literal artifact would be competent but forgettable.
    - Read `references/council/mission-control.md` for iterative, quality-gated, ambitious, resumable, or project-improving work.
    - Read `references/council/relentless-critic.md` when the user reports a poor/bland/conformist/soft result or asks for obsessive, hyperfocused critique.
    - Select the mission/domain skill, craft/critique skill, verification/proof skill, and reference/horizon skill needed to beat the baseline.
    - Use named user skills first, then add only the smallest set of relevant domain skills that can change the artifact.
-   - Done when the stack is declared, each selected skill has a job, the Quality Contract names baseline/layers/proof/STOP conditions, advisor-autonomy fields are present when needed, and no obvious domain/proof skill is skipped without a reason.
+   - Done when the stack is declared, each selected skill has a job, the Quality Contract names baseline/layers/proof/STOP conditions, advisor-autonomy and grilling fields are present when needed, and no obvious domain/proof skill is skipped without a reason.
 
 2. Set the floor, ceiling, and exceptional bar.
    - State the user's goal, target user, first-use path, main success path, recovery path, constraints, and proof needed.
    - Read `references/council/task-documentation.md` before executing assigned, resumable, multi-slice, risky, or quality-gated work.
    - Create or update the task document before implementation when work will be handed off, resumed, delegated, split into slices, or judged by quality gates; prefer the repo's existing workplan, tracker, issue, `plans/`, or durable planning convention.
-   - The task doc must include goal, mission control, baseline, Quality Contract, improvement ledger, loop records, scope, out-of-scope, steps, acceptance criteria, verification, proof artifacts, STOP conditions, progress, learning, and open decisions.
+   - The task doc must include goal, mission control, baseline, Quality Contract, grilling decisions when needed, improvement ledger, loop records, scope, out-of-scope, steps, acceptance criteria, verification, proof artifacts, STOP conditions, progress, learning, and open decisions.
    - Define the floor: the competent no-skill result this work must beat.
    - Define the ceiling: the strongest version that fits the user's outcome, including justified scope expansion when allowed.
    - Define the adjacent audit: immediate surface, root cause or underlying need, analogous cases, nearby tests/proof, safe expansion boundary, and ask-before-crossing line.
-   - When advisor autonomy applies, write or update a self-contained execution plan with vetted findings, rejected options, recommended decision, exact scope, verification expected results, done criteria, and STOP conditions before major implementation.
+   - When advisor autonomy applies, run the orientation checkpoint after recon and write or update a self-contained execution plan with vetted findings, rejected options, recommended decision, exact scope, verification expected results, done criteria, and STOP conditions before major implementation.
+   - When grilling applies, build the decision tree from repo/docs first, ask only one material question at a time with a recommended answer, and do not execute after an explicit grilling request until shared understanding is confirmed.
    - Read `references/exceptional-bar.md` when the user asks for quality, polish, professional finish, a baseline win, or the skill was invoked after weak differentiation.
    - Set the target level, signature moves, experience direction, color/material/pacing choices, and cuts before Loop 1.
    - If relentless recovery applies, write the red verdict, kill list, direction reset, and hyperfocus target before Loop 1; do not patch the old direction incrementally until it survives that reset.
@@ -95,7 +97,7 @@ Create a quality delta: a visible or testable improvement a reviewer can name. T
 8. Verify and package evidence.
    - Run build/dev/manual flow/test as practical, including the main path and one meaningful edge/recovery path.
    - For UI/prototype/game work, capture representative desktop and mobile/tablet proof when tools are available.
-   - Update the task doc with final status, proof artifacts, reality verdict, skipped checks, remaining tradeoffs, deferred work, mission-control reconciliation, and ledger reconciliation.
+   - Update the task doc with final status, proof artifacts, reality verdict, skipped checks, remaining tradeoffs, deferred work, advisor checkpoint reconciliation, mission-control reconciliation, and ledger reconciliation.
    - Final response names the quality delta, adjacent audit result, loop count, proof, task doc path, skipped checks, mission status, learning, project improvement, ledger status, and remaining tradeoffs.
    - Done when status matches evidence and task documentation is current.
 
@@ -104,7 +106,9 @@ Create a quality delta: a visible or testable improvement a reviewer can name. T
 - No indistinguishable baseline: if it looks like a normal competent pass, keep improving or state the scope limit.
 - No solo quality stack on multi-surface work: if a relevant domain, critique, or verification skill exists and is skipped without reason, the mission is under-briefed.
 - No execution without a Quality Contract for substantial, assigned, multi-surface, review-sensitive, or baseline-comparison work.
-- No autonomous execution without an advisor-grade decision record when the user asked to use `improve`, challenge the request, or decide the stronger path.
+- No autonomous execution without an advisor-grade decision record and checkpoint/fallback record when the user asked to use `improve`, challenge the request, or decide the stronger path.
+- No execution after a requested grilling session until the user confirms shared understanding or explicitly releases the gate.
+- No council question dump: inspect repo/docs first, then ask one material question with a recommended answer and durable decision tracking.
 - No quality execution without adjacent impact audit: named target, root cause or underlying need, immediate surface, analogous cases, proof, and expansion boundary.
 - No bug fix that only patches the visible symptom when nearby root cause, analogs, tests, or recovery are practical to inspect.
 - No icon/asset tweak that ignores surrounding UI, neighboring assets, states, alignment, contrast, or actual use context.
@@ -135,7 +139,7 @@ Create a quality delta: a visible or testable improvement a reviewer can name. T
 - No self-soothing: when the user reports a poor/bland/conformist/soft result, start from red, name the failure, and change the artifact or direction before claiming progress.
 - No comfort-close for failure: final status must say `red/failed`, `blocked`, or `quality wins`; do not bury failure under "solid progress" language.
 - No hyperfocus theater: an obsession target must be named and materially improved or protected by each valid loop in recovery mode.
-- No plan drift: if execution stops matching the recommended decision, update the advisor brief, record the rejected path, or stop for a material user decision.
+- No plan drift: if execution stops matching the recommended decision, update the advisor brief, record accepted/rejected advice, or stop for a material user decision.
 - No missed transformation gate: broad quality work must improve selected core layers with a clear margin, or state `tie/no meaningful delta` or `failed to beat baseline`.
 - No empty iteration theater: a loop counts only with a lens, user-impact weakness, action, before/after evidence, and remaining concern.
 - No loop-count padding: copy-only, README-only, proof-only, or "verified no issue" loops are capped by `references/iteration-loop.md` and cannot be used to hit 30.
@@ -149,7 +153,8 @@ Create a quality delta: a visible or testable improvement a reviewer can name. T
 - `references/council/quality-contract.md`: read when a council contract is missing, stale, or too vague for execution.
 - `references/council/adjacent-impact-audit.md`: read for any quality mission to inspect root cause/underlying need, nearby surfaces, analogous cases, proof, and safe expansion.
 - `references/council/relentless-critic.md`: read when prior output felt poor, bland, conformist, softened, or insufficiently obsessive.
-- `references/council/advisor-autonomy.md`: read when the user names `improve`, asks for autonomous decision-making, or the task needs an executor-grade plan.
+- `references/council/advisor-autonomy.md`: read when the user names `improve`, asks for autonomous decision-making, or the task needs an executor-grade plan with portable advisor checkpoints.
+- `references/council/grilling.md`: read when the user asks to grill a plan, unresolved decisions block quality, or task/domain docs must capture settled decisions.
 - `references/council/task-documentation.md`: read before assigned, resumable, delegated, multi-slice, risky, or quality-gated work.
 - `references/skill-orchestration.md`: read before substantial quality work to select domain, critique, verification, and horizon skills instead of running quality as a solo checklist.
 - `references/exceptional-bar.md`: read when the user wants polish, professional finish, a clear baseline win, "lucirse", or a superior-model quality delta.

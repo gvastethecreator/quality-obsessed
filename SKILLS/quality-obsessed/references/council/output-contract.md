@@ -12,6 +12,8 @@ Recommended default:
 Why this matters:
 Alternatives:
 Impact if unanswered:
+Settled context:
+Execution blocked until:
 ```
 
 ## Council Synthesis
@@ -26,11 +28,26 @@ Quality delta:
 Advisor autonomy:
 - Evidence inspected:
 - Not inspected:
+- Advisor interpretation:
+- Advisor checkpoints:
+- Consult budget/fallback:
 - Vetted findings:
 - Rejected options:
 - Recommended decision:
+- Advice accepted/rejected:
 - Default assumptions:
 - User decision required only if:
+Grilling:
+- Trigger:
+- Docs inspected:
+- Decision tree:
+- Current user question:
+- Settled decisions:
+- Rejected paths:
+- Default assumptions:
+- Unresolved branches:
+- Domain docs updated or skipped:
+- Execution allowed only if:
 Mission control:
 - Objective:
 - Current loop:
@@ -196,6 +213,15 @@ Adjacent audit:
 - Offered:
 - Deferred/skipped:
 - Proof:
+Grilling:
+- Trigger:
+- Decision tree:
+- Current user question:
+- Settled decisions:
+- Rejected paths:
+- Unresolved branches:
+- Domain docs updated or skipped:
+- Execution gate:
 Task documentation:
 - Path:
 - Status:
@@ -223,6 +249,10 @@ Critical issues:
 Vetted findings:
 - id -> evidence -> impact -> effort -> risk -> confidence -> fix sketch
 Rejected findings/options:
+- item -> reason
+Advisor checkpoints:
+- orientation/trouble/final -> external | subagent | internal council fallback -> result
+Advice accepted/rejected:
 - item -> reason
 Recommended decision:
 - decision -> why it wins -> default assumptions
@@ -281,9 +311,22 @@ Baseline to beat:
 Reality verdict gate:
 Advisor autonomy:
 - Evidence inspected:
+- Advisor interpretation:
+- Advisor checkpoints:
+- Consult budget/fallback:
 - Vetted findings:
 - Rejected options:
 - Recommended decision:
+- Advice accepted/rejected:
+Grilling:
+- Docs inspected:
+- Decision tree:
+- Settled decisions:
+- Rejected paths:
+- Default assumptions:
+- Unresolved branches:
+- Domain docs updated or skipped:
+- Execution gate:
 Ambition escalation:
 Quality stack:
 Adjacent audit:

@@ -24,6 +24,8 @@ Competent baseline would likely:
 Superior version should:
 Quality stack:
 Advisor autonomy:
+Advisor checkpoints:
+Grilling:
 Adjacent impact audit:
 Task documentation:
 Mission control:

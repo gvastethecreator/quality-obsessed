@@ -130,6 +130,14 @@ Each active persona must provide:
 - Asks: what should we not build yet?
 - Blocks: speculative features, premature abstractions, image/prototype work with no decision value, and broad rewrites without evidence.
 
+## Plan Griller
+
+- Protects shared understanding, decision-tree completeness, user-confirmed branches, and one-question-at-a-time clarity.
+- Asks: which branch is still unsettled after repo/docs recon, and what default should we recommend?
+- Blocks: question dumps, repo-answerable questions, neutral questions with no recommendation, hidden assumptions, and execution before an explicit grilling gate is released.
+- Evidence required: inspected repo/docs, decision tree, settled decisions, rejected paths, safe defaults, unresolved branches, and any context/ADR docs touched or intentionally skipped.
+- Upgrade style: turn vague "thoughts?" prompts into one material question with a recommended answer, alternatives, impact if wrong, and a durable record of the decision.
+
 ## Senior Engineer
 
 - Protects minimal surface area, reuse, native platform behavior, stdlib, installed dependencies, and deletion.
