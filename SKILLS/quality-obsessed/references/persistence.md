@@ -35,6 +35,7 @@ status: open | fixed | scoped-out
 Seed the backlog from:
 
 - baseline comparison.
+- adversarial result autopsy.
 - evidence gates.
 - council findings.
 - grilling decisions.
@@ -61,6 +62,8 @@ Next action:
 
 A loop does not count if it only says "looks good", repeats the requirement, edits docs for a non-doc deliverable, adds ritual with no artifact/decision/evidence effect, or produces proof without testing a real risk.
 
+If the loop responds to a critique finding, its `Action` must attack the named cause, not only the visible symptom. Cosmetic changes do not count against a systemic P1/P2 unless the evidence shows the source cause no longer harms the artifact.
+
 ## Material Mix
 
 By Loop 30, at least 60% of counted loops must be material-change loops. A material-change loop alters behavior, interaction, visual read, information architecture, responsiveness, accessibility, failure handling, maintainability, performance, or proof tooling in a way that changes user value or reviewer confidence.
@@ -86,7 +89,7 @@ For persistence missions, run council and grilling as pressure valves:
 - before Loop 1: council defines the superior version, ambition leap, risks, cuts, and proof.
 - after Loop 1: grilling asks whether the foundation lift is truly visible or testable.
 - after two weak verdicts: recovery-style grilling forces a kill list or direction reset.
-- at Loop 30: council plus grilling decide `continue`, `ask`, or `stop`.
+- at Loop 30: run the adversarial result autopsy, then council plus grilling decide `continue`, `ask`, or `stop`.
 
 These checkpoints are lightweight records, not essays. They count only when they change the next artifact move, backlog, proof, or final claim.
 
@@ -111,6 +114,7 @@ Update it when evidence changes the plan. Hidden objective drift is a failure mo
 Stop only when:
 
 - every blocker and major finding is fixed or scoped out with a reason.
+- the latest adversarial result autopsy has no in-scope blocker/P1 and no repeated/systemic P2 still open.
 - proof covers the main path and one meaningful edge or recovery path.
 - side-by-side evidence says the artifact beats the baseline, or final status honestly says it did not.
 - the persistence target is satisfied or a no-padding/blocker verdict explains why fewer loops are honest.
