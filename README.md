@@ -18,6 +18,9 @@ Copy [`SKILLS/quality-obsessed`](./SKILLS/quality-obsessed) into your Codex skil
 - Inspect the real artifact: runtime, screenshots, output, tests, states, or edge cases.
 - Change the artifact, not just the plan.
 - Prove each quality claim with evidence.
+- Ground current or external claims in primary sources.
+- Route foggy missions through wayfinding/decision maps; route clear multi-slice work into spec/tickets with blockers and a frontier.
+- Test through agreed public seams with independent expected values.
 - Beat the baseline, or say `failed` / `red/failed`.
 - If meaningful weaknesses remain and the user gave no limit: 30-loop floor, no hard cap, Loop 30 verdict (`continue`, `ask`, `stop`).
 - Use council, grilling, delegated review, and visual horizons when they improve the artifact, decision, proof, or cuts.

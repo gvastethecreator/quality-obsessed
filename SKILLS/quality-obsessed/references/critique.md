@@ -38,6 +38,17 @@ Triggered by two consecutive `flat`/`worse` verdicts, or the user calling the re
 
 If the user explicitly rejects the result or the baseline still wins, use `recovery.md` instead of doing a small direction tweak.
 
+## Positive target
+
+Do not steer critique only by negation. "Not generic", "not bland", and "not overengineered" all keep the failure pattern in frame. Convert each ban into a positive target:
+
+```text
+Avoid: generic admin template
+Target: alert-first operational console with one real decision path visible above the fold
+```
+
+A prohibition is allowed as a hard guardrail only when paired with the target behavior, visual read, or proof that should replace it.
+
 ## Visual horizon trigger
 
 If the critique says "generic", "template", "bland", "flat", "default canvas", "same dark panels", or "unclear target read", read `visual-horizon.md` before visual polish. Text-only critique is not enough when the failure is visual direction.
@@ -47,3 +58,4 @@ If the critique says "generic", "template", "bland", "flat", "default canvas", "
 - **Adjective critique:** "it feels bland" with no location. Useless — convert to a located failure or discard.
 - **Checklist theater:** enumerating 20 shallow findings to look thorough. Three deep, located objections beat twenty shallow ones.
 - **Critiquing the plan instead of the artifact:** if your critique cites the intention ("the design system is cohesive") rather than the rendered output, it is invalid.
+- **Negation trap:** saying only what to avoid without naming the replacement target.
