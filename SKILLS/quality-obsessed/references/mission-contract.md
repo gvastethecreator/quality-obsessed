@@ -2,7 +2,7 @@
 
 Use this before broad, risky, resumable, delegated, baseline-comparison, multi-slice, or ambitious quality work. The contract keeps the mission from drifting and gives later agents enough context to continue without hidden chat.
 
-Keep it compact. If the task is tiny and finishes in one turn, the final response can be the record.
+Keep it compact. If the task is tiny and finishes in one turn, the final response can be the record, but it still needs to capture any council or grilling decision that changed the artifact.
 
 ## Contract
 
@@ -15,6 +15,9 @@ Quality target:
 Selected layers:
 Signature move or ambition leap:
 Proof required:
+Council roles:
+Grilling decisions:
+Delegated review:
 Files/surfaces in scope:
 Out of scope:
 Adjacent audit:
@@ -80,6 +83,8 @@ Improvement ledger:
 Loop records:
 Verification:
 Proof artifacts:
+Delegated review findings:
+Council/grilling record:
 Deferred work:
 Open decisions:
 ```

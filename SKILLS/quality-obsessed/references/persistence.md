@@ -4,6 +4,8 @@ Use this for substantial missions, broad UI/product/code/docs/game work, explici
 
 Persistence exists to keep the agent from stopping at "better than before" when the ask is "excellent." It is not pass-count theater: a counted loop must improve the artifact, remove a real risk, or produce proof that changes the next decision.
 
+When `quality-obsessed` is invoked, the default bias is to exceed the literal request within safe alignment. Small scope is not a reason to avoid pressure; it is a reason to keep council and grilling lightweight, direct, and artifact-focused.
+
 ## Default Contract
 
 - There is no hard maximum loop count.
@@ -34,10 +36,13 @@ Seed the backlog from:
 
 - baseline comparison.
 - evidence gates.
+- council findings.
+- grilling decisions.
 - critique or recovery findings.
 - adjacent impact audit.
 - selected mission-contract layers.
 - visual horizon findings when visual quality matters.
+- delegated review findings when subagents or independent reviewers are available.
 
 ## Valid Loop
 
@@ -54,13 +59,36 @@ Remaining concern:
 Next action:
 ```
 
-A loop does not count if it only says "looks good", repeats the requirement, edits docs for a non-doc deliverable, adds ceremony, or produces proof without testing a real risk.
+A loop does not count if it only says "looks good", repeats the requirement, edits docs for a non-doc deliverable, adds ritual with no artifact/decision/evidence effect, or produces proof without testing a real risk.
 
 ## Material Mix
 
 By Loop 30, at least 60% of counted loops must be material-change loops. A material-change loop alters behavior, interaction, visual read, information architecture, responsiveness, accessibility, failure handling, maintainability, performance, or proof tooling in a way that changes user value or reviewer confidence.
 
 Proof-only loops are allowed when they close a real risk, but they cannot dominate the run. README/docs-only loops count only when the deliverable is documentation or the doc change directly improves execution, review, or future continuation.
+
+## Delegated Review Checkpoints
+
+For default persistence missions, run at least one delegated review or explicit internal substitute before Loop 10 when subagents are available and the surface is large enough. Use `delegated-review.md` to brief the reviewer.
+
+Good checkpoint roles:
+
+- after Loop 1: critic or visual reviewer checks whether the foundation lift is actually visible.
+- before Loop 10: adversary or proof reviewer checks edge cases and evidence gaps.
+- at Loop 30: proof reviewer or orchestrator checks whether the verdict should be `continue`, `ask`, or `stop`.
+
+If no subagent capability is available, record `delegated review unavailable` and run the role internally from fresh notes. Do not skip the independence need silently.
+
+## Council And Grilling Checkpoints
+
+For persistence missions, run council and grilling as pressure valves:
+
+- before Loop 1: council defines the superior version, ambition leap, risks, cuts, and proof.
+- after Loop 1: grilling asks whether the foundation lift is truly visible or testable.
+- after two weak verdicts: recovery-style grilling forces a kill list or direction reset.
+- at Loop 30: council plus grilling decide `continue`, `ask`, or `stop`.
+
+These checkpoints are lightweight records, not essays. They count only when they change the next artifact move, backlog, proof, or final claim.
 
 ## Mission Control
 
@@ -87,5 +115,6 @@ Stop only when:
 - side-by-side evidence says the artifact beats the baseline, or final status honestly says it did not.
 - the persistence target is satisfied or a no-padding/blocker verdict explains why fewer loops are honest.
 - Loop 30, if reached, has a `stop` verdict; otherwise continue or ask.
+- delegated review findings, when used, are accepted/rejected with reasons and proof.
 
 Never translate loop count into quality. Quality is the artifact's margin over baseline.

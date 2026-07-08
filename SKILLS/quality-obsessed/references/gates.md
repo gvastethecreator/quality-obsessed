@@ -66,9 +66,27 @@ For quality work with nearby consequences, `adjacent-impact.md` must be satisfie
 - root cause, analogous cases, or nearby states/tests/docs were checked when cheap.
 - bounded nearby fixes were made, offered, deferred, or skipped with a reason.
 
+## Delegated-review gate
+
+When the work is substantial and subagents or independent review passes are available, `delegated-review.md` must be considered before final status:
+
+- a reviewer was used for critique, proof, domain review, visual review, simplification, or orchestration; or
+- the run states why delegation was not useful or not available.
+- accepted findings changed the artifact, backlog, proof, or decision.
+- rejected findings have a reason.
+
+## Council/grilling gate
+
+When the user invokes obsession, asks to exceed the request, or the mission enters persistence/recovery mode:
+
+- council pressure identified the superior version, risks, cuts, proof, or next move; or the run states why no council lens would add value.
+- grilling resolved the current material assumption, flat loop, or stop/continue decision; or the run states why no material question exists.
+- accepted decisions changed the artifact, backlog, proof, or final claim.
+
 ## Anti-theater rules
 
 - No pass counting as a metric. "I did 12 passes" is meaningless; 12 verdicts with evidence is the claim.
-- No documentation growth as an outcome. Docs are only written when the user's deliverable is documentation.
+- No ritual with no teeth. Council, grilling, docs, and reviewers are good when they change the artifact, decision, proof, or cuts.
 - No self-graded rubrics or scores. Numbers you assign yourself prove nothing; only external evidence does.
+- No subagent-count theater. Multiple reviewers prove nothing unless their findings change the artifact or decision.
 - No softened failure states. If a gate is open at the end, the status is `failed`, and the report says which gate and why.
