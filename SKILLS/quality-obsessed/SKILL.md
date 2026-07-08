@@ -1,6 +1,6 @@
 ---
 name: quality-obsessed
-description: "Evidence-gated quality obsession. Use when the user wants standout quality, polish, completeness, baseline-beating work, persistent improvement, or recovery from weak/bland output."
+description: "Evidence-gated quality obsession. Use when the user wants standout quality, polish, completeness, baseline-beating work, persistent improvement, council/grilling pressure, or recovery from weak/bland output."
 ---
 
 # Quality Obsessed
@@ -11,7 +11,7 @@ Obsession with quality is measured in the artifact, not in the process. A qualit
 
 ## Core loop
 
-Repeat until every evidence gate passes. Small work can finish as soon as the gates pass. Substantial, quality-sensitive, broad, visual/product/code, or user-declared obsessive work enters persistence mode; read `references/persistence.md` before claiming done.
+Repeat until every evidence gate passes and the artifact has been pushed past the literal request when useful. Small work can finish only when no bounded higher-value improvement remains. Substantial, quality-sensitive, broad, visual/product/code, or user-declared obsessive work enters persistence mode; read `references/persistence.md` before claiming done.
 
 1. **Look at the real thing.** Render it, run it, screenshot it, execute it. Never critique from memory or from the code alone. If it has a UI, take a screenshot before judging. If it is code, run it against real inputs including hostile ones.
 2. **Name one concrete weakness.** Not "could be more polished" — instead "the empty state is a blank white div", "the error path swallows the exception", "the headline and the CTA say the same thing". If you cannot name a weakness a reviewer would also name, run the critique pass in `references/critique.md`.
@@ -23,9 +23,13 @@ Repeat until every evidence gate passes. Small work can finish as soon as the ga
 
 Before broad work, define a compact contract: artifact, user goal, baseline to beat, quality target, proof, scope, and stop conditions. Read `references/mission-contract.md` when the work is broad, resumable, delegated, risky, baseline-comparison, or likely to span multiple slices.
 
+Use council pressure when the mission needs multiple lenses. Read `references/council.md` when quality depends on critique, ambition, proof, scope judgment, simplification, or orchestration. Read `references/grilling.md` when unresolved assumptions, weak plans, flat loops, or user-facing decisions need one-question-at-a-time pressure.
+
 For every quality mission, inspect the surrounding impact surface before final status. Read `references/adjacent-impact.md` when the named target has nearby states, analogs, call sites, docs, tests, UI context, or workflow consequences.
 
 Use the right domain and proof tools. Read `references/orchestration.md` when the task spans UI, product, game, code, docs, data, automation, visual design, or another specialized domain. A domain skill or proof skill counts only when it changes the artifact, critique, or evidence.
+
+When the environment exposes subagents or delegated reviewers, use them for real independence on substantial missions: critique, adversarial review, domain review, visual review, verification review, or orchestration planning. Read `references/delegated-review.md` when a fresh reviewer could catch what the main agent is likely to miss.
 
 For visual/UI/prototype/game work where the target read is unclear or ambitious, read `references/visual-horizon.md` and compare before, feasible horizon, and after. If the user says the prior result is poor, bland, generic, conformist, softened, or not obsessive enough, read `references/recovery.md` before patching.
 
@@ -61,8 +65,11 @@ Read only what the task needs — reading references is process budget, not arti
 - `references/critique.md` — read when weaknesses are vague, visual read matters, or a direction reset is needed.
 - `references/persistence.md` — read for substantial missions, explicit polish/completeness, or no user limit on iteration.
 - `references/mission-contract.md` — read for broad, risky, resumable, baseline-comparison, or multi-slice work.
+- `references/council.md` — read when multiple quality lenses should pressure the artifact, plan, proof, ambition, or scope.
+- `references/grilling.md` — read when unresolved decisions, weak assumptions, or flat loops need one-question-at-a-time challenge.
 - `references/adjacent-impact.md` — read for bugs, narrow tweaks, docs, UI, workflows, assets, or any target with nearby consequences.
 - `references/orchestration.md` — read when domain, critique, verification, or reference skills/tools can materially raise the artifact.
+- `references/delegated-review.md` — read when subagents or independent review passes can materially improve critique, proof, or orchestration.
 - `references/visual-horizon.md` — read for visual/UI/prototype/game work with ambitious or unclear target quality.
 - `references/recovery.md` — read when the user rejects the result or the baseline/tie verdict is red.
 - `references/examples.md` — read when unsure whether a critique, fix, evidence claim, loop, or failure report is concrete enough.
