@@ -11,7 +11,13 @@ Use it when the task calls for obsessive, evidence-backed quality instead of a c
 
 ## Install
 
-Copy [`SKILLS/quality-obsessed`](./SKILLS/quality-obsessed) into your Codex skills directory, or ask Codex to install `quality-obsessed`.
+Install with the Skills CLI:
+
+```powershell
+npx skills add gvastethecreator/quality-obsessed
+```
+
+Or copy [`SKILLS/quality-obsessed`](./SKILLS/quality-obsessed) into your Codex skills directory.
 
 ## Core Contract
 
