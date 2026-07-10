@@ -1,7 +1,7 @@
 # Skills
 
-This repo currently ships one Codex skill:
+This repository ships one portable Agent Skills package:
 
-- [`quality-obsessed`](./quality-obsessed/SKILL.md): evidence-gated quality work with artifact-first proof, adversarial result analysis, automatic research and wayfinding, bounded product autonomy, public-seam tests, council/grilling pressure, persistence mode, delegated review, adjacent-impact audit, recovery mode, and compact mission contracts.
+- [quality-obsessed](./quality-obsessed/SKILL.md): evidence-gated improvement with safe mission modes, canonical task/artifact/verification states, applicable gates, dynamic 30-loop deep persistence, recovery, domain profiles, and host-capability mapping for Codex, Claude Code, OpenCode, and compatible agents.
 
-Download this repo or ask Codex to install it in your workspace.
+The standalone repository is the canonical source. Install with the Skills CLI or copy the package into the skill directory supported by your host.
