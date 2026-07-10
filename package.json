@@ -1,0 +1,17 @@
+{
+  "name": "quality-obsessed-skill",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "validate": "node scripts/validate-skill.mjs SKILLS/quality-obsessed && node scripts/validate-evals.mjs evals/cases.json",
+    "smoke:package": "node scripts/smoke-package.mjs SKILLS/quality-obsessed --root-license LICENSE",
+    "smoke:discovery": "node scripts/smoke-skills-cli.mjs",
+    "mirror:check": "node scripts/sync-skill-mirror.mjs --check",
+    "mirror:write": "node scripts/sync-skill-mirror.mjs --write",
+    "check": "npm run validate && npm test && npm run smoke:package"
+  },
+  "devDependencies": {
+    "yaml": "2.9.0"
+  }
+}

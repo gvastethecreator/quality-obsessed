@@ -1,67 +1,46 @@
-# Recovery Mode
+# Recovery
 
-Use this when the user says the result is poor, bland, generic, conformist, softened, not creative, not obsessive enough, or when side-by-side evidence shows a tie or baseline win.
+Use this branch when the user rejects the result, the baseline still wins, or the current direction reads as bland, generic, fragile, or unconvincing.
 
-Recovery starts red. Treat the user's rejection as evidence, not as a debate.
+Treat rejection as evidence about the artifact, not as a debate. Begin with an artifact verdict of `loss` until new side-by-side proof supports a different result.
 
-## Stance
+## Autopsy
 
-- Red by default until the artifact earns green through side-by-side evidence.
-- Kindness means accuracy, not reassurance.
-- Passing checks, long plans, and loop counts are smoke only.
-- If the artifact needs prose to explain why it is special, it is not special yet.
-- If a competent baseline makes the same first impression, the mission is red.
-
-Do not use "solid start", "good foundation", "promising", or similar language unless the artifact is explicitly an early draft and the final status stays red.
-
-## Failure Diagnosis
+Inspect the actual output and record:
 
 ```text
-Red verdict:
-What feels bland:
-What a competent baseline would also do:
-What process/proof hid:
-Most embarrassing first-screen or first-use weakness:
-Highest-value thing to kill:
-Highest-value thing to exaggerate:
+Intended outcome:
+Observed result:
+What the artifact accidentally prioritizes:
+Strongest failure and user harm:
+Source cause:
+Severity:
+What to remove or replace:
 Proof that would change the verdict:
 ```
 
-## Kill List
+Attack source causes. Copy, color, spacing, comments, or extra tests cannot close a broken state model, information architecture, runtime contract, or decision path unless the evidence shows the cause no longer harms the artifact.
 
-Name what must be deleted, not adjusted:
+## Direction reset
 
-- one core-loop weakness.
-- one first-five-second weakness.
-- one visual/art-direction weakness when visual.
-- one interaction/recovery weakness when usable or playable.
-- one process weakness that made the agent accept the result too early.
+When the direction itself failed:
 
-Each item needs replacement, proof needed, and status: `killed | replaced | kept-with-reason | open`.
+1. State why it failed without hedging.
+2. Name the elements or assumptions to remove, merge, hide, or replace.
+3. Generate three materially distinct feasible directions.
+4. Choose one against the user's outcome and supported stack; reject the others with reasons.
+5. Define one hyperfocus target and its proof.
+6. Rebuild enough of the artifact for a real comparison before polishing details.
 
-## Direction Reset
+Every recovery loop must improve that hyperfocus target, protect a proven gain while changing a necessary dependency, or produce evidence that changes its verdict. Three consecutive invalid, low-impact, mixed, flat, or preference-neutral recovery loops force another direction reset; the Protocol rule resets sooner after two consecutive flat or worse verdicts.
 
-Generate at least 3 bolder directions, choose 1, and reject the others. At least one direction must change the artifact itself: core behavior, interaction model, visual language, information architecture, system depth, or proof surface. Copy, docs, panels, logs, and process cannot be the primary difference.
+```text
+recovery_hyperfocus: improve-protect-or-prove-each-loop
+recovery_reset: three-invalid-low-impact-mixed-flat-or-neutral
+```
 
-Choose the direction with the best chance of making the user prefer the result after 5 seconds and after the main path. If none are strong, stop and say the direction is not good enough.
+For localized code or correctness failures, three visual directions are unnecessary; compare root-cause remedies instead and choose the smallest systemic one.
 
-## Hyperfocus
+## Exit
 
-Pick one hyperfocus target. Every recovery loop must improve it, protect it, or prove it.
-
-Examples:
-
-- UI/prototype: first-screen hierarchy, stateful controls, empty/error/recovery, interaction rhythm.
-- game: feel, collision drama, reward cadence, readable danger, replay hook.
-- code: remove a failure class, simplify a hot path, prove a boundary, improve observability.
-- docs/spec: decision sharpness, acceptance examples, risk honesty, reader next action.
-
-If three consecutive loops are invalid, low-impact, mixed, flat, or preference-neutral, stop incremental patching and reset direction again.
-
-## Final Honesty
-
-- `quality wins`: evidence says the result beats the baseline on the user's main goal.
-- `red/failed`: evidence or user judgment says it is still poor, bland, generic, or tied with baseline.
-- `blocked`: a real external constraint prevents the next high-leverage move.
-
-Never sell `red/failed` as progress. Name the next highest-leverage move instead.
+Recovery exits when the accepted direction beats the baseline or meets explicit acceptance with captured evidence. If it still loses, keep the artifact verdict `loss`, report the highest-leverage next move, and do not soften it with progress language. Task and verification states remain separate from that verdict.

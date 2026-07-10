@@ -1,0 +1,4 @@
+interface:
+  display_name: "Quality Obsessed"
+  short_description: "Quality missions with context-adaptive councils"
+  default_prompt: "Use $quality-obsessed to improve this artifact against a real baseline, convening a context-adaptive Council when multiple professional lenses matter."
