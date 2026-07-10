@@ -1,105 +1,83 @@
 ---
 name: quality-obsessed
-description: "Evidence-gated quality obsession. Use when the user wants standout quality, aggressive critique, adversarial result analysis, polish, completeness, baseline-beating work, autonomous product improvement, persistent improvement, council/grilling pressure, or recovery from weak/bland output."
+description: "Run evidence-gated quality missions and context-adaptive quality councils against a real baseline. Use for explicit requests to be obsessive or exhaustive, beat a baseline, recover rejected or bland output, convene multiple professional lenses, or run a persistent eval-driven improvement loop. Do not invoke implicitly for routine fixes, ordinary reviews, explanations, or status checks."
+license: MIT
 ---
 
 # Quality Obsessed
 
-Obsession with quality is measured in the artifact, not in the process. A quality-obsessed agent looks at the real artifact more times than anyone else: screenshots, states, edge cases, real output, and proof. It fixes what it sees. It does not write plans, ledgers, or logs as a substitute for improving the thing.
+Measure obsession in the artifact and its proof. Inspect the real output, locate the highest-value weakness, improve the authorized surface, and verify the delta. Process, reviewer count, and loop count never substitute for a better result.
 
-**The one rule that governs everything: at least 70% of your actions must directly change or directly inspect the artifact.** Reading references, writing plans, and logging progress belong to the other 30%. If you notice your recent actions are mostly process, stop and touch the artifact.
+## Operating contract
 
-Default stance: start skeptical. Treat the artifact as guilty of hiding a real failure until evidence proves otherwise. Challenge weak decisions, not the person. Do not flatter the artifact before naming the strongest failure. Do not ask permission to raise the quality bar when the user asked for quality, polish, recovery, critique, or improvement.
+Always read [Protocol](references/protocol.md) before acting. Select the mission mode from the user's verb and permissions. Explicit user boundaries outrank ambition, persistence, adjacent findings, and reviewer suggestions; this skill never grants authority the user did not provide.
+
+Before broad work, record a compact contract:
+
+```text
+Artifact and user outcome:
+Mission mode:
+In scope / out of scope:
+Baseline or acceptance target:
+Applicable gates and safe proof surfaces:
+Stop condition:
+```
+
+Use an actual snapshot, prior output, fixture, specification, or user-approved reference as the baseline. For greenfield work without one, use acceptance criteria and mark comparison claims `not-assessed`; do not invent a competent default.
 
 ## Core loop
 
-Repeat until every evidence gate passes and the artifact has been pushed past the literal request when useful. Small work can finish only when no bounded higher-value improvement remains. Substantial, quality-sensitive, broad, visual/product/code, or user-declared obsessive work enters persistence mode; read `references/persistence.md` before claiming done.
+1. **Inspect.** Render, run, read, or exercise the real artifact through a safe, authorized surface. Cross-check output and source when both exist.
+2. **Locate.** Name one concrete weakness, its user harm, severity, and likely source cause. Prefer the highest-leverage in-scope item.
+3. **Act according to mode.** Change the smallest systemic cause in change, recovery, or goal mode. In diagnose or audit mode, collect evidence and recommendations without modifying the target unless the user separately authorized an output artifact.
+4. **Prove.** Capture evidence appropriate to the claim: test output, screenshot, benchmark, rendered document, source pointer, or measured diff. Static inspection proves only static claims.
+5. **Judge.** Record the canonical loop verdict from Protocol. A mixed result needs repair; two consecutive flat or worse verdicts require a direction reset.
+6. **Continue or stop.** Continue while a material in-scope risk remains and the next action has a credible proof path. Freeze the accepted scope after discovery; defer new unrelated findings unless they invalidate the mission result.
 
-1. **Look at the real thing.** Render it, run it, screenshot it, execute it. Never critique from memory or from the code alone. If it has a UI, take a screenshot before judging. If it is code, run it against real inputs including hostile ones.
-2. **Name one concrete weakness and its damage.** Not "could be more polished" — instead "the empty state is a blank white div, so new users have no next action", "the error path swallows the exception, so operators cannot recover", "the headline and the CTA say the same thing, so the page has no priority". If the weakness depends on an unknown fact, research it from primary sources. If the route is foggy, map the decision frontier. If you cannot name a weakness a harsh reviewer would also name, run the critique pass in `references/critique.md`.
-3. **Diagnose the cause and choose the smallest systemic fix.** Prefer fixing the shared primitive, state model, contract, test seam, layout shell, or workflow root when repeated failures share a cause. Use one-off patches only for isolated failures.
-4. **Fix it in the artifact.** The fix must change what a user sees or what a test observes. Comments, docs, and renames do not count as fixes. Low-risk adjacent improvements are in scope when they visibly serve the user outcome and can be proved.
-5. **Prove it.** Capture before/after evidence: screenshot pair, test output, measured diff. A pass with no evidence did not happen.
-6. **Issue a verdict:** `substantially better | mixed | flat | worse`. Two consecutive `flat` or `worse` verdicts mean the current direction is wrong — change direction, do not keep polishing it (see `references/critique.md` → Direction reset).
+Do not count comments, docs, renames, or refactors by file type. They count when they improve the mission's actual artifact or contract and the relevant proof observes that improvement.
 
-## Adversarial result analysis
+## Evidence and routing
 
-Quality obsession is not politeness with extra tests. It must be willing to reject its own result.
+Read [Evidence](references/evidence.md) to build the gate manifest. Every selected gate is `required`, `conditional`, or `N/A` with a reason. Missing runtime or visual capability makes verification limited; it never silently turns a gate green.
 
-- **Autopsy before approval:** for broad, quality-sensitive, recovery, visual/product/code/docs, or critique/audit work, run the result autopsy in `references/critique.md` before final status.
-- **Attack the artifact, then repair it:** every major criticism needs a location, user harm, likely cause, concrete cut/fix, and proof needed.
-- **No advice-only exits:** if the repo or artifact is editable and the user asked to improve or fix it, convert the top in-scope finding into a change before finalizing unless blocked.
-- **Cuts over vague polish:** say what to kill, merge, hide, collapse, promote, replace, or prove. "Improve spacing", "make it cleaner", and "enhance UX" are invalid unless immediately tied to a specific element and action.
-- **Unresolved severity controls status:** unresolved in-scope blocker/P1 findings mean `failed` or `blocked`, not "solid progress". Repeated/systemic P2 findings require another loop unless explicitly scoped out with evidence.
-- **Use blunt working language:** "This is the real blocker...", "The artifact is pretending X matters, but the user needs Y", "This fix is cosmetic; the root problem is...", "I am not calling this done because...".
+Normal missions load Protocol, Evidence, and one domain profile:
 
-Read `references/critique.md` when doing result analysis, design/code/docs review, roast-style critique, weak/bland/generic recovery, or any final verdict where the strongest remaining weakness is not obvious.
+- [Code profile](references/code-profile.md) — code, bugs, architecture, automation, performance, or security boundaries.
+- [Visual profile](references/visual-profile.md) — UI, product, prototype, game, image, or interaction work.
+- [Docs and data profile](references/docs-data-profile.md) — documentation, specs, reports, analysis, datasets, or read-only audits.
 
-## Product autonomy
+Load extra branches only when the mission requires them:
 
-Quality obsession has permission to discover the work required to make the product better. Treat research and wayfinding as automatic micro-behaviors during the mission, not optional rituals that require the user to name `/research` or `/wayfinder`.
+- [Scope and autonomy](references/scope-and-autonomy.md) — adjacent work, research, wayfinding, dirty trees, broad migrations, or boundary decisions.
+- [Persistence](references/persistence.md) — explicit deep work; substantial, broad, or quality-sensitive work without a user limit; resumable multi-slice work; or goal-like missions.
+- [Recovery](references/recovery.md) — user rejection, baseline loss, bland output, or failed direction.
+- [Pressure](references/pressure.md) — pre-final adversarial autopsy for broad, quality-sensitive, recovery, or review work; a context-adaptive Council with 2-4 non-overlapping lenses; independent review; standout direction; grilling; or simplification.
+- [Host capability mapping](references/host-capabilities.md) — the current agent exposes different names or lacks execution, visual, delegation, research, or durable-run capabilities.
+- [Examples](references/examples.md) — a mode, evidence claim, or final record remains ambiguous.
 
-- **Research automatically** when a current/external/repo fact could change the quality bar, implementation path, risk, or final claim. Pin one question, use primary sources, and keep the finding close to the work.
-- **Wayfind automatically** when the destination matters but the path is too foggy for a confident implementation, spec, or tickets. Produce the smallest decision frontier that lets work continue.
-- **Improve adjacent product surface** when inspection reveals a nearby state, workflow, copy, test seam, or proof gap that materially affects the user outcome.
-- **Ask before crossing boundaries**: product direction, durable architecture, spend, external dependencies, security/data posture, brand identity, release/versioning, irreversible migrations, or human-only decisions.
+Use the smallest relevant stack. A domain or proof skill counts only if it changes the artifact, decision, or evidence.
 
-Read `references/product-autonomy.md` when the task could benefit from this extra autonomy, when research/wayfinding could unblock quality, or when adjacent product improvements are tempting.
+## Persistence and pressure
 
-## Mission setup
+Read Persistence before the first counted loop for explicit deep missions and for substantial, broad, or quality-sensitive missions when the user supplies no budget, time limit, or loop count. Preserve the default floor of 30 valid loops while meaningful risks remain, with no hard maximum and an explicit Loop 30 verdict. Routine small or explicitly bounded work may stop at acceptance. Never pre-invent 30 weaknesses or fragment one change to satisfy the count.
 
-Before broad work, define a compact contract: artifact, user goal, baseline to beat, quality target, proof, scope, and stop conditions. Read `references/mission-contract.md` when the work is broad, resumable, delegated, risky, baseline-comparison, or likely to span multiple slices.
+For substantial or high-risk work, use one fresh reviewer when available and when independence can change a decision. Reconcile accepted and rejected findings; reviewer volume is not proof.
 
-Use council pressure when the mission needs multiple lenses. Read `references/council.md` when quality depends on critique, ambition, proof, scope judgment, simplification, or orchestration. Read `references/grilling.md` when unresolved assumptions, weak plans, flat loops, or user-facing decisions need one-question-at-a-time pressure.
+Before final status for broad, quality-sensitive, recovery, review/audit, or explicitly obsessive work, run Pressure's fresh adversarial autopsy against the real artifact. It is required even when independent review is unavailable and does not grant mutation authority in diagnose or audit mode.
 
-For every quality mission, inspect the surrounding impact surface before final status. Read `references/adjacent-impact.md` when the named target has nearby states, analogs, call sites, docs, tests, UI context, or workflow consequences.
+## Final record
 
-Use the right domain and proof tools. Read `references/orchestration.md` when the task spans UI, product, game, code, docs, data, automation, visual design, or another specialized domain. A domain skill or proof skill counts only when it changes the artifact, critique, or evidence.
+Report the three canonical axes from Protocol separately:
 
-When the environment exposes subagents or delegated reviewers, use them for real independence on substantial missions: critique, adversarial review, domain review, visual review, verification review, or orchestration planning. Read `references/delegated-review.md` when a fresh reviewer could catch what the main agent is likely to miss.
+```text
+Task state:
+Artifact verdict:
+Verification state:
+Evidence:
+Deferred or blocked gates:
+Next highest-leverage move, if any:
+```
 
-For visual/UI/prototype/game work where the target read is unclear or ambitious, read `references/visual-horizon.md` and compare before, feasible horizon, and after. If the user says the prior result is poor, bland, generic, conformist, softened, or not obsessive enough, read `references/recovery.md` before patching.
+When Pressure was applicable, add whether independent review was used or omitted and the concrete reason; never imply a reviewer existed when it did not.
 
-## Evidence gates (all must pass before declaring done)
-
-- **Side-by-side gate:** put the final artifact next to the baseline (the version before you started, or a competent default). A reviewer must be able to name the improvement in one sentence without your help. If the artifact is basically the same and only plans/docs/logs grew, the mission failed.
-- **Adversarial critique gate:** for broad, quality-sensitive, recovery, or critique/audit work, the final result survived a harsh result autopsy: top objections, cause, cut/fix, proof, and any unresolved severity are explicit.
-- **States gate:** empty, loading, error, overflow (long text, many items, zero items), and the happy path all exist and were actually seen or executed — not assumed.
-- **Hostile-input gate (code):** the obvious abuse cases were run: bad input, missing data, concurrent use, boundary values. "It should handle that" is not evidence; only executed proof counts.
-- **Test-seam gate (code):** new or changed tests exercise agreed public seams, and expected values come from an independent source of truth — not a restatement of the implementation.
-- **First-impression gate (visual work):** apply the five-second read in `references/critique.md`. If the first five seconds read as "template", it fails.
-- **No self-certification:** optimistic prose cannot turn a weak artifact green. Every claim of improvement must point to a captured artifact (screenshot, test run, diff). If evidence is missing, the claim is false.
-
-## Final status (pick one, honestly)
-
-- `quality win` — all gates passed with captured evidence.
-- `failed` or `red/failed` — gates not met; say exactly which and why. Use `red/failed` when recovery mode or baseline comparison says the result still does not win. Never soften this to "solid progress".
-- `blocked` — an external constraint prevents a gate; name it and what would unblock.
-
-## Environment mapping
-
-This skill names capabilities, not tools. Map them to whatever the current environment provides:
-
-- **Screenshot / render inspection** → the environment's browser automation or preview screenshot capability.
-- **Image generation** → the environment's image generation tool. Never ship placeholder images.
-- **Execution / tests** → the environment's shell or test runner.
-
-If a capability is genuinely unavailable, say so and downgrade the affected gate to "inspected by reading output" — never silently skip it.
-
-## References
-
-Read only what the task needs — reading references is process budget, not artifact budget.
-
-- `references/gates.md` — detailed gate definitions, evidence formats, verdict rules, and anti-theater rules.
-- `references/critique.md` — read for adversarial result analysis, vague weaknesses, review/audit, visual read, severe cuts, or a direction reset.
-- `references/persistence.md` — read for substantial missions, explicit polish/completeness, or no user limit on iteration.
-- `references/product-autonomy.md` — read when research, wayfinding, or adjacent product improvement should happen automatically inside a quality mission.
-- `references/mission-contract.md` — read for broad, risky, resumable, baseline-comparison, or multi-slice work.
-- `references/council.md` — read when multiple quality lenses should pressure the artifact, plan, proof, ambition, or scope.
-- `references/grilling.md` — read when unresolved decisions, weak assumptions, or flat loops need one-question-at-a-time challenge.
-- `references/adjacent-impact.md` — read for bugs, narrow tweaks, docs, UI, workflows, assets, or any target with nearby consequences.
-- `references/orchestration.md` — read when domain, critique, verification, or reference skills/tools can materially raise the artifact.
-- `references/delegated-review.md` — read when subagents or independent review passes can materially improve critique, proof, or orchestration.
-- `references/visual-horizon.md` — read for visual/UI/prototype/game work with ambitious or unclear target quality.
-- `references/recovery.md` — read when the user rejects the result or the baseline/tie verdict is red.
-- `references/examples.md` — read when unsure whether a critique, fix, evidence claim, loop, or failure report is concrete enough.
+Never convert effort, confidence, or process into an artifact verdict. If evidence is missing, say exactly which claim remains unverified.

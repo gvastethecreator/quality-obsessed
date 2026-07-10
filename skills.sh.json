@@ -4,7 +4,7 @@
   "groupings": [
     {
       "title": "Quality",
-      "description": "Evidence-gated improvement and proof workflows.",
+      "description": "Agent-agnostic evidence-gated improvement and proof workflows.",
       "skills": [
         "quality-obsessed"
       ]
