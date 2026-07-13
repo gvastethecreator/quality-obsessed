@@ -299,9 +299,9 @@ export async function validateSkill(skillPath) {
 
   const persistencePath = path.join(resolved, "references", "persistence.md");
   const persistenceContract = new Map([
-    ["minimum_valid_loops", "30"],
+    ["minimum_valid_loops", "10"],
     ["hard_maximum", "none"],
-    ["loop_30_verdict", "continue | ask | stop"],
+    ["loop_10_verdict", "continue | ask | stop"],
     ["backlog_policy", "dynamic-evidence-only"],
     ["default_activation", "substantial-unbounded-quality-mission"],
     ["goal_activation", "explicit-user-request"],
@@ -389,6 +389,61 @@ export async function validateSkill(skillPath) {
       ]),
     ],
     [
+      "references/orchestration.md",
+      new Map([
+        [
+          "plan_routing",
+          "model-and-reasoning-on-every-step-when-selectable",
+        ],
+        ["routing_sequence", "judgment-execution-judgment"],
+        [
+          "handoff_contract",
+          "deliverable-dependencies-surface-proof-return",
+        ],
+        ["routing_enforcement", "plan-label-and-actual-dispatch"],
+        ["routing_fallback", "closest-available-disclosed"],
+        ["judgment_model", "gpt-5.6-sol"],
+        ["judgment_reasoning", "xhigh"],
+        ["execution_model", "gpt-5.6-luna"],
+        ["execution_reasoning", "max"],
+        ["execution_communication", "caveman-action-first-minimal-talk"],
+        ["execution_audit", "sol-xhigh-required-before-acceptance"],
+        ["execution_audit_verdict", "accept | repair | reset"],
+        [
+          "task_local_verification",
+          "focused-tests-and-current-file-checks-only",
+        ],
+        ["interim_typecheck", "current-edited-file-only-or-skip"],
+        [
+          "full_verification_trigger",
+          "multiple-sol-accepted-tasks-or-final-batch",
+        ],
+        ["full_verification_suite", "tests-build-typecheck-once-per-batch"],
+      ]),
+    ],
+    [
+      "references/creative-search.md",
+      new Map([
+        ["creative_search", "diverge-prototype-compare-commit"],
+        [
+          "creative_trigger",
+          "explicit-creative-standout-greenfield-or-direction-risk",
+        ],
+        ["direction_count", "three-materially-distinct"],
+        [
+          "direction_distance",
+          "thesis-structure-or-behavior-not-cosmetic",
+        ],
+        ["prototype_policy", "cheapest-representative-artifact"],
+        ["selection_basis", "user-value-signature-feasibility-proof"],
+        ["hybrid_policy", "no-default-hybrid"],
+        ["signature_move", "one-memorable-useful-move"],
+        ["subtraction_move", "remove-one-generic-or-diluting-element"],
+        ["blind_audience_read", "brief-hidden-perception-test"],
+        ["blind_read_fields", "understood-action-memory-mismatch"],
+      ]),
+    ],
+    [
       "references/visual-profile.md",
       new Map([
         ["artifact_realism", "representative-functional-no-placeholders"],
@@ -454,8 +509,9 @@ export async function validateSkill(skillPath) {
     const markdownFiles = (await listFiles(resolved)).filter((file) => file.endsWith(".md"));
     const legacyStatus = /\b(?:quality wins?|red\/failed|tie\/no meaningful delta|failed to beat baseline)\b/i;
     const vendorRuntime = /\b(?:Codex|Claude Code|OpenCode)\b|(?:^|\s)\/goal\b|\$quality-obsessed\b/im;
+    const vendorRuntimeOwners = new Set(["references/orchestration.md"]);
     const canonicalDefinition = /^[ \t]{0,3}(mission_mode|task_state|artifact_verdict|verification_state|loop_verdict|severity|gate_state|scope_rule|mutation_stop|analysis_stop)\s*:/gm;
-    const persistenceDefinition = /^[ \t]{0,3}(minimum_valid_loops|hard_maximum|loop_30_verdict|backlog_policy|default_activation|goal_activation)\s*:/gm;
+    const persistenceDefinition = /^[ \t]{0,3}(minimum_valid_loops|hard_maximum|loop_10_verdict|backlog_policy|default_activation|goal_activation)\s*:/gm;
     for (const file of markdownFiles) {
       const content = await readFile(file, "utf8");
       const relative = path.relative(resolved, file).replaceAll("\\", "/");
@@ -466,7 +522,7 @@ export async function validateSkill(skillPath) {
           message: "Use the canonical task, artifact, and verification state axes.",
         });
       }
-      if (vendorRuntime.test(content)) {
+      if (vendorRuntime.test(content) && !vendorRuntimeOwners.has(relative)) {
         violations.push({
           code: "vendor-runtime-coupling",
           path: relative,

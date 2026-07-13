@@ -66,25 +66,39 @@ Council is a compact branch, not a separate framework or fixed cast. Activate it
 
 The professional lens changes with the work. A realtime visual-effects application should include a **Professional VFX Artist / Technical Director** perspective; an audio mastering application should include a **Professional Mastering Engineer**; games, financial workflows, and developer platforms should receive their own relevant specialists. Supporting lenses exist only when they add material judgment. Internal personalities remain structured self-review, not independent review, unless a fresh external or delegated reviewer actually participates.
 
+## Creative Search
+
+Creative Search activates only for an explicit creative, standout, greenfield, or direction-risk request. It is skipped for routine fixes and conformance work. Build three cheap representative artifacts with materially different theses, structures, or behaviors; compare them on user value, signature, feasibility, and proof; and choose one explicitly. Do not default to a hybrid. Add one memorable useful signature, subtract one generic or diluting element, then run a blind audience read without the brief: understood, action, memory, mismatch. Resolve material mismatch before commit. The detailed route and evidence contract lives in [creative-search.md](./SKILLS/quality-obsessed/references/creative-search.md).
+
 ## Deep persistence
 
-Deep persistence activates when the user explicitly asks for an obsessive, exhaustive, no-limit, baseline-beating, or durable goal-like mission. It also activates by default for an explicitly invoked substantial, broad, or quality-sensitive mission when the user supplies no budget, time limit, or loop count and meaningful in-scope weaknesses remain. A routine small or explicitly bounded task does not inherit 30 loops, and loading durable task-record guidance alone does not activate them. Persistent work inside the current task does not require a durable goal:
+Deep persistence activates when the user explicitly asks for an obsessive, exhaustive, no-limit, baseline-beating, or durable goal-like mission. It also activates by default for an explicitly invoked substantial, broad, or quality-sensitive mission when the user supplies no budget, time limit, or loop count and meaningful in-scope weaknesses remain. A routine small or explicitly bounded task does not inherit 10 loops, and loading durable task-record guidance alone does not activate them. Persistent work inside the current task does not require a durable goal:
 
-- At least 30 valid loops while meaningful in-scope risks remain.
+- Exactly one mandatory floor: 10 valid loops once Deep Persistence activates.
 - No hard maximum.
-- Dynamic evidence-backed backlog; no pre-invented quota of 30 weaknesses.
+- Dynamic evidence-backed backlog; no pre-invented quota of 10 weaknesses.
 - Compact epochs of five loops.
-- Loop 30 verdict: `continue`, `ask`, or `stop`.
+- Loop 10 verdict: `continue`, `ask`, or `stop`; repeat the judgment at later epoch boundaries while continuing.
 - A host-specific durable-run capability is used only when the user explicitly requests it.
 
 Loop count is never the quality claim. The artifact and its proof decide the verdict.
+
+## Model-routed orchestration
+
+Plans split judgment from execution when the host supports per-task model selection. Every step names its intended model and reasoning effort, deliverable, and proof; selectable tasks must actually dispatch that route rather than merely display its label. In Codex, planning, audits, feature thinking, critiques, architecture, and final reconciliation use `gpt-5.6-sol` with `xhigh` reasoning. Bounded implementation, specific changes, test creation, focused verification, and simple tasks use `gpt-5.6-luna` with `max` reasoning. If an execution task becomes ambiguous, it returns to the judgment route before more edits.
+
+Every Luna/max task starts pending and stays pending until a Sol/xhigh audit returns `accept`, `repair`, or `reset`. Keep the Luna brief action-first and the conversation minimal. Per task, run only focused tests and a real check/typecheck for the edited file when one exists; skip and record N/A when it does not. Full tests, builds, and repository-wide typechecks are prohibited per task; run them once after multiple Sol-accepted tasks or final batch, then have Sol audit the gates.
+
+Unavailable model routing does not block otherwise safe work: the plan preserves the intended route and the final record discloses the actual fallback. The mandatory Sol/xhigh audit cannot fallback; if exact Sol/xhigh is unavailable, the Luna task remains pending and cannot close or continue. See [orchestration.md](./SKILLS/quality-obsessed/references/orchestration.md) for the handoff and batch-verification contract.
 
 ## Package layout
 
 - [SKILL.md](./SKILLS/quality-obsessed/SKILL.md): compact router and core loop.
 - [protocol.md](./SKILLS/quality-obsessed/references/protocol.md): canonical modes, state axes, severities, and transitions.
 - [evidence.md](./SKILLS/quality-obsessed/references/evidence.md): applicable-gate manifest and proof rules.
+- [creative-search.md](./SKILLS/quality-obsessed/references/creative-search.md): explicit creative direction search, signature/subtraction, and blind audience read.
 - [persistence.md](./SKILLS/quality-obsessed/references/persistence.md): dynamic deep persistence and continuation policy.
+- [orchestration.md](./SKILLS/quality-obsessed/references/orchestration.md): role-based planning, delegation, and Codex model routing.
 - [pressure.md](./SKILLS/quality-obsessed/references/pressure.md): context-adaptive Council, adversarial autopsy, and independent pressure.
 - [host-capabilities.md](./SKILLS/quality-obsessed/references/host-capabilities.md): agent-agnostic capability mapping.
 - [evals/cases.json](./evals/cases.json): behavioral matrix for generic hosts, Codex, Claude Code, and OpenCode.
