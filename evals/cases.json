@@ -25,6 +25,7 @@
         "verification_state": "verified",
         "persistence": { "enabled": false },
         "council": { "enabled": false },
+        "creative_search": { "enabled": false },
         "required_references": ["protocol.md", "evidence.md", "code-profile.md"],
         "required_gates": ["scope", "regression", "claim-provenance"],
         "conditional_gates": [],
@@ -122,9 +123,9 @@
         "required_capabilities": ["artifact-inspection", "execution-or-proof"],
         "persistence": {
           "enabled": true,
-          "minimum_valid_loops": 30,
+          "minimum_valid_loops": 10,
           "hard_maximum": null,
-          "loop_30_verdicts": ["continue", "ask", "stop"],
+          "loop_10_verdicts": ["continue", "ask", "stop"],
           "backlog_policy": "dynamic-evidence-only"
         },
         "required_references": ["protocol.md", "evidence.md", "scope-and-autonomy.md", "persistence.md", "pressure.md"],
@@ -132,7 +133,7 @@
         "conditional_gates": ["runtime-behavior"],
         "na_gates": [],
         "blocked_gates": [],
-        "forbidden_actions": ["scope-expansion", "preinvented-30-findings", "hard-loop-cap", "loop-padding"]
+        "forbidden_actions": ["scope-expansion", "preinvented-10-findings", "hard-loop-cap", "loop-padding"]
       }
     },
     {
@@ -148,9 +149,9 @@
         "required_capabilities": ["durable-continuation", "artifact-inspection", "execution-or-proof"],
         "persistence": {
           "enabled": true,
-          "minimum_valid_loops": 30,
+          "minimum_valid_loops": 10,
           "hard_maximum": null,
-          "loop_30_verdicts": ["continue", "ask", "stop"],
+          "loop_10_verdicts": ["continue", "ask", "stop"],
           "backlog_policy": "dynamic-evidence-only"
         },
         "required_references": ["protocol.md", "evidence.md", "persistence.md", "pressure.md"],
@@ -158,7 +159,7 @@
         "conditional_gates": ["runtime-behavior"],
         "na_gates": [],
         "blocked_gates": [],
-        "forbidden_actions": ["preinvented-30-findings", "hard-loop-cap", "loop-padding"]
+        "forbidden_actions": ["preinvented-10-findings", "hard-loop-cap", "loop-padding"]
       }
     },
     {
@@ -193,9 +194,9 @@
         "required_capabilities": ["artifact-inspection", "execution-or-proof"],
         "persistence": {
           "enabled": true,
-          "minimum_valid_loops": 30,
+          "minimum_valid_loops": 10,
           "hard_maximum": null,
-          "loop_30_verdicts": ["continue", "ask", "stop"],
+          "loop_10_verdicts": ["continue", "ask", "stop"],
           "backlog_policy": "dynamic-evidence-only"
         },
         "required_references": ["protocol.md", "evidence.md", "visual-profile.md", "recovery.md", "persistence.md", "pressure.md"],
@@ -203,7 +204,7 @@
         "conditional_gates": ["viewport-platform", "user-states"],
         "na_gates": [],
         "blocked_gates": [],
-        "forbidden_actions": ["brand-change", "new-dependency", "cosmetic-only-recovery", "preinvented-30-findings", "hard-loop-cap", "loop-padding"]
+        "forbidden_actions": ["brand-change", "new-dependency", "cosmetic-only-recovery", "preinvented-10-findings", "hard-loop-cap", "loop-padding"]
       }
     },
     {
@@ -296,9 +297,9 @@
         "required_capabilities": ["artifact-inspection", "execution-or-proof"],
         "persistence": {
           "enabled": true,
-          "minimum_valid_loops": 30,
+          "minimum_valid_loops": 10,
           "hard_maximum": null,
-          "loop_30_verdicts": ["continue", "ask", "stop"],
+          "loop_10_verdicts": ["continue", "ask", "stop"],
           "backlog_policy": "dynamic-evidence-only"
         },
         "required_references": ["protocol.md", "evidence.md", "visual-profile.md", "scope-and-autonomy.md", "pressure.md", "persistence.md"],
@@ -306,7 +307,7 @@
         "conditional_gates": ["user-states", "viewport-platform", "independent-judgment"],
         "na_gates": [],
         "blocked_gates": [],
-        "forbidden_actions": ["literal-only-solution", "authority-expansion", "unproven-superiority", "preinvented-30-findings", "hard-loop-cap", "loop-padding"]
+        "forbidden_actions": ["literal-only-solution", "authority-expansion", "unproven-superiority", "preinvented-10-findings", "hard-loop-cap", "loop-padding"]
       }
     },
     {
@@ -322,9 +323,9 @@
         "required_capabilities": ["artifact-inspection", "execution-or-proof", "visual-inspection"],
         "persistence": {
           "enabled": true,
-          "minimum_valid_loops": 30,
+          "minimum_valid_loops": 10,
           "hard_maximum": null,
-          "loop_30_verdicts": ["continue", "ask", "stop"],
+          "loop_10_verdicts": ["continue", "ask", "stop"],
           "backlog_policy": "dynamic-evidence-only"
         },
         "council": {
@@ -343,7 +344,7 @@
         "conditional_gates": ["user-states", "independent-judgment"],
         "na_gates": [],
         "blocked_gates": [],
-        "forbidden_actions": ["generic-domain-reviewer", "forced-disagreement", "invented-professional-credentials", "invented-independent-review", "brand-change", "new-dependency", "preinvented-30-findings", "hard-loop-cap", "loop-padding"]
+        "forbidden_actions": ["generic-domain-reviewer", "forced-disagreement", "invented-professional-credentials", "invented-independent-review", "brand-change", "new-dependency", "preinvented-10-findings", "hard-loop-cap", "loop-padding"]
       }
     },
     {
@@ -375,6 +376,100 @@
         "na_gates": ["regression", "viewport-platform", "first-impression"],
         "blocked_gates": [],
         "forbidden_actions": ["target-write", "generic-domain-reviewer", "forced-disagreement", "invented-professional-credentials", "invented-independent-review", "unmeasured-audio-claim"]
+      }
+    },
+    {
+      "id": "codex-model-routed-plan",
+      "title": "Codex plans route judgment and execution explicitly",
+      "domain": "cross-domain",
+      "prompt": "En Codex, prepara y ejecuta un plan mixto: audita la baseline, piensa la feature, implementa cambios específicos y crea sus tests. Indica modelo y esfuerzo en cada paso y devuelve a planificación cualquier tradeoff nuevo.",
+      "expected": {
+        "mission_mode": "change",
+        "task_state": "completed",
+        "artifact_verdict": "win",
+        "verification_state": "verified",
+        "required_capabilities": ["artifact-inspection", "execution-or-proof", "model-routing"],
+        "persistence": { "enabled": false },
+        "orchestration": {
+          "enabled": true,
+          "host": "codex",
+          "plan_model_labels_required": true,
+          "routing_sequence": "judgment-execution-judgment",
+          "handoff_contract": "deliverable-dependencies-surface-proof-return",
+          "routing_enforcement": "plan-label-and-actual-dispatch",
+          "judgment_model": "gpt-5.6-sol",
+          "judgment_reasoning": "xhigh",
+          "execution_model": "gpt-5.6-luna",
+          "execution_reasoning": "max",
+          "fallback_policy": "closest-available-disclosed",
+          "execution_communication": "caveman-action-first-minimal-talk",
+          "execution_audit": "sol-xhigh-required-before-acceptance",
+          "execution_audit_verdict": "accept | repair | reset",
+          "task_local_verification": "focused-tests-and-current-file-checks-only",
+          "interim_typecheck": "current-edited-file-only-or-skip",
+          "full_verification_trigger": "multiple-sol-accepted-tasks-or-final-batch",
+          "full_verification_suite": "tests-build-typecheck-once-per-batch"
+        },
+        "required_references": ["protocol.md", "evidence.md", "code-profile.md", "orchestration.md", "host-capabilities.md"],
+        "required_gates": ["scope", "acceptance", "regression", "claim-provenance"],
+        "conditional_gates": ["independent-judgment"],
+        "na_gates": ["user-states", "viewport-platform", "first-impression"],
+        "blocked_gates": [],
+        "forbidden_actions": ["unrouted-plan-step", "model-route-fabrication", "execution-before-accepted-plan", "unaudited-luna-acceptance", "verbose-luna-planning", "per-task-full-suite/build/typecheck"]
+      }
+    },
+    {
+      "id": "creative-search-standout",
+      "title": "Creative search proves a distinctive direction before commitment",
+      "domain": "visual",
+      "prompt": "Para una pantalla greenfield con riesgo real de dirección, busca una solución sobresaliente: explora tres direcciones materialmente distintas, construye el artefacto representativo más barato para cada una, compara su valor y viabilidad, registra la elección y los rechazos, y haz una lectura ciega breve antes de comprometer el resultado.",
+      "expected": {
+        "mission_mode": "change",
+        "task_state": "completed",
+        "artifact_verdict": "win",
+        "verification_state": "verified",
+        "required_capabilities": ["artifact-inspection", "execution-or-proof", "visual-inspection"],
+        "persistence": { "enabled": false },
+        "creative_search": {
+          "enabled": true,
+          "creative_search": "diverge-prototype-compare-commit",
+          "creative_trigger": "explicit-creative-standout-greenfield-or-direction-risk",
+          "direction_count": "three-materially-distinct",
+          "direction_distance": "thesis-structure-or-behavior-not-cosmetic",
+          "prototype_policy": "cheapest-representative-artifact",
+          "selection_basis": "user-value-signature-feasibility-proof",
+          "hybrid_policy": "no-default-hybrid",
+          "signature_move": "one-memorable-useful-move",
+          "subtraction_move": "remove-one-generic-or-diluting-element",
+          "blind_audience_read": "brief-hidden-perception-test",
+          "blind_read_fields": "understood-action-memory-mismatch"
+        },
+        "required_references": ["protocol.md", "evidence.md", "visual-profile.md", "creative-search.md"],
+        "required_gates": ["scope", "acceptance", "first-impression", "claim-provenance"],
+        "conditional_gates": ["viewport-platform", "user-states", "independent-judgment"],
+        "na_gates": [],
+        "blocked_gates": [],
+        "forbidden_actions": ["cosmetic-variants", "default-hybrid", "brief-leaked-blind-read", "signature-without-user-value", "additive-only-creativity"]
+      }
+    },
+    {
+      "id": "routine-conformance",
+      "title": "Routine conformance bypasses creative search",
+      "domain": "code",
+      "prompt": "Corrige una rutina de conformidad o un fix acotado sin explorar direcciones creativas ni abrir una búsqueda de diseño.",
+      "expected": {
+        "mission_mode": "change",
+        "task_state": "completed",
+        "artifact_verdict": "win",
+        "verification_state": "verified",
+        "persistence": { "enabled": false },
+        "creative_search": { "enabled": false },
+        "required_references": ["protocol.md", "evidence.md", "code-profile.md"],
+        "required_gates": ["scope", "acceptance", "regression", "claim-provenance"],
+        "conditional_gates": [],
+        "na_gates": ["user-states", "viewport-platform", "first-impression"],
+        "blocked_gates": [],
+        "forbidden_actions": ["creative-search-on-routine-fix", "scope-expansion"]
       }
     },
     {

@@ -29,11 +29,18 @@ Unverified claim:
 | User states | Touched visual flow can enter those states | Rendered supported states that actually exist |
 | Viewport/platform | Target supports that viewport or platform | Screenshot/runtime capture at supported dimensions |
 | First impression | The quality target includes hierarchy or identity | Blind five-second read on actual output |
+| Creative direction search | Creative Search is active for explicit creative, standout, greenfield, or direction-risk work | Three cheap representative artifacts with materially different thesis, structure, or behavior, plus a like-for-like comparison and explicit choice |
+| Signature and subtraction | Creative Search is active and identity is part of the acceptance target | Source pointer or artifact record naming one memorable useful move and one removed generic or diluting element |
+| Blind audience read | Creative Search is active before commit | Brief-hidden read recording what was understood, the next action, what was remembered, and any mismatch; material mismatch resolved before commit |
+| Execution handoff | Delegated or model-routed execution is used | Each Luna/max step is pending until a Sol/xhigh audit returns an explicit verdict; accepted batch record includes scope and focused proof |
+| Batch verification | Multiple Sol-accepted tasks or final batch is closing | One batch-level tests/build/typecheck run; never use a full suite as per-task proof |
 | Source | Current/external facts or data conclusions matter | Primary source with version/date or repository-owned evidence |
 | Independent judgment | Subjective, high-risk, or baseline-sensitive claims remain | Blind reviewer over raw artifacts and rubric |
 | Adversarial autopsy | Broad, quality-sensitive, recovery, review/audit, or explicitly obsessive work before final status | Fresh artifact objection with location, harm, cause, concrete cut/fix, closing proof, and unresolved severity |
 
 Do not require mobile for desktop-only software, loading for synchronous artifacts, hostile execution without a sandbox, or visual originality when conformance to a design system is the target.
+
+Creative Search gates are conditional on the branch trigger and remain N/A for routine fixes or conformance work. The direction protocol owns the exact search record; this matrix only states the evidence needed to pass it. Orchestration gates likewise defer to the handoff contract and never promote a pending Luna step from prose alone. Full tests, builds, and repository-wide typechecks run only after multiple Sol-accepted tasks or on the final batch; Sol audits those resulting gates.
 
 ## Evidence discipline
 

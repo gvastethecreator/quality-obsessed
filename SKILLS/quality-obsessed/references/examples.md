@@ -46,13 +46,23 @@ Choose 2-4 non-overlapping lenses from the actual artifact and risks. Include a 
 
 Request: “Use this skill obsessively; keep going until the artifact beats the baseline.”
 
-Load Persistence, build a dynamic evidence-backed backlog, count only valid loops, and continue to the Loop 30 verdict while meaningful in-scope risks remain. Do not manufacture 30 findings.
+Load Persistence, build a dynamic evidence-backed backlog, count only valid loops, and reach the mandatory Loop 10 verdict. Decide `continue`, `ask`, or `stop` from the artifact and proof, then reissue that judgment at later epoch boundaries if work continues. Do not manufacture 10 findings.
 
 ## Substantial unbounded mission
 
 Request: “Use quality-obsessed to reconcile this broad refactor with the baseline, repair regressions, and prove the final state.”
 
-Because the skill was explicitly invoked for substantial work and the user supplied no budget, time limit, or loop count, load Persistence and apply the same 30-loop floor while meaningful in-scope risks remain. This does not require a durable goal: persist inside the current task unless the user separately requests goal-like continuation.
+Because the skill was explicitly invoked for substantial work and the user supplied no budget, time limit, or loop count, load Persistence and apply the same 10-loop floor while meaningful in-scope risks remain. This does not require a durable goal: persist inside the current task unless the user separately requests goal-like continuation.
+
+## Model-routed plan
+
+A mixed mission on the selectable model profile needs an audit, feature decision, implementation, and tests. Label the planning and audit steps `[gpt-5.6-sol | xhigh]`; label the bounded edits, test creation, and focused checks `[gpt-5.6-luna | max]`. Start each Luna step as `pending`; Sol/xhigh must audit its raw artifact and return `accept`, `repair`, or `reset` before it can close. Give each execution step an accepted deliverable and proof. If implementation exposes a new tradeoff, return that decision to Sol/xhigh before resuming Luna/max execution. Keep Luna's brief action-first and conversation minimal. Per task, run only focused tests and an edited-file check/typecheck when one exists; skip and record N/A when it does not. Run full tests/build/typecheck once after multiple Sol-accepted tasks or final batch, then have Sol audit the gates.
+
+## Creative Search
+
+Request: “Design a standout greenfield landing experience; explore before committing.”
+
+Activate Creative Search. Produce three cheap, judgeable artifacts whose thesis, structure, or behavior differs materially; compare them against user value, signature, feasibility, and proof; and record one explicit choice. Do not merge the directions by default. Add one memorable useful signature, remove one generic or diluting element, then run a blind read with the brief hidden: what was understood, what action seemed next, what was remembered, and what felt mismatched. Resolve any material mismatch before commit. For a routine bug fix or design-system conformance request, skip Creative Search and use the normal focused path.
 
 ## Recovery
 
@@ -68,7 +78,7 @@ A shared adapter must change across six modules. Introduce the compatible seam, 
 
 ## Standout ambition
 
-The user explicitly asks to beat a visual baseline without changing brand or dependencies. Compare the literal cleanup with one superior direction, name its added value and tradeoff, then adopt it only if screenshots or interaction proof can demonstrate the gain inside those limits.
+The user explicitly asks to beat a visual baseline without changing brand or dependencies. Route through Creative Search: build three materially distinct directions in thesis, structure, or behavior, compare their representative artifacts, and choose explicitly before commit. Name the selected direction's added value and tradeoff, then adopt it only if screenshots or interaction proof can demonstrate the gain inside those limits.
 
 ## Grill before implementation
 

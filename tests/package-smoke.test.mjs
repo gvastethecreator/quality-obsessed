@@ -28,5 +28,7 @@ test("a clean copied package preserves every runtime file and contract", () => {
   assert.ok(report.files.includes("LICENSE"));
   assert.ok(report.files.includes("agents/openai.yaml"));
   assert.ok(report.files.includes("references/protocol.md"));
+  assert.ok(report.files.includes("references/orchestration.md"));
+  assert.ok(report.files.includes("references/creative-search.md"));
   assert.ok(!report.files.includes("references/README.md"));
 });

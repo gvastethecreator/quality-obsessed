@@ -2,6 +2,15 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
+function contractMismatches(actual, expected) {
+  return Object.entries(expected)
+    .filter(([field, value]) => actual?.[field] !== value)
+    .map(
+      ([field, value]) =>
+        `${field}: expected ${JSON.stringify(value)}, received ${JSON.stringify(actual?.[field])}`,
+    );
+}
+
 export async function validateEvalCatalog(catalogPath) {
   const resolved = path.resolve(catalogPath);
   const violations = [];
@@ -65,6 +74,8 @@ export async function validateEvalCatalog(catalogPath) {
     "docs-data-profile.md",
     "pressure.md",
     "host-capabilities.md",
+    "orchestration.md",
+    "creative-search.md",
     "examples.md",
   ]);
   const gates = new Set([
@@ -88,6 +99,7 @@ export async function validateEvalCatalog(catalogPath) {
     "visual-inspection",
     "research",
     "independent-review",
+    "model-routing",
     "durable-continuation",
     "durable-task-state",
   ]);
@@ -151,6 +163,14 @@ export async function validateEvalCatalog(catalogPath) {
     ["small-scoped-change", false],
     ["context-adaptive-vfx-council", true],
     ["context-adaptive-audio-pressure", true],
+  ]);
+  const orchestrationRouting = new Map([
+    ["codex-model-routed-plan", true],
+  ]);
+  const creativeRouting = new Map([
+    ["creative-search-standout", true],
+    ["small-scoped-change", false],
+    ["routine-conformance", false],
   ]);
   const contextSpecialists = new Map([
     [
@@ -382,6 +402,28 @@ export async function validateEvalCatalog(catalogPath) {
       });
     }
 
+    if (
+      orchestrationRouting.has(item.id) &&
+      expected?.orchestration?.enabled !== orchestrationRouting.get(item.id)
+    ) {
+      violations.push({
+        code: "invalid-orchestration-routing",
+        path: resolved,
+        message: `Case ${item.id} contradicts its canonical orchestration route.`,
+      });
+    }
+
+    if (
+      creativeRouting.has(item.id) &&
+      expected?.creative_search?.enabled !== creativeRouting.get(item.id)
+    ) {
+      violations.push({
+        code: "invalid-creative-routing",
+        path: resolved,
+        message: `Case ${item.id} contradicts its canonical creative-search route.`,
+      });
+    }
+
     const council = expected?.council;
     if (
       council !== undefined &&
@@ -422,12 +464,137 @@ export async function validateEvalCatalog(catalogPath) {
       }
     }
 
+    const orchestration = expected?.orchestration;
+    if (
+      orchestration !== undefined &&
+      (orchestration === null ||
+        typeof orchestration !== "object" ||
+        Array.isArray(orchestration) ||
+        typeof orchestration.enabled !== "boolean")
+    ) {
+      violations.push({
+        code: "invalid-orchestration-contract",
+        path: resolved,
+        message: `Case ${item.id ?? "<missing>"} has an invalid orchestration declaration.`,
+      });
+    } else if (orchestration?.enabled === true) {
+      const required = {
+        host: "codex",
+        plan_model_labels_required: true,
+        routing_sequence: "judgment-execution-judgment",
+        handoff_contract: "deliverable-dependencies-surface-proof-return",
+        routing_enforcement: "plan-label-and-actual-dispatch",
+        judgment_model: "gpt-5.6-sol",
+        judgment_reasoning: "xhigh",
+        execution_model: "gpt-5.6-luna",
+        execution_reasoning: "max",
+        execution_communication: "caveman-action-first-minimal-talk",
+        execution_audit: "sol-xhigh-required-before-acceptance",
+        execution_audit_verdict: "accept | repair | reset",
+        task_local_verification: "focused-tests-and-current-file-checks-only",
+        interim_typecheck: "current-edited-file-only-or-skip",
+        full_verification_trigger: "multiple-sol-accepted-tasks-or-final-batch",
+        full_verification_suite: "tests-build-typecheck-once-per-batch",
+        fallback_policy: "closest-available-disclosed",
+      };
+      const invalidFields = contractMismatches(orchestration, required);
+      const requiredActions = [
+        "unrouted-plan-step",
+        "model-route-fabrication",
+        "unaudited-luna-acceptance",
+        "verbose-luna-planning",
+        "per-task-full-suite/build/typecheck",
+      ];
+      for (const reference of ["orchestration.md", "host-capabilities.md"]) {
+        if (!arrays.required_references.includes(reference)) {
+          invalidFields.push(
+            `required_references: expected to include ${reference}, received ${JSON.stringify(arrays.required_references)}`,
+          );
+        }
+      }
+      if (!expected?.required_capabilities?.includes("model-routing")) {
+        invalidFields.push(
+          `required_capabilities: expected to include model-routing, received ${JSON.stringify(expected?.required_capabilities)}`,
+        );
+      }
+      for (const action of requiredActions) {
+        if (!arrays.forbidden_actions.includes(action)) {
+          invalidFields.push(
+            `forbidden_actions: expected to include ${action}, received ${JSON.stringify(arrays.forbidden_actions)}`,
+          );
+        }
+      }
+      if (invalidFields.length > 0) {
+        violations.push({
+          code: "invalid-orchestration-contract",
+          path: resolved,
+          message: `Case ${item.id ?? "<missing>"} weakens the model-routed orchestration contract: ${invalidFields.join("; ")}.`,
+        });
+      }
+    }
+
+    const creative = expected?.creative_search;
+    if (
+      creative !== undefined &&
+      (creative === null ||
+        typeof creative !== "object" ||
+        Array.isArray(creative) ||
+        typeof creative.enabled !== "boolean")
+    ) {
+      violations.push({
+        code: "invalid-creative-contract",
+        path: resolved,
+        message: `Case ${item.id ?? "<missing>"} has an invalid creative-search declaration.`,
+      });
+    } else if (creative?.enabled === true) {
+      const required = {
+        creative_search: "diverge-prototype-compare-commit",
+        creative_trigger:
+          "explicit-creative-standout-greenfield-or-direction-risk",
+        direction_count: "three-materially-distinct",
+        direction_distance: "thesis-structure-or-behavior-not-cosmetic",
+        prototype_policy: "cheapest-representative-artifact",
+        selection_basis: "user-value-signature-feasibility-proof",
+        hybrid_policy: "no-default-hybrid",
+        signature_move: "one-memorable-useful-move",
+        subtraction_move: "remove-one-generic-or-diluting-element",
+        blind_audience_read: "brief-hidden-perception-test",
+        blind_read_fields: "understood-action-memory-mismatch",
+      };
+      const invalidFields = contractMismatches(creative, required);
+      if (!arrays.required_references.includes("creative-search.md")) {
+        invalidFields.push(
+          `required_references: expected to include creative-search.md, received ${JSON.stringify(arrays.required_references)}`,
+        );
+      }
+      for (const action of [
+        "cosmetic-variants",
+        "default-hybrid",
+        "brief-leaked-blind-read",
+        "signature-without-user-value",
+        "additive-only-creativity",
+      ]) {
+        if (!arrays.forbidden_actions.includes(action)) {
+          invalidFields.push(
+            `forbidden_actions: expected to include ${action}, received ${JSON.stringify(arrays.forbidden_actions)}`,
+          );
+        }
+      }
+      if (invalidFields.length > 0) {
+        violations.push({
+          code: "invalid-creative-contract",
+          path: resolved,
+          message: `Case ${item.id ?? "<missing>"} weakens the creative-search contract: ${invalidFields.join("; ")}.`,
+        });
+      }
+    }
+
     if (expected?.mission_mode === "goal" || expected?.persistence?.enabled === true) {
       const persistence = expected?.persistence ?? {};
-      const verdicts = persistence.loop_30_verdicts ?? [];
+      const verdicts = persistence.loop_10_verdicts ?? [];
       const valid =
         persistence.enabled === true &&
-        persistence.minimum_valid_loops === 30 &&
+        persistence.minimum_valid_loops === 10 &&
         persistence.hard_maximum === null &&
         JSON.stringify(verdicts) === JSON.stringify(["continue", "ask", "stop"]) &&
         persistence.backlog_policy === "dynamic-evidence-only";

@@ -2,6 +2,17 @@
 
 Use pressure when it can change the artifact, backlog, proof, scope, decision, or final verdict. Broad, quality-sensitive, recovery, review/audit, and explicitly obsessive missions always require the compact pre-final autopsy below. Reviewer count and ceremony are not quality.
 
+## Contents
+
+- [Select lenses](#select-lenses)
+- [Context-adaptive Council](#context-adaptive-council)
+- [Adversarial autopsy](#adversarial-autopsy)
+- [Brief and reconciliation](#brief-and-reconciliation)
+- [Ambition leap](#ambition-leap)
+- [Creative Search pressure](#creative-search-pressure)
+- [Grilling](#grilling)
+- [Final disclosure](#final-disclosure)
+
 ## Select lenses
 
 - **Critic:** locate the highest-impact weaknesses in real output.
@@ -71,13 +82,21 @@ If opinions conflict, run the smallest safe proof that decides. Do not average t
 
 ## Ambition leap
 
-When the user explicitly asks for standout, baseline-beating, superior, or unusually ambitious quality, pressure-test the literal solution against one materially better direction. State what extra user value the leap creates, what weak or generic elements it cuts, the tradeoff it introduces, and how the artifact will prove the difference. Adopt the superior direction only inside the existing authorization envelope; ask before a dependency, architecture, product, budget, release, or other boundary-crossing choice.
+When the user explicitly asks for standout, baseline-beating, superior, or unusually ambitious quality, delegate direction generation and comparison to [Creative Search](creative-search.md). Keep this Ambition Leap branch focused on boundary, authority, tradeoff, and proof pressure: state the extra user value, what weak or generic element is cut, the tradeoff, and how the artifact will prove the difference. Adopt a direction only inside the existing authorization envelope; ask before a dependency, architecture, product, budget, release, or other boundary-crossing choice.
 
 Do not run this exercise for routine fixes, and do not use “ambition” to inflate surface area without a measurable outcome.
 
 ```text
 ambition_leap: explicit-standout-within-authority
 ```
+
+## Creative Search pressure
+
+When the Creative Search branch is active, pressure-test the three representative direction artifacts as competing theses, structures, or behaviors. The Critic names the user-value difference, the Context specialist tests craft and audience fit, and the Proof reviewer checks that the comparison is like-for-like. Converge on one explicit choice; a hybrid is a new decision requiring evidence, not a safe compromise.
+
+Before commit, require a useful signature and a concrete subtraction of one generic or diluting element. Run the blind audience read with the brief hidden and record understood, action, memory, and mismatch. A material mismatch is an unresolved gate: repair it or reset the direction before acceptance. Routine fixes and conformance work do not receive this creative pressure pass.
+
+For delegated execution, the Sol/xhigh audit is the pressure gate for every Luna/max artifact. Keep the step pending until the audit returns `accept`, `repair`, or `reset`; use the result to close, narrow, or replace the direction. Batch-level full verification belongs after multiple Sol-accepted tasks or final batch, not inside each task.
 
 ## Grilling
 
