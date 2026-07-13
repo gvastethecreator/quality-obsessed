@@ -1,6 +1,6 @@
 ---
 name: quality-obsessed
-description: "Run evidence-gated quality missions and context-adaptive quality councils against a real baseline. Use for explicit requests to be obsessive or exhaustive, beat a baseline, recover rejected or bland output, convene multiple professional lenses, or run a persistent eval-driven improvement loop. Do not invoke implicitly for routine fixes, ordinary reviews, explanations, or status checks."
+description: "Run evidence-gated quality missions and context-adaptive quality councils against a real baseline. Use for explicit requests to be obsessive or exhaustive, beat a baseline, recover rejected or bland output, do creative/standout/greenfield direction work, convene multiple professional lenses, or run a persistent eval-driven improvement loop. Do not invoke implicitly for routine fixes, conformance work, ordinary reviews, explanations, or status checks."
 license: MIT
 ---
 
@@ -52,16 +52,22 @@ Load extra branches only when the mission requires them:
 - [Persistence](references/persistence.md) — explicit deep work; substantial, broad, or quality-sensitive work without a user limit; resumable multi-slice work; or goal-like missions.
 - [Recovery](references/recovery.md) — user rejection, baseline loss, bland output, or failed direction.
 - [Pressure](references/pressure.md) — pre-final adversarial autopsy for broad, quality-sensitive, recovery, or review work; a context-adaptive Council with 2-4 non-overlapping lenses; independent review; standout direction; grilling; or simplification.
+- [Creative Search](references/creative-search.md) — explicitly creative, standout, greenfield, or direction-risk work: compare three materially different directions before committing; skip routine fixes and conformance work.
+- [Orchestration](references/orchestration.md) — a mission needs a multi-step plan, role-based delegation, or host-selectable model routing.
 - [Host capability mapping](references/host-capabilities.md) — the current agent exposes different names or lacks execution, visual, delegation, research, or durable-run capabilities.
 - [Examples](references/examples.md) — a mode, evidence claim, or final record remains ambiguous.
 
 Use the smallest relevant stack. A domain or proof skill counts only if it changes the artifact, decision, or evidence.
 
+For Creative Search missions, load the reference before choosing a direction. Produce a cheap representative artifact for each of three materially different theses, structures, or behaviors; compare them, choose explicitly, and do not default to a hybrid. Name one useful signature, remove one generic or diluting element, then run a blind audience read (understood, action, memory, mismatch). Resolve any mismatch before commit. Routine fixes and design-system/conformance work bypass this branch.
+
 ## Persistence and pressure
 
-Read Persistence before the first counted loop for explicit deep missions and for substantial, broad, or quality-sensitive missions when the user supplies no budget, time limit, or loop count. Preserve the default floor of 30 valid loops while meaningful risks remain, with no hard maximum and an explicit Loop 30 verdict. Routine small or explicitly bounded work may stop at acceptance. Never pre-invent 30 weaknesses or fragment one change to satisfy the count.
+Read Persistence before the first counted loop for explicit deep missions and for substantial, broad, or quality-sensitive missions when the user supplies no budget, time limit, or loop count. Once Persistence activates, require 10 valid loops with no hard maximum, then issue an explicit Loop 10 verdict that determines whether to continue. Routine small or explicitly bounded work does not activate the floor and may stop at acceptance. Never pre-invent 10 weaknesses or fragment one change to satisfy the count.
 
 For substantial or high-risk work, use one fresh reviewer when available and when independence can change a decision. Reconcile accepted and rejected findings; reviewer volume is not proof.
+
+When orchestration is active, every Luna/max execution step remains pending until a Sol/xhigh audit returns `accept`, `repair`, or `reset`. Keep the Luna brief action-first and the conversation minimal. Per task, run only focused tests and a real check/typecheck for the edited file when one exists (otherwise skip and record N/A); never run full tests, builds, or typechecks per task. Run the full suite once after multiple Sol-accepted tasks or final batch, then let Sol audit the gates.
 
 Before final status for broad, quality-sensitive, recovery, review/audit, or explicitly obsessive work, run Pressure's fresh adversarial autopsy against the real artifact. It is required even when independent review is unavailable and does not grant mutation authority in diagnose or audit mode.
 

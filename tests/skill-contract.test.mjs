@@ -423,7 +423,7 @@ test("rejects indented protocol and persistence drift in other references", asyn
         " task_state: done | paused",
         "   mutation_stop: stop-whenever",
         " minimum_valid_loops: 5",
-        "   hard_maximum: 30",
+        "   hard_maximum: 10",
       ].join("\n"),
       "utf8",
     );
@@ -533,7 +533,7 @@ test("rejects vendor-specific commands in runtime Markdown", async () => {
         "In Codex, always start the /goal command for persistence.",
       ].join("\n"),
       "references/protocol.md": "# Protocol\\n\\nmission_mode: change | diagnose | audit | recovery | goal\\ntask_state: completed | blocked\\nartifact_verdict: win | tie | loss | not-assessed\\nverification_state: verified | limited | unverified\\nloop_verdict: better | mixed | flat | worse\\nseverity: blocker | P1 | P2 | P3\\ngate_state: passed | failed | blocked | N/A\\nscope_rule: explicit-user-boundaries-win\\n",
-      "references/persistence.md": "# Persistence\\n\\nminimum_valid_loops: 30\\nhard_maximum: none\\nloop_30_verdict: continue | ask | stop\\nbacklog_policy: dynamic-evidence-only\\ngoal_activation: explicit-user-request\\n",
+      "references/persistence.md": "# Persistence\\n\\nminimum_valid_loops: 10\\nhard_maximum: none\\nloop_10_verdict: continue | ask | stop\\nbacklog_policy: dynamic-evidence-only\\ndefault_activation: substantial-unbounded-quality-mission\\ngoal_activation: explicit-user-request\\n",
     },
     (skillPath) => {
       const result = runValidator(skillPath);
@@ -580,7 +580,7 @@ test("rejects long references without an early contents index", async () => {
   );
 });
 
-test("rejects persistence policy that loses the deep 30-loop contract", async () => {
+test("rejects persistence policy that loses the deep 10-loop contract", async () => {
   await withFixture(
     {
       "LICENSE": "MIT License\n",
@@ -622,7 +622,7 @@ test("rejects duplicate or contradictory deep-persistence keys", async () => {
     const persistence = await readFile(persistencePath, "utf8");
     await writeFile(
       persistencePath,
-      `${persistence}\n\nminimum_valid_loops: 5\nhard_maximum: 30\n`,
+      `${persistence}\n\nminimum_valid_loops: 5\nhard_maximum: 10\n`,
       "utf8",
     );
 
@@ -631,6 +631,101 @@ test("rejects duplicate or contradictory deep-persistence keys", async () => {
     const report = JSON.parse(result.stdout);
     assert.ok(
       report.violations.some(({ code }) => code === "persistence-contract"),
+      JSON.stringify(report, null, 2),
+    );
+  });
+});
+
+test("rejects a weakened model-routing profile", async () => {
+  await withRepositorySkillCopy(async (skillPath) => {
+    const orchestrationPath = path.join(
+      skillPath,
+      "references",
+      "orchestration.md",
+    );
+    const orchestration = await readFile(orchestrationPath, "utf8");
+    await writeFile(
+      orchestrationPath,
+      orchestration.replace("judgment_reasoning: xhigh", "judgment_reasoning: high"),
+      "utf8",
+    );
+
+    const result = runValidator(skillPath);
+    assert.equal(result.status, 1, result.stderr);
+    const report = JSON.parse(result.stdout);
+    assert.ok(
+      report.violations.some(({ code }) => code === "semantic-parity-contract"),
+      JSON.stringify(report, null, 2),
+    );
+  });
+});
+
+test("rejects model-routing keys outside their owner reference", async () => {
+  await withRepositorySkillCopy(async (skillPath) => {
+    const examplesPath = path.join(skillPath, "references", "examples.md");
+    const examples = await readFile(examplesPath, "utf8");
+    await writeFile(
+      examplesPath,
+      `${examples}\n\nexecution_model: gpt-5.6-luna\n`,
+      "utf8",
+    );
+
+    const result = runValidator(skillPath);
+    assert.equal(result.status, 1, result.stderr);
+    const report = JSON.parse(result.stdout);
+    assert.ok(
+      report.violations.some(
+        ({ code }) => code === "semantic-parity-redefinition",
+      ),
+      JSON.stringify(report, null, 2),
+    );
+  });
+});
+
+test("rejects a weakened Creative Search owner contract", async () => {
+  await withRepositorySkillCopy(async (skillPath) => {
+    const referencePath = path.join(
+      skillPath,
+      "references",
+      "creative-search.md",
+    );
+    const content = await readFile(referencePath, "utf8");
+    await writeFile(
+      referencePath,
+      content.replace(
+        "direction_count: three-materially-distinct",
+        "direction_count: two",
+      ),
+      "utf8",
+    );
+
+    const result = runValidator(skillPath);
+    assert.equal(result.status, 1, result.stderr);
+    const report = JSON.parse(result.stdout);
+    assert.ok(
+      report.violations.some(({ code }) => code === "semantic-parity-contract"),
+      JSON.stringify(report, null, 2),
+    );
+  });
+});
+
+test("rejects Creative Search keys outside their owner reference", async () => {
+  await withRepositorySkillCopy(async (skillPath) => {
+    const examplesPath = path.join(skillPath, "references", "examples.md");
+    const examples = await readFile(examplesPath, "utf8");
+    await writeFile(
+      examplesPath,
+      `${examples}\n\ndirection_count: three-materially-distinct\n`,
+      "utf8",
+    );
+
+    const result = runValidator(skillPath);
+    assert.equal(result.status, 1, result.stderr);
+    const report = JSON.parse(result.stdout);
+    assert.ok(
+      report.violations.some(
+        ({ code }) => code === "semantic-parity-redefinition",
+      ),
       JSON.stringify(report, null, 2),
     );
   });

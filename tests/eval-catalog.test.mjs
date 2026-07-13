@@ -221,8 +221,8 @@ test("rejects a goal eval that weakens deep persistence", async () => {
               mission_mode: "goal",
               persistence: {
                 enabled: true,
-                minimum_valid_loops: 10,
-                hard_maximum: 30,
+                minimum_valid_loops: 5,
+                hard_maximum: 10,
               },
             },
           },
@@ -288,9 +288,9 @@ test("rejects inversion of small and substantial persistence routing", async () 
     const small = catalog.cases.find(({ id }) => id === "small-scoped-change");
     small.expected.persistence = {
       enabled: true,
-      minimum_valid_loops: 30,
+      minimum_valid_loops: 10,
       hard_maximum: null,
-      loop_30_verdicts: ["continue", "ask", "stop"],
+      loop_10_verdicts: ["continue", "ask", "stop"],
       backlog_policy: "dynamic-evidence-only",
     };
     small.expected.required_capabilities = [
@@ -445,6 +445,179 @@ test("rejects substitution of the inferred professional audio specialist", async
   }
 });
 
+test("rejects weakened Codex model routing", async () => {
+  const mutations = [
+    ["missing-labels", (expected) => {
+      expected.orchestration.plan_model_labels_required = false;
+    }],
+    ["wrong-judgment-model", (expected) => {
+      expected.orchestration.judgment_model = "gpt-5.6-luna";
+    }],
+    ["lowered-judgment-effort", (expected) => {
+      expected.orchestration.judgment_reasoning = "high";
+    }],
+    ["weak-execution-effort", (expected) => {
+      expected.orchestration.execution_reasoning = "low";
+    }],
+    ["missing-handoff", (expected) => {
+      delete expected.orchestration.handoff_contract;
+    }],
+    ["labels-without-dispatch", (expected) => {
+      expected.orchestration.routing_enforcement = "plan-label-only";
+    }],
+    ["missing-reference", (expected) => {
+      expected.required_references = expected.required_references.filter(
+        (reference) => reference !== "orchestration.md",
+      );
+    }],
+  ];
+
+  for (const [name, mutate] of mutations) {
+    const root = await mkdtemp(path.join(tmpdir(), `quality-evals-routing-${name}-`));
+    const catalogPath = path.join(root, "cases.json");
+    try {
+      const catalog = JSON.parse(
+        await readFile(path.join(repoRoot, "evals", "cases.json"), "utf8"),
+      );
+      const expected = catalog.cases.find(
+        ({ id }) => id === "codex-model-routed-plan",
+      ).expected;
+      mutate(expected);
+      await writeFile(catalogPath, JSON.stringify(catalog), "utf8");
+
+      const result = runValidator(catalogPath);
+      assert.equal(result.status, 1, `${name}: ${result.stderr}`);
+      const report = JSON.parse(result.stdout);
+      assert.ok(
+        report.violations.some(
+          ({ code }) => code === "invalid-orchestration-contract",
+        ),
+        `${name}: ${JSON.stringify(report, null, 2)}`,
+      );
+    } finally {
+      await rm(root, { recursive: true, force: true });
+    }
+  }
+});
+
+test("rejects weakened Luna-to-Sol audit and deferred verification routing", async () => {
+  const mutations = [
+    ["missing-sol-audit", (expected) => {
+      expected.orchestration.execution_audit = "luna-self-acceptance";
+    }],
+    ["invalid-audit-verdict", (expected) => {
+      expected.orchestration.execution_audit_verdict = "accept-only";
+    }],
+    ["verbose-communication", (expected) => {
+      expected.orchestration.execution_communication = "verbose-plan";
+    }],
+    ["broad-task-verification", (expected) => {
+      expected.orchestration.task_local_verification = "full-suite-per-task";
+    }],
+    ["broad-interim-typecheck", (expected) => {
+      expected.orchestration.interim_typecheck = "whole-project-typecheck";
+    }],
+    ["early-full-verification", (expected) => {
+      expected.orchestration.full_verification_trigger = "every-task";
+    }],
+    ["wrong-full-suite", (expected) => {
+      expected.orchestration.full_verification_suite = "tests-build-typecheck-per-task";
+    }],
+  ];
+
+  for (const [name, mutate] of mutations) {
+    const root = await mkdtemp(path.join(tmpdir(), `quality-evals-audit-${name}-`));
+    const catalogPath = path.join(root, "cases.json");
+    try {
+      const catalog = JSON.parse(
+        await readFile(path.join(repoRoot, "evals", "cases.json"), "utf8"),
+      );
+      const expected = catalog.cases.find(
+        ({ id }) => id === "codex-model-routed-plan",
+      ).expected;
+      mutate(expected);
+      await writeFile(catalogPath, JSON.stringify(catalog), "utf8");
+
+      const result = runValidator(catalogPath);
+      assert.equal(result.status, 1, `${name}: ${result.stderr}`);
+      const report = JSON.parse(result.stdout);
+      const violation = report.violations.find(
+        ({ code }) => code === "invalid-orchestration-contract",
+      );
+      assert.ok(violation, `${name}: ${JSON.stringify(report, null, 2)}`);
+      assert.match(violation.message, /expected/);
+    } finally {
+      await rm(root, { recursive: true, force: true });
+    }
+  }
+});
+
+test("rejects weakened Creative Search contracts", async () => {
+  const mutations = [
+    ["trigger", (creative) => { creative.creative_trigger = "always"; }],
+    ["direction-count", (creative) => { creative.direction_count = "two"; }],
+    ["direction-distance", (creative) => { creative.direction_distance = "cosmetic-only"; }],
+    ["representative-artifact", (creative) => { creative.prototype_policy = "placeholder-ok"; }],
+    ["selection", (creative) => { creative.selection_basis = "preference-only"; }],
+    ["hybrid", (creative) => { creative.hybrid_policy = "default-hybrid"; }],
+    ["signature", (creative) => { creative.signature_move = "many-memorable-moves"; }],
+    ["subtraction", (creative) => { creative.subtraction_move = "add-more-elements"; }],
+    ["blind-read", (creative) => { creative.blind_audience_read = "brief-visible-read"; }],
+    ["blind-fields", (creative) => { creative.blind_read_fields = "understood-only"; }],
+  ];
+
+  for (const [name, mutate] of mutations) {
+    const root = await mkdtemp(path.join(tmpdir(), `quality-evals-creative-${name}-`));
+    const catalogPath = path.join(root, "cases.json");
+    try {
+      const catalog = JSON.parse(
+        await readFile(path.join(repoRoot, "evals", "cases.json"), "utf8"),
+      );
+      const expected = catalog.cases.find(
+        ({ id }) => id === "creative-search-standout",
+      ).expected;
+      mutate(expected.creative_search);
+      await writeFile(catalogPath, JSON.stringify(catalog), "utf8");
+
+      const result = runValidator(catalogPath);
+      assert.equal(result.status, 1, `${name}: ${result.stderr}`);
+      const report = JSON.parse(result.stdout);
+      const violation = report.violations.find(
+        ({ code }) => code === "invalid-creative-contract",
+      );
+      assert.ok(violation, `${name}: ${JSON.stringify(report, null, 2)}`);
+      assert.match(violation.message, /expected/);
+    } finally {
+      await rm(root, { recursive: true, force: true });
+    }
+  }
+});
+
+test("rejects inversion of Creative Search routing", async () => {
+  const root = await mkdtemp(path.join(tmpdir(), "quality-evals-creative-routing-"));
+  const catalogPath = path.join(root, "cases.json");
+  try {
+    const catalog = JSON.parse(
+      await readFile(path.join(repoRoot, "evals", "cases.json"), "utf8"),
+    );
+    catalog.cases.find(({ id }) => id === "creative-search-standout").expected.creative_search.enabled = false;
+    catalog.cases.find(({ id }) => id === "small-scoped-change").expected.creative_search.enabled = true;
+    catalog.cases.find(({ id }) => id === "routine-conformance").expected.creative_search.enabled = true;
+    await writeFile(catalogPath, JSON.stringify(catalog), "utf8");
+
+    const result = runValidator(catalogPath);
+    assert.equal(result.status, 1, result.stderr);
+    const report = JSON.parse(result.stdout);
+    assert.equal(
+      report.violations.filter(({ code }) => code === "invalid-creative-routing").length,
+      3,
+      JSON.stringify(report, null, 2),
+    );
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
 test("repository eval catalog covers the approved behavioral matrix", async () => {
   const catalogPath = path.join(repoRoot, "evals", "cases.json");
   const result = runValidator(catalogPath);
@@ -470,7 +643,10 @@ test("repository eval catalog covers the approved behavioral matrix", async () =
     "recovery-after-rejection",
     "architecture-boundary",
     "delegation-unavailable",
-    "proof-blocked",
+     "proof-blocked",
+     "codex-model-routed-plan",
+     "creative-search-standout",
+     "routine-conformance",
   ]) {
     assert.ok(ids.has(id), `missing eval case: ${id}`);
   }
@@ -483,7 +659,7 @@ test("repository eval catalog covers the approved behavioral matrix", async () =
 
   const deep = catalog.cases.find(({ id }) => id === "deep-goal-mission");
   assert.equal(deep.expected.persistence.enabled, true);
-  assert.equal(deep.expected.persistence.minimum_valid_loops, 30);
+  assert.equal(deep.expected.persistence.minimum_valid_loops, 10);
   assert.equal(deep.expected.persistence.hard_maximum, null);
   assert.ok(deep.expected.required_capabilities.includes("durable-continuation"));
   assert.doesNotMatch(deep.prompt, /\/goal|\$quality-obsessed/);
@@ -493,10 +669,10 @@ test("repository eval catalog covers the approved behavioral matrix", async () =
   );
   assert.equal(unbounded.expected.mission_mode, "change");
   assert.equal(unbounded.expected.persistence.enabled, true);
-  assert.equal(unbounded.expected.persistence.minimum_valid_loops, 30);
+  assert.equal(unbounded.expected.persistence.minimum_valid_loops, 10);
   assert.equal(unbounded.expected.persistence.hard_maximum, null);
   assert.deepEqual(
-    unbounded.expected.persistence.loop_30_verdicts,
+    unbounded.expected.persistence.loop_10_verdicts,
     ["continue", "ask", "stop"],
   );
   assert.equal(
@@ -518,12 +694,13 @@ test("repository eval catalog covers the approved behavioral matrix", async () =
 
   const small = catalog.cases.find(({ id }) => id === "small-scoped-change");
   assert.equal(small.expected.persistence.enabled, false);
+  assert.equal(small.expected.creative_search.enabled, false);
 
   const recovery = catalog.cases.find(
     ({ id }) => id === "recovery-after-rejection",
   );
   assert.equal(recovery.expected.persistence.enabled, true);
-  assert.equal(recovery.expected.persistence.minimum_valid_loops, 30);
+  assert.equal(recovery.expected.persistence.minimum_valid_loops, 10);
   assert.equal(recovery.expected.persistence.hard_maximum, null);
   assert.ok(recovery.expected.required_references.includes("persistence.md"));
   assert.ok(recovery.expected.required_references.includes("pressure.md"));
@@ -597,7 +774,7 @@ test("repository eval catalog covers an authorized standout ambition leap", asyn
   const item = catalog.cases.find(({ id }) => id === "standout-ambition-leap");
   assert.ok(item, "missing eval case: standout-ambition-leap");
   assert.equal(item.expected.persistence.enabled, true);
-  assert.equal(item.expected.persistence.minimum_valid_loops, 30);
+  assert.equal(item.expected.persistence.minimum_valid_loops, 10);
   assert.equal(item.expected.persistence.hard_maximum, null);
   assert.ok(item.expected.required_references.includes("persistence.md"));
   assert.ok(item.expected.required_references.includes("pressure.md"));
@@ -689,4 +866,88 @@ test("repository eval catalog infers Council pressure across a second profession
   );
   assert.ok(item.expected.required_references.includes("pressure.md"));
   assert.ok(item.expected.forbidden_actions.includes("generic-domain-reviewer"));
+});
+
+test("repository eval catalog routes Codex judgment and execution models", async () => {
+  const catalog = JSON.parse(
+    await readFile(path.join(repoRoot, "evals", "cases.json"), "utf8"),
+  );
+  const item = catalog.cases.find(
+    ({ id }) => id === "codex-model-routed-plan",
+  );
+  assert.ok(item, "missing eval case: codex-model-routed-plan");
+  assert.equal(item.expected.orchestration.plan_model_labels_required, true);
+  assert.equal(item.expected.orchestration.judgment_model, "gpt-5.6-sol");
+  assert.equal(item.expected.orchestration.judgment_reasoning, "xhigh");
+  assert.equal(item.expected.orchestration.execution_model, "gpt-5.6-luna");
+  assert.equal(item.expected.orchestration.execution_reasoning, "max");
+  assert.equal(
+    item.expected.orchestration.execution_communication,
+    "caveman-action-first-minimal-talk",
+  );
+  assert.equal(
+    item.expected.orchestration.execution_audit,
+    "sol-xhigh-required-before-acceptance",
+  );
+  assert.equal(
+    item.expected.orchestration.execution_audit_verdict,
+    "accept | repair | reset",
+  );
+  assert.equal(
+    item.expected.orchestration.task_local_verification,
+    "focused-tests-and-current-file-checks-only",
+  );
+  assert.equal(
+    item.expected.orchestration.interim_typecheck,
+    "current-edited-file-only-or-skip",
+  );
+  assert.equal(
+    item.expected.orchestration.full_verification_trigger,
+    "multiple-sol-accepted-tasks-or-final-batch",
+  );
+  assert.equal(
+    item.expected.orchestration.full_verification_suite,
+    "tests-build-typecheck-once-per-batch",
+  );
+  assert.equal(
+    item.expected.orchestration.handoff_contract,
+    "deliverable-dependencies-surface-proof-return",
+  );
+  assert.equal(
+    item.expected.orchestration.routing_enforcement,
+    "plan-label-and-actual-dispatch",
+  );
+  assert.ok(item.expected.required_references.includes("orchestration.md"));
+  assert.ok(item.expected.required_capabilities.includes("model-routing"));
+  for (const action of [
+    "unaudited-luna-acceptance",
+    "verbose-luna-planning",
+    "per-task-full-suite/build/typecheck",
+  ]) {
+    assert.ok(item.expected.forbidden_actions.includes(action), action);
+  }
+});
+
+test("repository eval catalog routes Creative Search only for standout direction risk", async () => {
+  const catalog = JSON.parse(
+    await readFile(path.join(repoRoot, "evals", "cases.json"), "utf8"),
+  );
+  const creative = catalog.cases.find(({ id }) => id === "creative-search-standout");
+  assert.ok(creative, "missing eval case: creative-search-standout");
+  assert.equal(creative.expected.creative_search.enabled, true);
+  assert.equal(creative.expected.creative_search.direction_count, "three-materially-distinct");
+  assert.ok(creative.expected.required_references.includes("creative-search.md"));
+  for (const action of [
+    "cosmetic-variants",
+    "default-hybrid",
+    "brief-leaked-blind-read",
+    "signature-without-user-value",
+    "additive-only-creativity",
+  ]) {
+    assert.ok(creative.expected.forbidden_actions.includes(action), action);
+  }
+
+  const routine = catalog.cases.find(({ id }) => id === "routine-conformance");
+  assert.ok(routine, "missing eval case: routine-conformance");
+  assert.equal(routine.expected.creative_search.enabled, false);
 });
