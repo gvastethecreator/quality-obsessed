@@ -1056,3 +1056,50 @@ test("the repository skill package satisfies the canonical contract", () => {
   assert.equal(report.ok, true, JSON.stringify(report, null, 2));
   assert.deepEqual(report.violations, []);
 });
+
+test("rejects a protocol that loses execution discipline", async () => {
+  const contracts = [
+    "intent_capture: purpose-and-enabling-outcome",
+    "action_threshold: minimum-information-known",
+    "settled_context: reuse-unless-new-evidence",
+    "blocker_isolation: blocked-lane-only-continue-safe-work",
+    "milestone_provenance: current-run-or-durable-evidence-ledger",
+    "turn_exit: requested-deliverable-done-or-explicitly-blocked",
+  ];
+
+  for (const contract of contracts) {
+    await withRepositorySkillCopy(async (skillPath) => {
+      const protocolPath = path.join(skillPath, "references", "protocol.md");
+      const content = await readFile(protocolPath, "utf8");
+      assert.ok(content.includes(contract), `missing fixture contract: ${contract}`);
+      await writeFile(protocolPath, content.replace(contract, ""), "utf8");
+
+      const result = runValidator(skillPath);
+      assert.equal(result.status, 1, `${contract}: ${result.stderr}`);
+      const report = JSON.parse(result.stdout);
+      assert.ok(
+        report.violations.some(({ code }) => code === "protocol-contract"),
+        `${contract}: ${JSON.stringify(report, null, 2)}`,
+      );
+    });
+  }
+});
+
+test("rejects a code profile that loses the structural self-check", async () => {
+  await withRepositorySkillCopy(async (skillPath) => {
+    const referencePath = path.join(skillPath, "references", "code-profile.md");
+    const contract =
+      "structural_self_check: inspect-ad-hoc-branches-thin-wrappers-and-avoidable-sprawl";
+    const content = await readFile(referencePath, "utf8");
+    assert.ok(content.includes(contract), `missing fixture contract: ${contract}`);
+    await writeFile(referencePath, content.replace(contract, ""), "utf8");
+
+    const result = runValidator(skillPath);
+    assert.equal(result.status, 1, result.stderr);
+    const report = JSON.parse(result.stdout);
+    assert.ok(
+      report.violations.some(({ code }) => code === "semantic-parity-contract"),
+      JSON.stringify(report, null, 2),
+    );
+  });
+});

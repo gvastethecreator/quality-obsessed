@@ -16,6 +16,7 @@ Before broad work, record a compact contract:
 
 ```text
 Artifact and user outcome:
+Purpose and enabling outcome:
 Mission mode:
 In scope / out of scope:
 Baseline or acceptance target:
@@ -25,6 +26,8 @@ Stop condition:
 
 Use an actual snapshot, prior output, fixture, specification, or user-approved reference as the baseline. For greenfield work without one, use acceptance criteria and mark comparison claims `not-assessed`; do not invent a competent default.
 
+Apply Protocol's execution discipline throughout. Reuse settled context unless new evidence conflicts with it, act once the minimum facts are known, continue safe independent work around a blocked lane, and audit milestone claims against current or revision-matched durable evidence.
+
 ## Core loop
 
 1. **Inspect.** Render, run, read, or exercise the real artifact through a safe, authorized surface. Cross-check output and source when both exist.
@@ -33,6 +36,7 @@ Use an actual snapshot, prior output, fixture, specification, or user-approved r
 4. **Prove.** Capture evidence appropriate to the claim: test output, screenshot, benchmark, rendered document, source pointer, or measured diff. Static inspection proves only static claims.
 5. **Judge.** Record the canonical loop verdict from Protocol. A mixed result needs repair; two consecutive flat or worse verdicts require a direction reset.
 6. **Continue or stop.** Continue while a material in-scope risk remains and the next action has a credible proof path. Freeze the accepted scope after discovery; defer new unrelated findings unless they invalidate the mission result.
+7. **Close.** Run the applicable structural self-check, complete any safe in-scope work still promised by the response, and end only when the requested deliverable is done or explicitly blocked.
 
 Do not count comments, docs, renames, or refactors by file type. They count when they improve the mission's actual artifact or contract and the relevant proof observes that improvement.
 
@@ -70,6 +74,8 @@ For substantial or high-risk work, use one fresh reviewer when available and whe
 When orchestration is active, every Luna/max execution step remains pending until a Sol/xhigh audit returns `accept`, `repair`, or `reset`. Keep the Luna brief action-first and the conversation minimal. Per task, run only focused tests and a real check/typecheck for the edited file when one exists (otherwise skip and record N/A); never run full tests, builds, or typechecks per task. Run the full suite once after multiple Sol-accepted tasks or final batch, then let Sol audit the gates.
 
 Before final status for broad, quality-sensitive, recovery, review/audit, or explicitly obsessive work, run Pressure's fresh adversarial autopsy against the real artifact. It is required even when independent review is unavailable and does not grant mutation authority in diagnose or audit mode.
+
+Before every final status, run Protocol's turn-exit check. For code changes, also run the Code profile's structural self-check.
 
 ## Final record
 

@@ -19,6 +19,14 @@ For a behavior-preserving refactor, improvement may be structural: reduced dupli
 
 Documentation, naming, configuration, or comments count when they are the contract operators or users consume and the proof observes improved correctness or actionability.
 
+## Structural self-check
+
+Before closing a code change, inspect the actual diff and affected call sites for ad-hoc branches attached to unrelated flows, thin pass-through wrappers that add no ownership or clarity, feature logic leaking into shared paths, and avoidable file sprawl where a clear boundary already exists. Treat these as findings only when the changed structure causes concrete cost or risk. Do not widen scope to refactor unrelated code for checklist compliance.
+
+```text
+structural_self_check: inspect-ad-hoc-branches-thin-wrappers-and-avoidable-sprawl
+```
+
 ## Automation safety
 
 For scheduled, event-driven, background, or operator-facing automation, verify the trigger and duplicate-delivery behavior, idempotency, retry and terminal failure paths, operator feedback, secret handling, useful logs, rollback or recovery, and a safe dry-run or proof hook where applicable. Do not accept silent unrecoverable background behavior.
@@ -29,4 +37,4 @@ automation_safety: trigger-idempotency-retry-feedback-secrets-logs-rollback-dry-
 
 ## Closeout
 
-Capture the focused test/runtime output, relevant diff, main path, and one meaningful boundary or recovery path. If runtime execution is unavailable, limit runtime claims instead of inferring them from source.
+Capture the focused test/runtime output, relevant diff, structural self-check, main path, and one meaningful boundary or recovery path. If runtime execution is unavailable, limit runtime claims instead of inferring them from source.

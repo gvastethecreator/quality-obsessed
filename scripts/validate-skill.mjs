@@ -272,6 +272,12 @@ export async function validateSkill(skillPath) {
     ["scope_rule", "explicit-user-boundaries-win"],
     ["mutation_stop", "acceptance-met-and-no-blocker-or-P1"],
     ["analysis_stop", "requested-analysis-complete"],
+    ["intent_capture", "purpose-and-enabling-outcome"],
+    ["action_threshold", "minimum-information-known"],
+    ["settled_context", "reuse-unless-new-evidence"],
+    ["blocker_isolation", "blocked-lane-only-continue-safe-work"],
+    ["milestone_provenance", "current-run-or-durable-evidence-ledger"],
+    ["turn_exit", "requested-deliverable-done-or-explicitly-blocked"],
   ]);
   if (!(await exists(protocolPath))) {
     violations.push({
@@ -453,6 +459,10 @@ export async function validateSkill(skillPath) {
       "references/code-profile.md",
       new Map([
         [
+          "structural_self_check",
+          "inspect-ad-hoc-branches-thin-wrappers-and-avoidable-sprawl",
+        ],
+        [
           "automation_safety",
           "trigger-idempotency-retry-feedback-secrets-logs-rollback-dry-run",
         ],
@@ -510,7 +520,7 @@ export async function validateSkill(skillPath) {
     const legacyStatus = /\b(?:quality wins?|red\/failed|tie\/no meaningful delta|failed to beat baseline)\b/i;
     const vendorRuntime = /\b(?:Codex|Claude Code|OpenCode)\b|(?:^|\s)\/goal\b|\$quality-obsessed\b/im;
     const vendorRuntimeOwners = new Set(["references/orchestration.md"]);
-    const canonicalDefinition = /^[ \t]{0,3}(mission_mode|task_state|artifact_verdict|verification_state|loop_verdict|severity|gate_state|scope_rule|mutation_stop|analysis_stop)\s*:/gm;
+    const canonicalDefinition = /^[ \t]{0,3}(mission_mode|task_state|artifact_verdict|verification_state|loop_verdict|severity|gate_state|scope_rule|mutation_stop|analysis_stop|intent_capture|action_threshold|settled_context|blocker_isolation|milestone_provenance|turn_exit)\s*:/gm;
     const persistenceDefinition = /^[ \t]{0,3}(minimum_valid_loops|hard_maximum|loop_10_verdict|backlog_policy|default_activation|goal_activation)\s*:/gm;
     for (const file of markdownFiles) {
       const content = await readFile(file, "utf8");

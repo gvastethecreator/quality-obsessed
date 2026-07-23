@@ -276,3 +276,44 @@ test("evidence matrix defines the mandatory adversarial autopsy gate", async () 
     assert.match(row, new RegExp(term, "i"));
   }
 });
+
+test("public guidance documents action-ready execution discipline", async () => {
+  const [readme, skill, protocol, codeProfile] = await Promise.all([
+    readFile(path.join(repoRoot, "README.md"), "utf8"),
+    readFile(
+      path.join(repoRoot, "SKILLS", "quality-obsessed", "SKILL.md"),
+      "utf8",
+    ),
+    readFile(
+      path.join(
+        repoRoot,
+        "SKILLS",
+        "quality-obsessed",
+        "references",
+        "protocol.md",
+      ),
+      "utf8",
+    ),
+    readFile(
+      path.join(
+        repoRoot,
+        "SKILLS",
+        "quality-obsessed",
+        "references",
+        "code-profile.md",
+      ),
+      "utf8",
+    ),
+  ]);
+
+  assert.match(readme, /## Execution discipline/);
+  assert.match(skill, /Purpose and enabling outcome:/);
+  assert.match(skill, /reuse settled context/i);
+  assert.match(skill, /continue safe independent work/i);
+  assert.match(skill, /requested deliverable is done or explicitly blocked/i);
+  assert.match(protocol, /milestone_provenance: current-run-or-durable-evidence-ledger/);
+  assert.match(
+    codeProfile,
+    /structural_self_check: inspect-ad-hoc-branches-thin-wrappers-and-avoidable-sprawl/,
+  );
+});
