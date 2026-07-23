@@ -60,6 +60,12 @@ It selects one mission mode:
 
 Every evidence gate is selected as required, conditional, or not applicable. Desktop-only software does not invent mobile proof; documentation counts as an artifact; static inspection cannot certify runtime or visual claims.
 
+## Execution discipline
+
+The skill captures the purpose that changes acceptance, acts once the minimum facts are known, and reuses settled facts and decisions until new evidence changes them. An approval, access, or user-input blocker stops only its own lane while safe independent work remains. Milestone and final claims must point to current evidence or a durable proof record tied to the same artifact revision.
+
+Code changes receive a final structural check for ad-hoc branches, thin pass-through wrappers, leaked feature logic, and avoidable file sprawl. Before ending, the skill completes any safe in-scope work still promised by its response. A requested plan, audit, or explanation counts as the deliverable; other work ends when the requested result is done or explicitly blocked.
+
 ## Context-adaptive Council
 
 Council is a compact branch, not a separate framework or fixed cast. Activate it when the user explicitly requests one or when two or more materially different failure modes need judgment together. Select 2-4 non-overlapping lenses from the artifact, outcome, risk, and professional domain, then make every lens inspect the same real evidence and converge on one decision, next artifact move, and closing proof.

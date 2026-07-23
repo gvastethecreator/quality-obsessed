@@ -15,6 +15,12 @@ gate_state: passed | failed | blocked | N/A
 scope_rule: explicit-user-boundaries-win
 mutation_stop: acceptance-met-and-no-blocker-or-P1
 analysis_stop: requested-analysis-complete
+intent_capture: purpose-and-enabling-outcome
+action_threshold: minimum-information-known
+settled_context: reuse-unless-new-evidence
+blocker_isolation: blocked-lane-only-continue-safe-work
+milestone_provenance: current-run-or-durable-evidence-ledger
+turn_exit: requested-deliverable-done-or-explicitly-blocked
 ```
 
 ## Precedence and modes
@@ -31,13 +37,25 @@ System, safety, user, and repository instructions remain authoritative. Explicit
 
 Infer the mode from the user's verb, not from the fact that the repository is editable. When two modes are requested, keep their permissions separate; for example, audit first and remediate only approved findings.
 
+## Execution discipline
+
+Capture the purpose and enabling outcome when they change acceptance, priority, or proof. Ask only when missing input would force incompatible work, cross a boundary, or require a choice only the user can make. Once the minimum facts are known, act on the accepted path.
+
+Reuse established facts, the current baseline, and settled decisions. Reopen one only when new evidence conflicts with it or the artifact has changed enough to make it stale. Record the changed evidence instead of replaying the earlier debate.
+
+When approval, access, or user-only input blocks one lane, record that lane and continue safe independent work inside scope. Never bypass the gate. Mark the task `blocked` only after no meaningful authorized lane remains.
+
+Before each material milestone or final report, map claims to evidence from the current run or a durable evidence ledger tied to the same artifact revision. Refresh drift-prone proof. Report a missing or failed check as such.
+
+Before ending the turn, inspect the pending deliverable. Execute any safe in-scope work that the response still promises. A requested plan, audit, or explanation can itself be the completed deliverable; otherwise end only when the requested deliverable is done or an explicit blocker prevents further work.
+
 ## State axes
 
 - `task_state` answers whether the requested work completed or an external constraint prevents further progress.
 - `artifact_verdict` answers whether the artifact beats the baseline or acceptance target. Use `not-assessed` when no honest comparison is available or comparison is outside the request.
 - `verification_state` answers whether the claims have complete proof, partial proof with named gaps, or no usable proof.
 
-A completed audit can report `completed`, `loss`, and `verified`. A completed implementation with an unavailable sandbox path can report `completed`, the evidence-supported artifact verdict, and `limited`. Reserve `blocked` for a constraint that prevents meaningful continuation, not for an artifact weakness.
+A completed audit can report `completed`, `loss`, and `verified`. A completed implementation with an unavailable sandbox path can report `completed`, the evidence-supported artifact verdict, and `limited`. Reserve `blocked` for a constraint that prevents meaningful continuation after safe independent lanes are exhausted, not for an artifact weakness.
 
 ## Severity and transitions
 

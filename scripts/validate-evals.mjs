@@ -83,6 +83,7 @@ export async function validateEvalCatalog(catalogPath) {
     "acceptance",
     "claim-provenance",
     "regression",
+    "structural-integrity",
     "runtime-behavior",
     "hostile-input",
     "user-states",
@@ -112,6 +113,7 @@ export async function validateEvalCatalog(catalogPath) {
     "invented-independent-review",
     "loop-padding",
     "legacy-final-status",
+    "unexecuted-promise-exit",
   ]);
   const actualHardFailures = Array.isArray(catalog.hard_failures)
     ? catalog.hard_failures
@@ -172,6 +174,27 @@ export async function validateEvalCatalog(catalogPath) {
     ["small-scoped-change", false],
     ["routine-conformance", false],
   ]);
+  const executionDisciplineRouting = new Set([
+    "small-scoped-change",
+    "safe-work-around-approval-blocker",
+  ]);
+  const executionDisciplineContract = {
+    intent_capture: "purpose-and-enabling-outcome",
+    action_threshold: "minimum-information-known",
+    settled_context: "reuse-unless-new-evidence",
+    blocker_isolation: "blocked-lane-only-continue-safe-work",
+    milestone_provenance: "current-run-or-durable-evidence-ledger",
+    structural_self_check:
+      "inspect-ad-hoc-branches-thin-wrappers-and-avoidable-sprawl",
+    turn_exit: "requested-deliverable-done-or-explicitly-blocked",
+  };
+  const executionDisciplineSafeguards = [
+    "stop-with-safe-work-remaining",
+    "reask-settled-decision",
+    "unevidenced-milestone-claim",
+    "unexecuted-promise-exit",
+    "speculative-wrapper",
+  ];
   const contextSpecialists = new Map([
     [
       "context-adaptive-vfx-council",
@@ -422,6 +445,52 @@ export async function validateEvalCatalog(catalogPath) {
         path: resolved,
         message: `Case ${item.id} contradicts its canonical creative-search route.`,
       });
+    }
+
+    const executionDiscipline = expected?.execution_discipline;
+    if (
+      executionDisciplineRouting.has(item.id) &&
+      executionDiscipline === undefined
+    ) {
+      violations.push({
+        code: "invalid-execution-discipline",
+        path: resolved,
+        message: `Case ${item.id} must declare the action-ready execution contract.`,
+      });
+    } else if (executionDiscipline !== undefined) {
+      const invalidFields =
+        executionDiscipline === null ||
+        typeof executionDiscipline !== "object" ||
+        Array.isArray(executionDiscipline)
+          ? ["execution_discipline must be an object"]
+          : contractMismatches(
+              executionDiscipline,
+              executionDisciplineContract,
+            );
+      for (const action of executionDisciplineSafeguards) {
+        if (!arrays.forbidden_actions.includes(action)) {
+          invalidFields.push(
+            `forbidden_actions: expected to include ${action}, received ${JSON.stringify(arrays.forbidden_actions)}`,
+          );
+        }
+      }
+      const structuralGateDeclared = [
+        ...arrays.required_gates,
+        ...arrays.conditional_gates,
+        ...arrays.na_gates,
+      ].includes("structural-integrity");
+      if (!structuralGateDeclared) {
+        invalidFields.push(
+          "structural-integrity must have an applicability state",
+        );
+      }
+      if (invalidFields.length > 0) {
+        violations.push({
+          code: "invalid-execution-discipline",
+          path: resolved,
+          message: `Case ${item.id ?? "<missing>"} weakens the action-ready execution contract: ${invalidFields.join("; ")}.`,
+        });
+      }
     }
 
     const council = expected?.council;

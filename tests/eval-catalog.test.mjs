@@ -951,3 +951,62 @@ test("repository eval catalog routes Creative Search only for standout direction
   assert.ok(routine, "missing eval case: routine-conformance");
   assert.equal(routine.expected.creative_search.enabled, false);
 });
+
+test("rejects weakened action-ready execution discipline", async () => {
+  const catalog = JSON.parse(
+    await readFile(path.join(repoRoot, "evals", "cases.json"), "utf8"),
+  );
+  const item = catalog.cases.find(({ id }) => id === "small-scoped-change");
+  item.expected.execution_discipline.action_threshold = "ask-first";
+
+  const root = await mkdtemp(path.join(tmpdir(), "quality-execution-eval-test-"));
+  const catalogPath = path.join(root, "cases.json");
+  try {
+    await writeFile(catalogPath, JSON.stringify(catalog), "utf8");
+    const result = runValidator(catalogPath);
+    assert.equal(result.status, 1, result.stderr);
+    const report = JSON.parse(result.stdout);
+    assert.ok(
+      report.violations.some(
+        ({ code }) => code === "invalid-execution-discipline",
+      ),
+      JSON.stringify(report, null, 2),
+    );
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test("repository eval catalog continues safe work around an approval blocker", async () => {
+  const catalog = JSON.parse(
+    await readFile(path.join(repoRoot, "evals", "cases.json"), "utf8"),
+  );
+  const item = catalog.cases.find(
+    ({ id }) => id === "safe-work-around-approval-blocker",
+  );
+  assert.ok(item, "missing eval case: safe-work-around-approval-blocker");
+  assert.equal(item.expected.task_state, "blocked");
+  assert.equal(item.expected.verification_state, "limited");
+  assert.deepEqual(item.expected.execution_discipline, {
+    intent_capture: "purpose-and-enabling-outcome",
+    action_threshold: "minimum-information-known",
+    settled_context: "reuse-unless-new-evidence",
+    blocker_isolation: "blocked-lane-only-continue-safe-work",
+    milestone_provenance: "current-run-or-durable-evidence-ledger",
+    structural_self_check:
+      "inspect-ad-hoc-branches-thin-wrappers-and-avoidable-sprawl",
+    turn_exit: "requested-deliverable-done-or-explicitly-blocked",
+  });
+  assert.ok(item.expected.required_gates.includes("structural-integrity"));
+  assert.ok(item.expected.blocked_gates.includes("acceptance"));
+  for (const action of [
+    "bypass-approval",
+    "stop-with-safe-work-remaining",
+    "reask-settled-decision",
+    "unevidenced-milestone-claim",
+    "unexecuted-promise-exit",
+    "speculative-wrapper",
+  ]) {
+    assert.ok(item.expected.forbidden_actions.includes(action), action);
+  }
+});

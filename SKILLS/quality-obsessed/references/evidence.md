@@ -24,6 +24,7 @@ Unverified claim:
 | Acceptance or baseline | Improvement or comparison is claimed | Before/after artifact, fixture, spec, or user reference |
 | Claim provenance | Every nontrivial final claim | Test, screenshot, command, source pointer, or measured diff |
 | Regression | Target mutation occurred | Focused tests plus the relevant integration/runtime path |
+| Structural integrity | A code change can add branching, indirection, ownership drift, or file sprawl | Diff and affected call-site inspection, plus behavior parity when structure changes |
 | Runtime behavior | Behavior is runnable and authorized | Executed public seam or sandbox scenario |
 | Hostile input | Relevant code boundary changed and a safe fixture exists | Malformed, boundary, concurrency, or dependency-failure test |
 | User states | Touched visual flow can enter those states | Rendered supported states that actually exist |
