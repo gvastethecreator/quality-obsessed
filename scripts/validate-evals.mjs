@@ -167,6 +167,7 @@ export async function validateEvalCatalog(catalogPath) {
     ["context-adaptive-audio-pressure", true],
   ]);
   const orchestrationRouting = new Map([
+    ["small-scoped-change", false],
     ["codex-model-routed-plan", true],
   ]);
   const creativeRouting = new Map([
@@ -549,32 +550,48 @@ export async function validateEvalCatalog(catalogPath) {
     } else if (orchestration?.enabled === true) {
       const required = {
         host: "codex",
-        plan_model_labels_required: true,
-        routing_sequence: "judgment-execution-judgment",
+        routing_policy: "contextual-defaults-not-invariants",
+        delegation_policy: "optional-when-value-exceeds-handoff",
+        orchestrator_authority: "direct-execution-or-contextual-route",
+        route_record: "actual-dispatch-only",
+        routing_inputs: "task-shape-risk-context-dependencies-proof-cost",
+        route_stability: "reuse-route-until-evidence-changes",
         handoff_contract: "deliverable-dependencies-surface-proof-return",
-        routing_enforcement: "plan-label-and-actual-dispatch",
-        judgment_model: "gpt-5.6-sol",
-        judgment_reasoning: "xhigh",
-        execution_model: "gpt-5.6-luna",
-        execution_reasoning: "max",
-        execution_communication: "caveman-action-first-minimal-talk",
-        execution_audit: "sol-xhigh-required-before-acceptance",
-        execution_audit_verdict: "accept | repair | reset",
+        low_risk_route: "reports-or-noncritical-execution",
+        low_risk_model: "gpt-5.6-luna",
+        low_risk_reasoning: "medium",
+        detailed_execution_route:
+          "settled-documented-context-rich-implementation",
+        detailed_execution_model: "gpt-5.6-luna",
+        detailed_execution_reasoning: "max",
+        important_judgment_route:
+          "planning-specs-tickets-reviews-or-critical-decisions",
+        important_judgment_model: "gpt-5.6-sol",
+        important_judgment_reasoning: "xhigh",
+        route_override: "orchestrator-allowed-with-material-reason",
+        routing_fallback: "closest-available-or-direct-disclosed",
+        execution_communication: "action-first-minimal-context",
+        review_trigger: "important-high-risk-ambiguous-or-user-requested",
+        low_risk_acceptance:
+          "focused-proof-and-orchestrator-reconciliation",
+        review_verdict: "accept | repair | reset",
         task_local_verification: "focused-tests-and-current-file-checks-only",
         interim_typecheck: "current-edited-file-only-or-skip",
-        full_verification_trigger: "multiple-sol-accepted-tasks-or-final-batch",
+        full_verification_trigger: "integration-boundary-or-final-batch",
         full_verification_suite: "tests-build-typecheck-once-per-batch",
-        fallback_policy: "closest-available-disclosed",
       };
       const invalidFields = contractMismatches(orchestration, required);
       const requiredActions = [
-        "unrouted-plan-step",
+        "delegation-by-default",
+        "model-label-without-dispatch",
+        "rigid-routing-sequence",
         "model-route-fabrication",
-        "unaudited-luna-acceptance",
-        "verbose-luna-planning",
+        "unexplained-route-override",
+        "mandatory-sol-audit-for-every-luna-task",
+        "verbose-execution-brief",
         "per-task-full-suite/build/typecheck",
       ];
-      for (const reference of ["orchestration.md", "host-capabilities.md"]) {
+      for (const reference of ["orchestration.md"]) {
         if (!arrays.required_references.includes(reference)) {
           invalidFields.push(
             `required_references: expected to include ${reference}, received ${JSON.stringify(arrays.required_references)}`,

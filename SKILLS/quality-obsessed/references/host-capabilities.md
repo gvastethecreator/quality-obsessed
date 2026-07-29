@@ -23,7 +23,7 @@ Use paths relative to the skill root when reading bundled references. Product-sp
 - Without safe execution, verify static claims only and mark runtime proof limited.
 - Without visual inspection, do not pass visual gates from source code.
 - Without independent review, run a named internal adversarial pass but do not call it independent.
-- Without role-based model routing, preserve the task split and acceptance contract, use the closest available execution path, and disclose the model-routing fallback.
+- Without role-based model routing, keep the acceptance contract and execute directly or use the closest available route. Do not invent delegation or preserve decorative model labels; disclose a fallback only when it materially affects trust, cost, or review strength.
 - Without durable continuation, work in compact epochs inside the current session and report the exact resumable checkpoint; do not claim background persistence.
 - Without durable task state, keep a compact frontier in the current task and include the exact resume action in the final record.
 - Without web access, use repository-owned sources and identify current/external claims that remain uncertain.

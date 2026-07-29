@@ -57,8 +57,8 @@ Load extra branches only when the mission requires them:
 - [Recovery](references/recovery.md) — user rejection, baseline loss, bland output, or failed direction.
 - [Pressure](references/pressure.md) — pre-final adversarial autopsy for broad, quality-sensitive, recovery, or review work; a context-adaptive Council with 2-4 non-overlapping lenses; independent review; standout direction; grilling; or simplification.
 - [Creative Search](references/creative-search.md) — explicitly creative, standout, greenfield, or direction-risk work: compare three materially different directions before committing; skip routine fixes and conformance work.
-- [Orchestration](references/orchestration.md) — a mission needs a multi-step plan, role-based delegation, or host-selectable model routing.
-- [Host capability mapping](references/host-capabilities.md) — the current agent exposes different names or lacks execution, visual, delegation, research, or durable-run capabilities.
+- [Orchestration](references/orchestration.md) — a mission may use delegated or queued work, or host-selectable model routing; skip ordinary local plans.
+- [Host capability mapping](references/host-capabilities.md) — read when the current agent exposes different names or lacks execution, visual, delegation, research, routing, or durable-run capabilities.
 - [Examples](references/examples.md) — a mode, evidence claim, or final record remains ambiguous.
 
 Use the smallest relevant stack. A domain or proof skill counts only if it changes the artifact, decision, or evidence.
@@ -71,7 +71,7 @@ Read Persistence before the first counted loop for explicit deep missions and fo
 
 For substantial or high-risk work, use one fresh reviewer when available and when independence can change a decision. Reconcile accepted and rejected findings; reviewer volume is not proof.
 
-When orchestration is active, every Luna/max execution step remains pending until a Sol/xhigh audit returns `accept`, `repair`, or `reset`. Keep the Luna brief action-first and the conversation minimal. Per task, run only focused tests and a real check/typecheck for the edited file when one exists (otherwise skip and record N/A); never run full tests, builds, or typechecks per task. Run the full suite once after multiple Sol-accepted tasks or final batch, then let Sol audit the gates.
+When orchestration is active, route only when value exceeds handoff; otherwise the orchestrator executes directly. Use contextual defaults: Luna/medium for reports and non-critical execution, Luna/max for detailed implementation with settled documentation and context, and Sol/xhigh for planning, specs, tickets, completed-work reviews, and important judgment. Label actual dispatches only, reuse a route until evidence changes it, and allow material overrides. Focused proof plus orchestrator reconciliation can close low-risk work; important, high-risk, ambiguous, subjective, or requested reviews prefer Sol/xhigh. A Sol pass is not required after every Luna task. Run full tests, builds, and typechecks once at the integration boundary or final batch.
 
 Before final status for broad, quality-sensitive, recovery, review/audit, or explicitly obsessive work, run Pressure's fresh adversarial autopsy against the real artifact. It is required even when independent review is unavailable and does not grant mutation authority in diagnose or audit mode.
 
