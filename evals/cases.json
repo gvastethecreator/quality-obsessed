@@ -27,6 +27,7 @@
         "persistence": { "enabled": false },
         "council": { "enabled": false },
         "creative_search": { "enabled": false },
+        "orchestration": { "enabled": false },
         "execution_discipline": {
           "intent_capture": "purpose-and-enabling-outcome",
           "action_threshold": "minimum-information-known",
@@ -41,7 +42,7 @@
         "conditional_gates": ["structural-integrity"],
         "na_gates": ["user-states", "viewport-platform", "first-impression"],
         "blocked_gates": [],
-        "forbidden_actions": ["outside-scope-write", "new-dependency", "unrequested-refactor", "stop-with-safe-work-remaining", "reask-settled-decision", "unevidenced-milestone-claim", "unexecuted-promise-exit", "speculative-wrapper"]
+        "forbidden_actions": ["outside-scope-write", "new-dependency", "unrequested-refactor", "delegation-by-default", "model-label-without-dispatch", "stop-with-safe-work-remaining", "reask-settled-decision", "unevidenced-milestone-claim", "unexecuted-promise-exit", "speculative-wrapper"]
       }
     },
     {
@@ -421,9 +422,9 @@
     },
     {
       "id": "codex-model-routed-plan",
-      "title": "Codex plans route judgment and execution explicitly",
+      "title": "Codex routes work contextually without forced delegation",
       "domain": "cross-domain",
-      "prompt": "En Codex, prepara y ejecuta un plan mixto: audita la baseline, piensa la feature, implementa cambios específicos y crea sus tests. Indica modelo y esfuerzo en cada paso y devuelve a planificación cualquier tradeoff nuevo.",
+      "prompt": "En Codex, organiza una misión mixta con un reporte breve no crítico, una implementación ya detallada con documentación y contexto, un spec con tickets y una revisión final importante. Decide primero qué conviene ejecutar directamente y qué vale la pena delegar. Usa los modelos como defaults contextuales, registra sólo despachos reales y evita una revisión Sol obligatoria para cada tarea Luna.",
       "expected": {
         "mission_mode": "change",
         "task_state": "completed",
@@ -434,29 +435,39 @@
         "orchestration": {
           "enabled": true,
           "host": "codex",
-          "plan_model_labels_required": true,
-          "routing_sequence": "judgment-execution-judgment",
+          "routing_policy": "contextual-defaults-not-invariants",
+          "delegation_policy": "optional-when-value-exceeds-handoff",
+          "orchestrator_authority": "direct-execution-or-contextual-route",
+          "route_record": "actual-dispatch-only",
+          "routing_inputs": "task-shape-risk-context-dependencies-proof-cost",
+          "route_stability": "reuse-route-until-evidence-changes",
           "handoff_contract": "deliverable-dependencies-surface-proof-return",
-          "routing_enforcement": "plan-label-and-actual-dispatch",
-          "judgment_model": "gpt-5.6-sol",
-          "judgment_reasoning": "xhigh",
-          "execution_model": "gpt-5.6-luna",
-          "execution_reasoning": "max",
-          "fallback_policy": "closest-available-disclosed",
-          "execution_communication": "caveman-action-first-minimal-talk",
-          "execution_audit": "sol-xhigh-required-before-acceptance",
-          "execution_audit_verdict": "accept | repair | reset",
+          "low_risk_route": "reports-or-noncritical-execution",
+          "low_risk_model": "gpt-5.6-luna",
+          "low_risk_reasoning": "medium",
+          "detailed_execution_route": "settled-documented-context-rich-implementation",
+          "detailed_execution_model": "gpt-5.6-luna",
+          "detailed_execution_reasoning": "max",
+          "important_judgment_route": "planning-specs-tickets-reviews-or-critical-decisions",
+          "important_judgment_model": "gpt-5.6-sol",
+          "important_judgment_reasoning": "xhigh",
+          "route_override": "orchestrator-allowed-with-material-reason",
+          "routing_fallback": "closest-available-or-direct-disclosed",
+          "execution_communication": "action-first-minimal-context",
+          "review_trigger": "important-high-risk-ambiguous-or-user-requested",
+          "low_risk_acceptance": "focused-proof-and-orchestrator-reconciliation",
+          "review_verdict": "accept | repair | reset",
           "task_local_verification": "focused-tests-and-current-file-checks-only",
           "interim_typecheck": "current-edited-file-only-or-skip",
-          "full_verification_trigger": "multiple-sol-accepted-tasks-or-final-batch",
+          "full_verification_trigger": "integration-boundary-or-final-batch",
           "full_verification_suite": "tests-build-typecheck-once-per-batch"
         },
-        "required_references": ["protocol.md", "evidence.md", "code-profile.md", "orchestration.md", "host-capabilities.md"],
+        "required_references": ["protocol.md", "evidence.md", "code-profile.md", "orchestration.md"],
         "required_gates": ["scope", "acceptance", "regression", "claim-provenance"],
         "conditional_gates": ["independent-judgment"],
         "na_gates": ["user-states", "viewport-platform", "first-impression"],
         "blocked_gates": [],
-        "forbidden_actions": ["unrouted-plan-step", "model-route-fabrication", "execution-before-accepted-plan", "unaudited-luna-acceptance", "verbose-luna-planning", "per-task-full-suite/build/typecheck"]
+        "forbidden_actions": ["delegation-by-default", "model-label-without-dispatch", "rigid-routing-sequence", "model-route-fabrication", "unexplained-route-override", "execution-before-settled-brief", "mandatory-sol-audit-for-every-luna-task", "verbose-execution-brief", "per-task-full-suite/build/typecheck"]
       }
     },
     {

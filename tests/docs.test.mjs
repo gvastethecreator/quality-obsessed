@@ -125,23 +125,32 @@ test("public guidance documents model-routed orchestration", async () => {
   ]);
 
   assert.match(skill, /\[Orchestration\]\(references\/orchestration\.md\)/);
+  assert.match(skill, /skip ordinary local plans/i);
+  assert.match(orchestration, /local multi-step plan alone does not require it/i);
   assert.match(readme, /gpt-5\.6-sol.*xhigh/i);
+  assert.match(readme, /gpt-5\.6-luna.*medium/i);
   assert.match(readme, /gpt-5\.6-luna.*max/i);
-  assert.match(orchestration, /plan_routing: model-and-reasoning-on-every-step-when-selectable/);
+  assert.match(orchestration, /routing_policy: contextual-defaults-not-invariants/);
+  assert.match(orchestration, /delegation_policy: optional-when-value-exceeds-handoff/);
+  assert.match(orchestration, /orchestrator_authority: direct-execution-or-contextual-route/);
+  assert.match(orchestration, /route_record: actual-dispatch-only/);
   assert.match(orchestration, /handoff_contract: deliverable-dependencies-surface-proof-return/);
-  assert.match(orchestration, /routing_enforcement: plan-label-and-actual-dispatch/);
-  assert.match(orchestration, /judgment_model: gpt-5\.6-sol/);
-  assert.match(orchestration, /judgment_reasoning: xhigh/);
-  assert.match(orchestration, /execution_model: gpt-5\.6-luna/);
-  assert.match(orchestration, /execution_reasoning: max/);
-  assert.match(orchestration, /execution_communication: caveman-action-first-minimal-talk/);
-  assert.match(orchestration, /execution_audit: sol-xhigh-required-before-acceptance/);
-  assert.match(orchestration, /execution_audit_verdict: accept \| repair \| reset/);
+  assert.match(orchestration, /low_risk_model: gpt-5\.6-luna/);
+  assert.match(orchestration, /low_risk_reasoning: medium/);
+  assert.match(orchestration, /detailed_execution_model: gpt-5\.6-luna/);
+  assert.match(orchestration, /detailed_execution_reasoning: max/);
+  assert.match(orchestration, /important_judgment_model: gpt-5\.6-sol/);
+  assert.match(orchestration, /important_judgment_reasoning: xhigh/);
+  assert.match(orchestration, /route_override: orchestrator-allowed-with-material-reason/);
+  assert.match(orchestration, /execution_communication: action-first-minimal-context/);
+  assert.match(orchestration, /review_trigger: important-high-risk-ambiguous-or-user-requested/);
+  assert.match(orchestration, /low_risk_acceptance: focused-proof-and-orchestrator-reconciliation/);
+  assert.match(orchestration, /review_verdict: accept \| repair \| reset/);
   assert.match(orchestration, /task_local_verification: focused-tests-and-current-file-checks-only/);
   assert.match(orchestration, /interim_typecheck: current-edited-file-only-or-skip/);
-  assert.match(orchestration, /full_verification_trigger: multiple-sol-accepted-tasks-or-final-batch/);
+  assert.match(orchestration, /full_verification_trigger: integration-boundary-or-final-batch/);
   assert.match(orchestration, /full_verification_suite: tests-build-typecheck-once-per-batch/);
-  assert.match(metadata, /model-routed execution/i);
+  assert.match(metadata, /contextual model routing/i);
 });
 
 test("public guidance documents the Creative Search contract", async () => {
@@ -180,7 +189,7 @@ test("public guidance documents the Creative Search contract", async () => {
   }
 });
 
-test("public prose preserves three-direction search and Sol-accepted batch gates", async () => {
+test("public prose preserves three-direction search and risk-based batch gates", async () => {
   const [readme, skill, examples] = await Promise.all([
     readFile(path.join(repoRoot, "README.md"), "utf8"),
     readFile(
@@ -204,31 +213,14 @@ test("public prose preserves three-direction search and Sol-accepted batch gates
     publicProse,
     /\b(?:one|single|a\s+single)\s+(?:better|superior)\s+direction\b/i,
   );
-  assert.doesNotMatch(publicProse, /several accepted tasks/i);
+  assert.doesNotMatch(publicProse, /multiple Sol-accepted tasks/i);
   for (const source of [readme, skill, examples]) {
-    assert.match(source, /multiple Sol-accepted tasks or final batch/i);
+    assert.match(source, /integration boundary or final batch/i);
   }
-
-  const auditParagraph = readme
-    .split(/\r?\n\r?\n/)
-    .find((paragraph) => /Luna\/max.*starts pending/i.test(paragraph));
-  assert.ok(auditParagraph, "README must state the mandatory Luna pending state");
-  assert.match(
-    auditParagraph,
-    /(?:every|each)\s+Luna\/max\s+(?:task|execution step)\s+(?:starts|begins)\s+pending[\s\S]{0,120}stays\s+pending\s+until\s+(?:a\s+)?Sol\/xhigh\s+audit\s+returns\s+`accept`,\s*`repair`,\s*or\s*`reset`/i,
-  );
-  assert.doesNotMatch(
-    auditParagraph,
-    /\b(?:fallback|unavailable|optional|when available|if available)\b/i,
-  );
-  assert.match(
-    readme,
-    /(?:mandatory|required)\s+Sol\/xhigh\s+audit[\s\S]{0,120}(?:cannot|must\s+not|does\s+not)\s+(?:fall\s*back|use\s+(?:a\s+)?fallback|accept\s+(?:a\s+)?fallback)/i,
-  );
-  assert.match(
-    readme,
-    /(?:if|when)\s+(?:the\s+)?exact\s+Sol(?:\/xhigh)?\s+(?:model\s+)?is\s+unavailable[\s\S]{0,160}Luna(?:\/max)?(?:\s+(?:task|step|execution\s+step))?\s+(?:remains|stays)\s+pending[\s\S]{0,120}(?:cannot|must\s+not|may\s+not|can\s+neither|may\s+neither)\s+(?:close\s+(?:or|nor)\s+continue|continue\s+(?:or|nor)\s+close)/i,
-  );
+  assert.match(readme, /delegation is optional/i);
+  assert.match(readme, /orchestrator may execute directly/i);
+  assert.match(readme, /Sol\/xhigh review is not mandatory for every Luna task/i);
+  assert.doesNotMatch(publicProse, /every Luna\/max.*pending until.*Sol\/xhigh/is);
 });
 
 test("public discovery and examples explain the context-adaptive Council", async () => {

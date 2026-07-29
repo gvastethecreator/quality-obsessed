@@ -447,23 +447,35 @@ test("rejects substitution of the inferred professional audio specialist", async
 
 test("rejects weakened Codex model routing", async () => {
   const mutations = [
-    ["missing-labels", (expected) => {
-      expected.orchestration.plan_model_labels_required = false;
+    ["rigid-policy", (expected) => {
+      expected.orchestration.routing_policy = "mandatory-fixed-sequence";
+    }],
+    ["forced-delegation", (expected) => {
+      expected.orchestration.delegation_policy = "always-delegate";
+    }],
+    ["no-direct-execution", (expected) => {
+      expected.orchestration.orchestrator_authority = "dispatch-only";
+    }],
+    ["labels-without-dispatch", (expected) => {
+      expected.orchestration.route_record = "every-plan-step";
+    }],
+    ["wrong-light-effort", (expected) => {
+      expected.orchestration.low_risk_reasoning = "low";
+    }],
+    ["wrong-detailed-effort", (expected) => {
+      expected.orchestration.detailed_execution_reasoning = "medium";
     }],
     ["wrong-judgment-model", (expected) => {
-      expected.orchestration.judgment_model = "gpt-5.6-luna";
+      expected.orchestration.important_judgment_model = "gpt-5.6-luna";
     }],
     ["lowered-judgment-effort", (expected) => {
-      expected.orchestration.judgment_reasoning = "high";
-    }],
-    ["weak-execution-effort", (expected) => {
-      expected.orchestration.execution_reasoning = "low";
+      expected.orchestration.important_judgment_reasoning = "high";
     }],
     ["missing-handoff", (expected) => {
       delete expected.orchestration.handoff_contract;
     }],
-    ["labels-without-dispatch", (expected) => {
-      expected.orchestration.routing_enforcement = "plan-label-only";
+    ["uncontrolled-override", (expected) => {
+      expected.orchestration.route_override = "silent-anytime";
     }],
     ["missing-reference", (expected) => {
       expected.required_references = expected.required_references.filter(
@@ -500,13 +512,43 @@ test("rejects weakened Codex model routing", async () => {
   }
 });
 
-test("rejects weakened Luna-to-Sol audit and deferred verification routing", async () => {
+test("rejects forced orchestration for a small scoped change", async () => {
+  const root = await mkdtemp(path.join(tmpdir(), "quality-evals-direct-orchestrator-"));
+  const catalogPath = path.join(root, "cases.json");
+  try {
+    const catalog = JSON.parse(
+      await readFile(path.join(repoRoot, "evals", "cases.json"), "utf8"),
+    );
+    const expected = catalog.cases.find(
+      ({ id }) => id === "small-scoped-change",
+    ).expected;
+    expected.orchestration.enabled = true;
+    await writeFile(catalogPath, JSON.stringify(catalog), "utf8");
+
+    const result = runValidator(catalogPath);
+    assert.equal(result.status, 1, result.stderr);
+    const report = JSON.parse(result.stdout);
+    assert.ok(
+      report.violations.some(
+        ({ code }) => code === "invalid-orchestration-routing",
+      ),
+      JSON.stringify(report, null, 2),
+    );
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test("rejects weakened risk-based review and deferred verification routing", async () => {
   const mutations = [
-    ["missing-sol-audit", (expected) => {
-      expected.orchestration.execution_audit = "luna-self-acceptance";
+    ["review-every-task", (expected) => {
+      expected.orchestration.review_trigger = "every-luna-task";
     }],
-    ["invalid-audit-verdict", (expected) => {
-      expected.orchestration.execution_audit_verdict = "accept-only";
+    ["weak-low-risk-acceptance", (expected) => {
+      expected.orchestration.low_risk_acceptance = "trust-worker-summary";
+    }],
+    ["invalid-review-verdict", (expected) => {
+      expected.orchestration.review_verdict = "accept-only";
     }],
     ["verbose-communication", (expected) => {
       expected.orchestration.execution_communication = "verbose-plan";
@@ -876,21 +918,45 @@ test("repository eval catalog routes Codex judgment and execution models", async
     ({ id }) => id === "codex-model-routed-plan",
   );
   assert.ok(item, "missing eval case: codex-model-routed-plan");
-  assert.equal(item.expected.orchestration.plan_model_labels_required, true);
-  assert.equal(item.expected.orchestration.judgment_model, "gpt-5.6-sol");
-  assert.equal(item.expected.orchestration.judgment_reasoning, "xhigh");
-  assert.equal(item.expected.orchestration.execution_model, "gpt-5.6-luna");
-  assert.equal(item.expected.orchestration.execution_reasoning, "max");
+  assert.equal(
+    item.expected.orchestration.routing_policy,
+    "contextual-defaults-not-invariants",
+  );
+  assert.equal(
+    item.expected.orchestration.delegation_policy,
+    "optional-when-value-exceeds-handoff",
+  );
+  assert.equal(
+    item.expected.orchestration.orchestrator_authority,
+    "direct-execution-or-contextual-route",
+  );
+  assert.equal(item.expected.orchestration.route_record, "actual-dispatch-only");
+  assert.equal(item.expected.orchestration.low_risk_model, "gpt-5.6-luna");
+  assert.equal(item.expected.orchestration.low_risk_reasoning, "medium");
+  assert.equal(
+    item.expected.orchestration.detailed_execution_model,
+    "gpt-5.6-luna",
+  );
+  assert.equal(item.expected.orchestration.detailed_execution_reasoning, "max");
+  assert.equal(
+    item.expected.orchestration.important_judgment_model,
+    "gpt-5.6-sol",
+  );
+  assert.equal(item.expected.orchestration.important_judgment_reasoning, "xhigh");
   assert.equal(
     item.expected.orchestration.execution_communication,
-    "caveman-action-first-minimal-talk",
+    "action-first-minimal-context",
   );
   assert.equal(
-    item.expected.orchestration.execution_audit,
-    "sol-xhigh-required-before-acceptance",
+    item.expected.orchestration.review_trigger,
+    "important-high-risk-ambiguous-or-user-requested",
   );
   assert.equal(
-    item.expected.orchestration.execution_audit_verdict,
+    item.expected.orchestration.low_risk_acceptance,
+    "focused-proof-and-orchestrator-reconciliation",
+  );
+  assert.equal(
+    item.expected.orchestration.review_verdict,
     "accept | repair | reset",
   );
   assert.equal(
@@ -903,7 +969,7 @@ test("repository eval catalog routes Codex judgment and execution models", async
   );
   assert.equal(
     item.expected.orchestration.full_verification_trigger,
-    "multiple-sol-accepted-tasks-or-final-batch",
+    "integration-boundary-or-final-batch",
   );
   assert.equal(
     item.expected.orchestration.full_verification_suite,
@@ -914,18 +980,34 @@ test("repository eval catalog routes Codex judgment and execution models", async
     "deliverable-dependencies-surface-proof-return",
   );
   assert.equal(
-    item.expected.orchestration.routing_enforcement,
-    "plan-label-and-actual-dispatch",
+    item.expected.orchestration.route_override,
+    "orchestrator-allowed-with-material-reason",
   );
   assert.ok(item.expected.required_references.includes("orchestration.md"));
   assert.ok(item.expected.required_capabilities.includes("model-routing"));
   for (const action of [
-    "unaudited-luna-acceptance",
-    "verbose-luna-planning",
+    "delegation-by-default",
+    "model-label-without-dispatch",
+    "rigid-routing-sequence",
+    "mandatory-sol-audit-for-every-luna-task",
+    "verbose-execution-brief",
     "per-task-full-suite/build/typecheck",
   ]) {
     assert.ok(item.expected.forbidden_actions.includes(action), action);
   }
+});
+
+test("repository eval catalog keeps small scoped work in the orchestrator", async () => {
+  const catalog = JSON.parse(
+    await readFile(path.join(repoRoot, "evals", "cases.json"), "utf8"),
+  );
+  const item = catalog.cases.find(({ id }) => id === "small-scoped-change");
+  assert.ok(item, "missing eval case: small-scoped-change");
+  assert.equal(item.expected.orchestration.enabled, false);
+  assert.ok(item.expected.forbidden_actions.includes("delegation-by-default"));
+  assert.ok(
+    item.expected.forbidden_actions.includes("model-label-without-dispatch"),
+  );
 });
 
 test("repository eval catalog routes Creative Search only for standout direction risk", async () => {

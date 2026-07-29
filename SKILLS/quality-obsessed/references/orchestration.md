@@ -1,67 +1,66 @@
 # Orchestration
 
-Use this branch when the mission needs a multi-step plan, distinct judgment and execution work, or delegated tasks. Keep the main thread responsible for scope, acceptance, dependencies, reconciliation, and the final artifact verdict. Delegate only bounded work whose ownership and proof can be stated without leaking unresolved product decisions.
+Use this branch when a mission may benefit from selectable model routing or bounded delegation. A local multi-step plan alone does not require it. Keep the orchestrator responsible for scope, acceptance, dependencies, reconciliation, and the final artifact verdict.
 
-## Plan contract
+## Decide whether to route
 
-Label every plan step with its intended model and reasoning effort when the host can select them. Each delegated or queued step must also name its deliverable, dependencies, writable surface, acceptance proof, and return condition. Do not use delegation or a stronger model merely to add ceremony.
+Decide first whether another execution context adds enough value to pay for its handoff. Delegate for useful parallelism, context isolation, or an independent bounded review. Keep work in the orchestrator when it is small, serial, tightly coupled to settled context, or cheaper to execute than explain. Never split work merely to exercise a model tier.
+
+Record a model and reasoning effort only for work that will actually be dispatched or queued. Local plan steps need deliverables and proof, not decorative model labels.
 
 ```text
-plan_routing: model-and-reasoning-on-every-step-when-selectable
-routing_sequence: judgment-execution-judgment
+routing_policy: contextual-defaults-not-invariants
+delegation_policy: optional-when-value-exceeds-handoff
+orchestrator_authority: direct-execution-or-contextual-route
+route_record: actual-dispatch-only
+routing_inputs: task-shape-risk-context-dependencies-proof-cost
+route_stability: reuse-route-until-evidence-changes
 handoff_contract: deliverable-dependencies-surface-proof-return
-routing_enforcement: plan-label-and-actual-dispatch
-routing_fallback: closest-available-disclosed
-execution_communication: caveman-action-first-minimal-talk
-execution_audit: sol-xhigh-required-before-acceptance
-execution_audit_verdict: accept | repair | reset
+low_risk_route: reports-or-noncritical-execution
+low_risk_model: gpt-5.6-luna
+low_risk_reasoning: medium
+detailed_execution_route: settled-documented-context-rich-implementation
+detailed_execution_model: gpt-5.6-luna
+detailed_execution_reasoning: max
+important_judgment_route: planning-specs-tickets-reviews-or-critical-decisions
+important_judgment_model: gpt-5.6-sol
+important_judgment_reasoning: xhigh
+route_override: orchestrator-allowed-with-material-reason
+routing_fallback: closest-available-or-direct-disclosed
+execution_communication: action-first-minimal-context
+review_trigger: important-high-risk-ambiguous-or-user-requested
+low_risk_acceptance: focused-proof-and-orchestrator-reconciliation
+review_verdict: accept | repair | reset
 task_local_verification: focused-tests-and-current-file-checks-only
 interim_typecheck: current-edited-file-only-or-skip
-full_verification_trigger: multiple-sol-accepted-tasks-or-final-batch
+full_verification_trigger: integration-boundary-or-final-batch
 full_verification_suite: tests-build-typecheck-once-per-batch
 ```
 
-For mixed work, separate judgment from execution:
+## Contextual Codex defaults
 
-- Judgment includes planning, audit and diagnosis, feature thinking, critique, architecture or design choices, risk and scope decisions, review reconciliation, and the final adversarial judgment.
-- Execution includes specific changes, test implementation, focused verification, mechanical transformations, and simple tasks with an explicit done condition.
-- Test strategy, ambiguous failure analysis, or a newly discovered tradeoff returns to judgment before execution resumes.
+Use these routes as defaults, not invariants:
 
-Use a compact plan label:
+- **Luna/medium:** reports with settled inputs, mechanical transformations, simple checks, and non-critical execution with a clear done condition.
+- **Luna/max:** bounded execution or implementation when decisions are settled and the brief already contains the relevant documentation, context, tasks, writable surface, and proof.
+- **Sol/xhigh:** planning, specs, tickets, architecture or product decisions, ambiguous diagnosis, direction resets, completed-work reviews, and other important or high-impact judgment.
 
-```text
-[model | reasoning] task -> deliverable; proof
-```
+The orchestrator may execute any step directly or select another available route when task shape, risk, dependencies, context locality, proof cost, or current host capability makes it a better choice. Record the reason only when the deviation is material. Keep a route stable across compatible work; reconsider it when evidence changes the classification, not after every step.
 
-## Codex model profile
+If a requested route is unavailable, use the closest available model or execute directly. Disclose the actual route when it affects trust, cost, or review strength. Never claim a dispatch or review that did not happen.
 
-When Codex exposes these selectable models, use this exact routing:
+## Handoff and review
 
-```text
-judgment_model: gpt-5.6-sol
-judgment_reasoning: xhigh
-execution_model: gpt-5.6-luna
-execution_reasoning: max
-```
+Each delegated or queued step names its deliverable, dependencies, writable surface, acceptance proof, and return condition. Keep execution briefs action-first and include only the context needed to act. Do not ask an execution route to resolve product decisions hidden inside the brief.
 
-Assign Sol/xhigh to planning, audits, feature exploration, critiques, architecture, synthesis, and direction resets. Assign Luna/max to bounded implementation, specific edits, test creation, focused checks, and straightforward tasks. A mixed mission begins and ends with Sol/xhigh; Luna/max executes the accepted steps in between.
+The orchestrator reconciles every return against scope and evidence. Low-risk work may close on focused proof and orchestrator review; a separate Sol/xhigh pass is not required for every Luna task. Prefer Sol/xhigh when a distinct review is useful for important, high-risk, ambiguous, subjective, or user-requested work. A formal review returns `accept`, `repair`, or `reset`:
 
-A plan label is not proof of routing. When dispatching a selectable main task or subagent, actually set the planned model and reasoning effort through the host. Record the real route in the task result.
+- `accept` admits the deliverable into the batch.
+- `repair` returns a narrower action-first brief.
+- `reset` rejects the direction and sends the unresolved decision back to judgment.
 
-If the requested model or effort is unavailable, use the closest available option without blocking otherwise safe work, retain the intended route in the plan, and disclose the actual fallback. Never claim that a model-routed or delegated step ran when it did not.
-
-This fallback never applies to the mandatory Sol/xhigh audit: if Sol/xhigh is unavailable, the Luna/max step remains pending.
-
-## Luna execution gate
-
-Every bounded Luna/max step starts with status `pending`. It stays pending until a non-fallback Sol/xhigh audit inspects the raw artifact, focused proof, and scope, then returns exactly one verdict: `accept`, `repair`, or `reset`. Luna cannot close or continue without that exact Sol/xhigh verdict; if Sol/xhigh is unavailable, leave the step pending and disclose the block.
-
-- `accept` closes the step and makes its deliverable eligible for the next judgment step.
-- `repair` returns a narrowed, action-first brief to Luna; keep conversation to the minimum needed to execute it.
-- `reset` rejects the direction, records what failed, and returns to Sol/xhigh for a materially different decision.
-
-The Luna brief contains only the action, writable surface, dependencies, acceptance proof, and return condition. Keep it caveman-action-first with minimal conversation. Do not ask Luna to reopen unresolved product decisions. If a Luna change exposes ambiguity or a new tradeoff, stop and return to Sol/xhigh before editing further.
+If execution exposes a new tradeoff or invalidates settled context, stop that lane and return the decision to the orchestrator. Do not force a subagent round trip when the orchestrator can resolve it safely from current evidence.
 
 ## Verification budget
 
-For each task, run only focused tests relevant to the changed behavior and a real check or typecheck for the edited file when that check exists. If no focused test or file-level check exists, skip it and record N/A with the reason. Full tests, builds, and repository-wide typechecks are prohibited per task. Run them once after multiple Sol-accepted tasks or on the final batch, then have Sol audit the resulting gates and evidence.
+For each task, run focused tests for the changed behavior and a real check or typecheck for the edited file when one exists. If no focused or file-level check exists, record N/A with the reason. Run repository-wide tests, builds, and typechecks once at the integration boundary or final batch, then reconcile the resulting gates at the level of review warranted by risk.

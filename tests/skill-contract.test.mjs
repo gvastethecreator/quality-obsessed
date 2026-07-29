@@ -636,7 +636,7 @@ test("rejects duplicate or contradictory deep-persistence keys", async () => {
   });
 });
 
-test("rejects a weakened model-routing profile", async () => {
+test("rejects a weakened contextual model-routing profile", async () => {
   await withRepositorySkillCopy(async (skillPath) => {
     const orchestrationPath = path.join(
       skillPath,
@@ -646,7 +646,7 @@ test("rejects a weakened model-routing profile", async () => {
     const orchestration = await readFile(orchestrationPath, "utf8");
     await writeFile(
       orchestrationPath,
-      orchestration.replace("judgment_reasoning: xhigh", "judgment_reasoning: high"),
+      orchestration.replace("low_risk_reasoning: medium", "low_risk_reasoning: low"),
       "utf8",
     );
 
@@ -666,7 +666,7 @@ test("rejects model-routing keys outside their owner reference", async () => {
     const examples = await readFile(examplesPath, "utf8");
     await writeFile(
       examplesPath,
-      `${examples}\n\nexecution_model: gpt-5.6-luna\n`,
+      `${examples}\n\nlow_risk_model: gpt-5.6-luna\n`,
       "utf8",
     );
 
