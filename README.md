@@ -128,23 +128,14 @@ The pinned Skills CLI discovery smoke performs no model call and confirms that t
 npm run smoke:discovery
 ```
 
-This repository is the canonical source. Compare any installed or mirrored copy before relying on it:
+This repository is the canonical source. Compare any installed copy before relying on it:
 
 ```powershell
 node scripts/compare-skill-copy.mjs SKILLS/quality-obsessed <installed-skill-path>
 ```
 
-The tracked `agents-matrix` mirror is generated one-way from this package. With the sibling repositories in their standard layout, check or refresh it deterministically:
-
-```powershell
-npm run mirror:check
-npm run mirror:write
-```
-
-The writer stages and verifies the canonical file set before swapping an identity-checked `skills/quality-obsessed` target, restores the prior mirror if the commit step fails, recovers an identity-checked backup after an interrupted swap, rejects junction targets and immediate `skills` parents, and verifies exact file parity after the write. Pass `--source` and `--target` directly to the script for a different checkout layout.
-
-CI executes the same check on Windows and Linux.
+Managed workspace installations should use direct junctions or symbolic links to `SKILLS/quality-obsessed`, so one canonical package owns the files. The workspace bootstrap and audit tooling owns those links; this package does not maintain a second physical mirror.
 
 ## Status
 
-Preview. The package is contract-tested and agent-agnostic; release tagging remains a maintainer action, while the local downstream mirror has an executable parity gate.
+Preview. The package is contract-tested and agent-agnostic; release tagging remains a maintainer action, while package relocation and host discovery have executable gates.
