@@ -1,13 +1,23 @@
-# Quality Obsessed
-
-![Quality Obsessed banner](./assets/readme-banner.png)
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://shieldcn.dev/header/document.svg?title=Quality+Obsessed&subtitle=Evidence+before+victory+laps.&logo=target&theme=green&align=center&mode=dark" />
+    <img alt="Quality Obsessed — evidence before victory laps" src="https://shieldcn.dev/header/document.svg?title=Quality+Obsessed&subtitle=Evidence+before+victory+laps.&logo=target&theme=green&align=center&mode=light" />
+  </picture>
+</p>
 
 > A portable [Agent Skills](https://agentskills.io/) workflow for evidence-gated, persistent quality missions and context-adaptive professional councils: inspect the real artifact, improve the authorized surface, and prove every material claim.
 
-[![License: MIT](https://shieldcn.dev/badge/license-MIT-yellow.svg?variant=secondary&size=xs)](./LICENSE)
-[![Status](https://shieldcn.dev/badge/status-preview-purple.svg?variant=secondary&size=xs)](#status)
+<p align="center">
+  <a href="https://github.com/gvastethecreator/quality-obsessed/actions/workflows/validate.yml"><img alt="Validation status" src="https://shieldcn.dev/github/ci/gvastethecreator/quality-obsessed.svg?workflow=validate&branch=main&variant=secondary&size=xs" /></a>
+  <a href="https://gvastethecreator.github.io/quality-obsessed/"><img alt="Project site" src="https://shieldcn.dev/badge/site-pages-166534.svg?logo=githubpages&variant=branded&size=xs" /></a>
+  <a href="https://agentskills.io/"><img alt="Agent Skills compatible" src="https://shieldcn.dev/badge/Agent+Skills-compatible-111111.svg?variant=secondary&size=xs" /></a>
+  <a href="https://github.com/gvastethecreator/quality-obsessed/stargazers"><img alt="GitHub stars" src="https://shieldcn.dev/github/stars/gvastethecreator/quality-obsessed.svg?variant=secondary&size=xs" /></a>
+  <a href="LICENSE"><img alt="MIT license" src="https://shieldcn.dev/github/license/gvastethecreator/quality-obsessed.svg?variant=secondary&size=xs" /></a>
+</p>
 
-The runtime contract is agent-agnostic. It works with Codex, Claude Code, OpenCode, and other clients or open-source models that can load the Agent Skills format. Product-specific metadata is additive and never required to understand the workflow.
+[Project site](https://gvastethecreator.github.io/quality-obsessed/) · [Install](#install) · [Quality contract](#contract) · [Contributing](CONTRIBUTING.md)
+
+The runtime contract is model- and harness-agnostic. It works in any environment that can load or include the Agent Skills Markdown contract. Product-specific metadata is additive and never controls quality decisions.
 
 ## Use it when
 
@@ -89,13 +99,13 @@ Deep persistence activates when the user explicitly asks for an obsessive, exhau
 
 Loop count is never the quality claim. The artifact and its proof decide the verdict.
 
-## Model-routed orchestration
+## Capability-based orchestration
 
-Routing begins with a value check: delegation is optional, and the orchestrator may execute directly when work is small, serial, context-coupled, or cheaper to do than hand off. Only actual dispatches receive a model label. The defaults are contextual: settled-input reports and non-critical execution use `gpt-5.6-luna` with `medium` reasoning; detailed implementation with settled decisions, documentation, context, tasks, and proof uses `gpt-5.6-luna` with `max`; planning, specs, tickets, architecture, completed-work reviews, and other important judgment use `gpt-5.6-sol` with `xhigh`.
+Set the acceptance contract and required gates before selecting a route. Delegation is optional, and the orchestrator may execute directly. Another context is useful only when its capabilities, isolation, parallelism, or independence add material value.
 
-These are defaults, not invariants. The orchestrator may choose another route for task shape, risk, dependencies, context locality, proof cost, or host capability, and records the reason when the deviation is material. Compatible work stays on one route until evidence changes the classification, reducing repeated handoffs and model churn.
+Select routes by capability fit, context, risk, dependencies, proof, and independence. Use cost and latency only after a route meets the quality floor. Do not use a provider, model family, tier, benchmark, or reasoning level as quality evidence. The current harness maps the required capabilities to its available execution contexts.
 
-Review depth follows risk. Focused proof plus orchestrator reconciliation can close low-risk output; a separate Sol/xhigh review is not mandatory for every Luna task. Prefer Sol/xhigh when a distinct review is useful for important, high-risk, ambiguous, subjective, or user-requested work, using `accept`, `repair`, or `reset` when a formal review runs. Per task, run focused checks only; run repository-wide tests, builds, and typechecks once at the integration boundary or final batch. If a route is unavailable, execute directly or use the closest available option and disclose the fallback when it materially affects trust, cost, or review strength. See [orchestration.md](./SKILLS/quality-obsessed/references/orchestration.md) for the full contract.
+Judge every return against the same gates. If a gate fails, repair the cause, retry, select a better-fit route, or request independent review. Focused proof plus orchestrator reconciliation can close low-risk output. Important or high-risk work uses independent review when it can change acceptance. Per task, run focused checks only. Run repository-wide tests, builds, and typechecks once at the integration boundary or final batch. See [orchestration.md](./SKILLS/quality-obsessed/references/orchestration.md) for the full contract.
 
 ## Package layout
 
@@ -104,10 +114,10 @@ Review depth follows risk. Focused proof plus orchestrator reconciliation can cl
 - [evidence.md](./SKILLS/quality-obsessed/references/evidence.md): applicable-gate manifest and proof rules.
 - [creative-search.md](./SKILLS/quality-obsessed/references/creative-search.md): explicit creative direction search, signature/subtraction, and blind audience read.
 - [persistence.md](./SKILLS/quality-obsessed/references/persistence.md): dynamic deep persistence and continuation policy.
-- [orchestration.md](./SKILLS/quality-obsessed/references/orchestration.md): role-based planning, delegation, and Codex model routing.
+- [orchestration.md](./SKILLS/quality-obsessed/references/orchestration.md): quality-first planning, bounded handoffs, and capability-based route selection.
 - [pressure.md](./SKILLS/quality-obsessed/references/pressure.md): context-adaptive Council, adversarial autopsy, and independent pressure.
 - [host-capabilities.md](./SKILLS/quality-obsessed/references/host-capabilities.md): agent-agnostic capability mapping.
-- [evals/cases.json](./evals/cases.json): behavioral matrix for generic hosts, Codex, Claude Code, and OpenCode.
+- [evals/cases.json](./evals/cases.json): behavioral matrix for any capability-compatible harness.
 
 The installed package includes its own MIT license. This distribution also requires additive Codex UI metadata for its main host; other hosts can ignore `agents/openai.yaml`, and the Markdown runtime does not depend on it.
 
@@ -116,8 +126,8 @@ The installed package includes its own MIT license. This distribution also requi
 Install the repository's validation dependency and run the complete quality gate. The installed skill bundle itself remains dependency-free.
 
 ```powershell
-npm install
-npm run check
+pnpm install --frozen-lockfile
+pnpm run check
 ```
 
 It validates the skill contract and behavioral catalog, runs the Node test suite, copies the full package once into a clean relocation sandbox, verifies hashes, and checks the installed license. Host paths are documentation contracts; discovery is verified separately so repeated copies do not masquerade as four independent host tests. No paid model call runs in CI.
@@ -125,7 +135,7 @@ It validates the skill contract and behavioral catalog, runs the Node test suite
 The pinned Skills CLI discovery smoke performs no model call and confirms that the repository source resolves to exactly one skill, including on case-sensitive filesystems:
 
 ```powershell
-npm run smoke:discovery
+pnpm run smoke:discovery
 ```
 
 This repository is the canonical source. Compare any installed copy before relying on it:
@@ -139,3 +149,7 @@ Managed workspace installations should use direct junctions or symbolic links to
 ## Status
 
 Preview. The package is contract-tested and agent-agnostic; release tagging remains a maintainer action, while package relocation and host discovery have executable gates.
+
+## Support
+
+If this workflow helps you ship more honest work, support its maintenance through [GitHub Sponsors](https://github.com/sponsors/gvastethecreator) or [Ko-fi](https://ko-fi.com/gvaste). Security reports belong in the private channel documented in [SECURITY.md](SECURITY.md).

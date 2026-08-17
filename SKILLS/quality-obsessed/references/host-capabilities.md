@@ -12,7 +12,7 @@ Keep the runtime contract independent of model vendor, client, shell, and operat
 | Inspect visual output | Browser automation, screenshot, preview, image viewer, or supplied capture |
 | Research current facts | Web/search tool with primary-source access |
 | Independent review | Fresh subagent, separate session, external reviewer, or blind judge |
-| Role-based model routing | Per-task model and reasoning selection for the main agent or delegated agents |
+| Bounded handoff | Another agent, queued worker, separate session, remote job, tool, or human collaborator |
 | Durable continuation | Goal, task, loop, background-run, or resumable checkpoint mechanism |
 | Durable task state | Repository workplan, scratch plan, issue, task record, or host memory |
 
@@ -23,7 +23,8 @@ Use paths relative to the skill root when reading bundled references. Product-sp
 - Without safe execution, verify static claims only and mark runtime proof limited.
 - Without visual inspection, do not pass visual gates from source code.
 - Without independent review, run a named internal adversarial pass but do not call it independent.
-- Without role-based model routing, keep the acceptance contract and execute directly or use the closest available route. Do not invent delegation or preserve decorative model labels; disclose a fallback only when it materially affects trust, cost, or review strength.
+- Without another execution context, keep the acceptance contract and execute directly. Do not invent delegation or decorative route labels.
+- Without route controls, let the current harness map the required capabilities. Disclose a limit only when it affects trust, cost, or review strength.
 - Without durable continuation, work in compact epochs inside the current session and report the exact resumable checkpoint; do not claim background persistence.
 - Without durable task state, keep a compact frontier in the current task and include the exact resume action in the final record.
 - Without web access, use repository-owned sources and identify current/external claims that remain uncertain.

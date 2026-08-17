@@ -54,9 +54,9 @@ Request: “Use quality-obsessed to reconcile this broad refactor with the basel
 
 Because the skill was explicitly invoked for substantial work and the user supplied no budget, time limit, or loop count, load Persistence and apply the same 10-loop floor while meaningful in-scope risks remain. This does not require a durable goal: persist inside the current task unless the user separately requests goal-like continuation.
 
-## Model-routed plan
+## Capability-routed mission
 
-A mixed mission needs a short settled-input report, a detailed implementation, a spec with tickets, and an important final review. First decide what is cheaper and safer to execute in the orchestrator; delegation is optional. Route an actual low-risk report to `[gpt-5.6-luna | medium]`, a context-rich implementation brief to `[gpt-5.6-luna | max]`, and the spec, tickets, or distinct important review to `[gpt-5.6-sol | xhigh]`. Do not add model labels to local plan steps. Give every dispatch a bounded deliverable and proof, and keep compatible work on the same route until evidence changes its risk or ambiguity. Low-risk output may close after focused proof and orchestrator reconciliation; Sol/xhigh review is not mandatory for every Luna task. Run full tests/build/typecheck once at the integration boundary or final batch.
+A mixed mission needs a short report, a detailed implementation, a spec with tickets, and an important final review. Set one quality floor and the required gates first. Execute work directly when the current context can meet them. Use another context only when its capabilities, isolation, parallelism, or independence add material value. Give every dispatch a bounded deliverable and proof. Keep compatible work on the same route until evidence changes its fit. Judge every return against the same gates. If a gate fails, repair the cause or select a better-fit available route. Low-risk output may close after focused proof and orchestrator reconciliation. Important or high-risk work may require independent review. Run full tests, builds, and typechecks once at the integration boundary or final batch.
 
 ## Creative Search
 

@@ -1,13 +1,14 @@
 {
   "name": "quality-obsessed-skill",
   "private": true,
+  "packageManager": "pnpm@11.21.0",
   "type": "module",
   "scripts": {
     "test": "node --test",
     "validate": "node scripts/validate-skill.mjs SKILLS/quality-obsessed && node scripts/validate-evals.mjs evals/cases.json",
     "smoke:package": "node scripts/smoke-package.mjs SKILLS/quality-obsessed --root-license LICENSE",
     "smoke:discovery": "node scripts/smoke-skills-cli.mjs",
-    "check": "npm run validate && npm test && npm run smoke:package"
+    "check": "node scripts/validate-skill.mjs SKILLS/quality-obsessed && node scripts/validate-evals.mjs evals/cases.json && node --test && node scripts/smoke-package.mjs SKILLS/quality-obsessed --root-license LICENSE"
   },
   "devDependencies": {
     "yaml": "2.9.0"

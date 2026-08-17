@@ -1,34 +1,32 @@
 # Orchestration
 
-Use this branch when a mission may benefit from selectable model routing or bounded delegation. A local multi-step plan alone does not require it. Keep the orchestrator responsible for scope, acceptance, dependencies, reconciliation, and the final artifact verdict.
+Use this branch when another execution context can improve capability, isolation, parallelism, or independence. A local multi-step plan alone does not require it. Keep the orchestrator responsible for scope, acceptance, dependencies, reconciliation, and the final artifact verdict.
 
-## Decide whether to route
+## Quality before route
 
-Decide first whether another execution context adds enough value to pay for its handoff. Delegate for useful parallelism, context isolation, or an independent bounded review. Keep work in the orchestrator when it is small, serial, tightly coupled to settled context, or cheaper to execute than explain. Never split work merely to exercise a model tier.
+Set the deliverable, quality floor, and required gates before selecting a route. Judge every returned artifact against the same contract. A provider, model family, tier, benchmark, or reasoning level never proves quality.
 
-Record a model and reasoning effort only for work that will actually be dispatched or queued. Local plan steps need deliverables and proof, not decorative model labels.
+Execute directly when the current context has the required capabilities. Route only when another context adds enough value to justify its handoff. Use cost and latency only after a route meets the quality floor.
 
 ```text
-routing_policy: contextual-defaults-not-invariants
+routing_policy: capability-and-evidence-adaptive
 delegation_policy: optional-when-value-exceeds-handoff
-orchestrator_authority: direct-execution-or-contextual-route
+orchestrator_authority: direct-execution-or-capability-route
 route_record: actual-dispatch-only
-routing_inputs: task-shape-risk-context-dependencies-proof-cost
+routing_inputs: capabilities-context-risk-dependencies-proof-independence-cost
 route_stability: reuse-route-until-evidence-changes
 handoff_contract: deliverable-dependencies-surface-proof-return
-low_risk_route: reports-or-noncritical-execution
-low_risk_model: gpt-5.6-luna
-low_risk_reasoning: medium
-detailed_execution_route: settled-documented-context-rich-implementation
-detailed_execution_model: gpt-5.6-luna
-detailed_execution_reasoning: max
-important_judgment_route: planning-specs-tickets-reviews-or-critical-decisions
-important_judgment_model: gpt-5.6-sol
-important_judgment_reasoning: xhigh
-route_override: orchestrator-allowed-with-material-reason
-routing_fallback: closest-available-or-direct-disclosed
+quality_floor: acceptance-contract-and-required-gates
+model_policy: no-required-provider-family-tier-or-reasoning-level
+harness_policy: capability-mapping-without-command-assumptions
+route_requirements: artifact-access-authority-context-and-proof
+route_preference: best-evidenced-capability-fit
+cost_policy: optimize-after-quality-floor
+escalation_trigger: failed-gate-mixed-verdict-or-material-uncertainty
+escalation_policy: repair-retry-reroute-or-independent-review
+routing_fallback: execute-directly-or-use-capable-route-and-disclose-limits
 execution_communication: action-first-minimal-context
-review_trigger: important-high-risk-ambiguous-or-user-requested
+review_trigger: high-risk-ambiguous-subjective-independence-or-user-requested
 low_risk_acceptance: focused-proof-and-orchestrator-reconciliation
 review_verdict: accept | repair | reset
 task_local_verification: focused-tests-and-current-file-checks-only
@@ -37,30 +35,26 @@ full_verification_trigger: integration-boundary-or-final-batch
 full_verification_suite: tests-build-typecheck-once-per-batch
 ```
 
-## Contextual Codex defaults
+## Select a capable route
 
-Use these routes as defaults, not invariants:
+For routine work, prefer direct execution or a low-handoff context that can satisfy the gates. For implementation, preserve settled context, writable access, and focused proof. For important judgment, prioritize domain fit and real independence when risk warrants it.
 
-- **Luna/medium:** reports with settled inputs, mechanical transformations, simple checks, and non-critical execution with a clear done condition.
-- **Luna/max:** bounded execution or implementation when decisions are settled and the brief already contains the relevant documentation, context, tasks, writable surface, and proof.
-- **Sol/xhigh:** planning, specs, tickets, architecture or product decisions, ambiguous diagnosis, direction resets, completed-work reviews, and other important or high-impact judgment.
+Record only actual dispatches. Record the selected capabilities, material constraints, deliverable, and proof. Do not add decorative route labels to local plan steps. Keep a compatible route stable until evidence changes its fit.
 
-The orchestrator may execute any step directly or select another available route when task shape, risk, dependencies, context locality, proof cost, or current host capability makes it a better choice. Record the reason only when the deviation is material. Keep a route stable across compatible work; reconsider it when evidence changes the classification, not after every step.
+The current harness chooses how to provide the selected capabilities. It can use one agent, another agent, a queued worker, a separate session, a tool, or a human reviewer. The contract does not require a vendor, model, command, or reasoning control.
 
-If a requested route is unavailable, use the closest available model or execute directly. Disclose the actual route when it affects trust, cost, or review strength. Never claim a dispatch or review that did not happen.
+## Handoff and reconciliation
 
-## Handoff and review
+Each dispatched step names its deliverable, dependencies, writable surface, acceptance proof, and return condition. Keep the brief action-first. Include only the context needed to act. Do not hide unresolved product decisions inside an execution brief.
 
-Each delegated or queued step names its deliverable, dependencies, writable surface, acceptance proof, and return condition. Keep execution briefs action-first and include only the context needed to act. Do not ask an execution route to resolve product decisions hidden inside the brief.
-
-The orchestrator reconciles every return against scope and evidence. Low-risk work may close on focused proof and orchestrator review; a separate Sol/xhigh pass is not required for every Luna task. Prefer Sol/xhigh when a distinct review is useful for important, high-risk, ambiguous, subjective, or user-requested work. A formal review returns `accept`, `repair`, or `reset`:
+Inspect every return against scope and evidence. Accept low-risk work after focused proof and orchestrator reconciliation. For important or high-risk work, use a fresh independent reviewer when that review can change acceptance. A formal review returns `accept`, `repair`, or `reset`:
 
 - `accept` admits the deliverable into the batch.
 - `repair` returns a narrower action-first brief.
 - `reset` rejects the direction and sends the unresolved decision back to judgment.
 
-If execution exposes a new tradeoff or invalidates settled context, stop that lane and return the decision to the orchestrator. Do not force a subagent round trip when the orchestrator can resolve it safely from current evidence.
+If a gate fails, diagnose the failure before changing routes. Repair missing context, a weak brief, an unsuitable tool, or the artifact when that is the cause. Then retry, select a better-fit route, or request independent review. If no available route can close the gate, report limited verification or a real blocker.
 
 ## Verification budget
 
-For each task, run focused tests for the changed behavior and a real check or typecheck for the edited file when one exists. If no focused or file-level check exists, record N/A with the reason. Run repository-wide tests, builds, and typechecks once at the integration boundary or final batch, then reconcile the resulting gates at the level of review warranted by risk.
+For each task, run focused tests for the changed behavior. Run a real file-level check when one exists. If no focused check exists, record `N/A` with the reason. Run repository-wide tests, builds, and typechecks once at the integration boundary or final batch.

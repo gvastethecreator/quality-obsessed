@@ -1,4 +1,4 @@
 interface:
   display_name: "Quality Obsessed"
   short_description: "Quality missions with context-adaptive councils"
-  default_prompt: "Use $quality-obsessed to improve this artifact against a real baseline with evidence-gated loops, Creative Search when direction risk warrants it, context-adaptive review, and contextual model routing only when it adds value. The orchestrator may execute directly, and review depth follows risk."
+  default_prompt: "Use $quality-obsessed to improve this artifact against a real baseline. Apply evidence-gated loops and Creative Search when direction risk warrants it. Use capability-based orchestration only when it adds quality or independence. Execute directly when the current context can pass the gates. Require every route to pass the same evidence gates."
