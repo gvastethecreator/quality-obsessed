@@ -16,8 +16,8 @@ test("README documents portable Agent Skills usage across supported hosts", asyn
     "~/.agents/skills/quality-obsessed",
     ".claude/skills",
     ".opencode/skills",
-    "npm run check",
-    "npm run smoke:discovery",
+    "pnpm run check",
+    "pnpm run smoke:discovery",
     "npx skills@1.5.15 add",
     "compare-skill-copy.mjs",
     "task_state: `completed | blocked`",
@@ -95,7 +95,7 @@ test("public guidance preserves substantial unbounded persistence without confla
   assert.doesNotMatch(readme, /30 valid loops|Loop 30/i);
 });
 
-test("public guidance documents model-routed orchestration", async () => {
+test("public guidance documents model- and harness-agnostic orchestration", async () => {
   const [readme, skill, orchestration, metadata] = await Promise.all([
     readFile(path.join(repoRoot, "README.md"), "utf8"),
     readFile(
@@ -127,30 +127,33 @@ test("public guidance documents model-routed orchestration", async () => {
   assert.match(skill, /\[Orchestration\]\(references\/orchestration\.md\)/);
   assert.match(skill, /skip ordinary local plans/i);
   assert.match(orchestration, /local multi-step plan alone does not require it/i);
-  assert.match(readme, /gpt-5\.6-sol.*xhigh/i);
-  assert.match(readme, /gpt-5\.6-luna.*medium/i);
-  assert.match(readme, /gpt-5\.6-luna.*max/i);
-  assert.match(orchestration, /routing_policy: contextual-defaults-not-invariants/);
+  assert.match(readme, /model- and harness-agnostic/i);
+  assert.match(orchestration, /routing_policy: capability-and-evidence-adaptive/);
   assert.match(orchestration, /delegation_policy: optional-when-value-exceeds-handoff/);
-  assert.match(orchestration, /orchestrator_authority: direct-execution-or-contextual-route/);
+  assert.match(orchestration, /orchestrator_authority: direct-execution-or-capability-route/);
   assert.match(orchestration, /route_record: actual-dispatch-only/);
   assert.match(orchestration, /handoff_contract: deliverable-dependencies-surface-proof-return/);
-  assert.match(orchestration, /low_risk_model: gpt-5\.6-luna/);
-  assert.match(orchestration, /low_risk_reasoning: medium/);
-  assert.match(orchestration, /detailed_execution_model: gpt-5\.6-luna/);
-  assert.match(orchestration, /detailed_execution_reasoning: max/);
-  assert.match(orchestration, /important_judgment_model: gpt-5\.6-sol/);
-  assert.match(orchestration, /important_judgment_reasoning: xhigh/);
-  assert.match(orchestration, /route_override: orchestrator-allowed-with-material-reason/);
+  assert.match(orchestration, /quality_floor: acceptance-contract-and-required-gates/);
+  assert.match(orchestration, /model_policy: no-required-provider-family-tier-or-reasoning-level/);
+  assert.match(orchestration, /harness_policy: capability-mapping-without-command-assumptions/);
+  assert.match(orchestration, /route_requirements: artifact-access-authority-context-and-proof/);
+  assert.match(orchestration, /route_preference: best-evidenced-capability-fit/);
+  assert.match(orchestration, /cost_policy: optimize-after-quality-floor/);
+  assert.match(orchestration, /escalation_trigger: failed-gate-mixed-verdict-or-material-uncertainty/);
+  assert.match(orchestration, /escalation_policy: repair-retry-reroute-or-independent-review/);
   assert.match(orchestration, /execution_communication: action-first-minimal-context/);
-  assert.match(orchestration, /review_trigger: important-high-risk-ambiguous-or-user-requested/);
+  assert.match(orchestration, /review_trigger: high-risk-ambiguous-subjective-independence-or-user-requested/);
   assert.match(orchestration, /low_risk_acceptance: focused-proof-and-orchestrator-reconciliation/);
   assert.match(orchestration, /review_verdict: accept \| repair \| reset/);
   assert.match(orchestration, /task_local_verification: focused-tests-and-current-file-checks-only/);
   assert.match(orchestration, /interim_typecheck: current-edited-file-only-or-skip/);
   assert.match(orchestration, /full_verification_trigger: integration-boundary-or-final-batch/);
   assert.match(orchestration, /full_verification_suite: tests-build-typecheck-once-per-batch/);
-  assert.match(metadata, /contextual model routing/i);
+  assert.match(metadata, /capability-based orchestration/i);
+  assert.doesNotMatch(
+    [skill, orchestration].join("\n"),
+    /^(?:low_risk|detailed_execution|important_judgment)_(?:model|reasoning)\s*:/im,
+  );
 });
 
 test("public guidance documents the Creative Search contract", async () => {
@@ -213,14 +216,15 @@ test("public prose preserves three-direction search and risk-based batch gates",
     publicProse,
     /\b(?:one|single|a\s+single)\s+(?:better|superior)\s+direction\b/i,
   );
-  assert.doesNotMatch(publicProse, /multiple Sol-accepted tasks/i);
+  assert.doesNotMatch(publicProse, /model label as quality proof/i);
   for (const source of [readme, skill, examples]) {
     assert.match(source, /integration boundary or final batch/i);
   }
   assert.match(readme, /delegation is optional/i);
   assert.match(readme, /orchestrator may execute directly/i);
-  assert.match(readme, /Sol\/xhigh review is not mandatory for every Luna task/i);
-  assert.doesNotMatch(publicProse, /every Luna\/max.*pending until.*Sol\/xhigh/is);
+  assert.match(readme, /Judge every return against the same gates/i);
+  assert.match(readme, /independent review when it can change acceptance/i);
+  assert.doesNotMatch(publicProse, /fixed model sequence/i);
 });
 
 test("public discovery and examples explain the context-adaptive Council", async () => {

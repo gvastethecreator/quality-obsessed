@@ -397,49 +397,53 @@ export async function validateSkill(skillPath) {
     [
       "references/orchestration.md",
       new Map([
-        ["routing_policy", "contextual-defaults-not-invariants"],
+        ["routing_policy", "capability-and-evidence-adaptive"],
         ["delegation_policy", "optional-when-value-exceeds-handoff"],
         [
           "orchestrator_authority",
-          "direct-execution-or-contextual-route",
+          "direct-execution-or-capability-route",
         ],
         ["route_record", "actual-dispatch-only"],
         [
           "routing_inputs",
-          "task-shape-risk-context-dependencies-proof-cost",
+          "capabilities-context-risk-dependencies-proof-independence-cost",
         ],
         ["route_stability", "reuse-route-until-evidence-changes"],
         [
           "handoff_contract",
           "deliverable-dependencies-surface-proof-return",
         ],
-        ["low_risk_route", "reports-or-noncritical-execution"],
-        ["low_risk_model", "gpt-5.6-luna"],
-        ["low_risk_reasoning", "medium"],
+        ["quality_floor", "acceptance-contract-and-required-gates"],
         [
-          "detailed_execution_route",
-          "settled-documented-context-rich-implementation",
+          "model_policy",
+          "no-required-provider-family-tier-or-reasoning-level",
         ],
-        ["detailed_execution_model", "gpt-5.6-luna"],
-        ["detailed_execution_reasoning", "max"],
         [
-          "important_judgment_route",
-          "planning-specs-tickets-reviews-or-critical-decisions",
+          "harness_policy",
+          "capability-mapping-without-command-assumptions",
         ],
-        ["important_judgment_model", "gpt-5.6-sol"],
-        ["important_judgment_reasoning", "xhigh"],
         [
-          "route_override",
-          "orchestrator-allowed-with-material-reason",
+          "route_requirements",
+          "artifact-access-authority-context-and-proof",
+        ],
+        ["route_preference", "best-evidenced-capability-fit"],
+        ["cost_policy", "optimize-after-quality-floor"],
+        [
+          "escalation_trigger",
+          "failed-gate-mixed-verdict-or-material-uncertainty",
+        ],
+        [
+          "escalation_policy",
+          "repair-retry-reroute-or-independent-review",
         ],
         [
           "routing_fallback",
-          "closest-available-or-direct-disclosed",
+          "execute-directly-or-use-capable-route-and-disclose-limits",
         ],
         ["execution_communication", "action-first-minimal-context"],
         [
           "review_trigger",
-          "important-high-risk-ambiguous-or-user-requested",
+          "high-risk-ambiguous-subjective-independence-or-user-requested",
         ],
         [
           "low_risk_acceptance",
@@ -550,7 +554,7 @@ export async function validateSkill(skillPath) {
     const markdownFiles = (await listFiles(resolved)).filter((file) => file.endsWith(".md"));
     const legacyStatus = /\b(?:quality wins?|red\/failed|tie\/no meaningful delta|failed to beat baseline)\b/i;
     const vendorRuntime = /\b(?:Codex|Claude Code|OpenCode)\b|(?:^|\s)\/goal\b|\$quality-obsessed\b/im;
-    const vendorRuntimeOwners = new Set(["references/orchestration.md"]);
+    const concreteModelRuntime = /\b(?:gpt|claude|gemini|grok|llama|mistral|deepseek|qwen)[-_][a-z0-9][\w.-]*\b|^[ \t]{0,3}(?:low_risk|detailed_execution|important_judgment)_(?:model|reasoning)\s*:/im;
     const canonicalDefinition = /^[ \t]{0,3}(mission_mode|task_state|artifact_verdict|verification_state|loop_verdict|severity|gate_state|scope_rule|mutation_stop|analysis_stop|intent_capture|action_threshold|settled_context|blocker_isolation|milestone_provenance|turn_exit)\s*:/gm;
     const persistenceDefinition = /^[ \t]{0,3}(minimum_valid_loops|hard_maximum|loop_10_verdict|backlog_policy|default_activation|goal_activation)\s*:/gm;
     for (const file of markdownFiles) {
@@ -563,11 +567,18 @@ export async function validateSkill(skillPath) {
           message: "Use the canonical task, artifact, and verification state axes.",
         });
       }
-      if (vendorRuntime.test(content) && !vendorRuntimeOwners.has(relative)) {
+      if (vendorRuntime.test(content)) {
         violations.push({
           code: "vendor-runtime-coupling",
           path: relative,
           message: "Runtime Markdown must describe host capabilities, not vendor commands.",
+        });
+      }
+      if (concreteModelRuntime.test(content)) {
+        violations.push({
+          code: "model-runtime-coupling",
+          path: relative,
+          message: "Runtime Markdown must not require a concrete model or fixed reasoning tier.",
         });
       }
       if (relative !== "references/protocol.md") {

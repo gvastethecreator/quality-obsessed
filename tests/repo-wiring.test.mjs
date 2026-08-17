@@ -11,7 +11,7 @@ test("repository wiring exposes one complete validation command", async () => {
   );
   assert.equal(
     packageJson.scripts.check,
-    "npm run validate && npm test && npm run smoke:package",
+    "node scripts/validate-skill.mjs SKILLS/quality-obsessed && node scripts/validate-evals.mjs evals/cases.json && node --test && node scripts/smoke-package.mjs SKILLS/quality-obsessed --root-license LICENSE",
   );
   assert.match(packageJson.scripts.validate, /validate-skill\.mjs/);
   assert.match(packageJson.scripts.validate, /validate-evals\.mjs/);
@@ -30,9 +30,9 @@ test("CI runs the complete check on Linux and Windows", async () => {
   );
   assert.match(workflow, /ubuntu-latest/);
   assert.match(workflow, /windows-latest/);
-  assert.match(workflow, /npm run check/);
-  assert.match(workflow, /npm run smoke:discovery/);
-  assert.match(workflow, /npm ci/);
+  assert.match(workflow, /pnpm run check/);
+  assert.match(workflow, /pnpm run smoke:discovery/);
+  assert.match(workflow, /pnpm install --frozen-lockfile/);
 });
 
 test("repository normalizes text files for cross-platform copy parity", async () => {

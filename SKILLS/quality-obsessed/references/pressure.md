@@ -96,7 +96,7 @@ When the Creative Search branch is active, pressure-test the three representativ
 
 Before commit, require a useful signature and a concrete subtraction of one generic or diluting element. Run the blind audience read with the brief hidden and record understood, action, memory, and mismatch. A material mismatch is an unresolved gate: repair it or reset the direction before acceptance. Routine fixes and conformance work do not receive this creative pressure pass.
 
-For routed execution, apply review pressure where it can change acceptance. Focused proof and orchestrator reconciliation are enough for low-risk work; do not require a separate Sol pass for every Luna task. Prefer Sol/xhigh for a distinct review of important, high-risk, ambiguous, subjective, or user-requested work. When that formal review runs, keep the reviewed lane pending until it returns `accept`, `repair`, or `reset`, then close, narrow, or replace the direction. Batch-level full verification belongs at the integration boundary or final batch, not inside each task.
+For routed execution, apply review pressure where it can change acceptance. Focused proof and orchestrator reconciliation are enough for low-risk work. Do not require independent review for every routed task. For important, high-risk, ambiguous, subjective, or user-requested work, use a capable independent reviewer when available. Keep that lane pending until the review returns `accept`, `repair`, or `reset`. Then close, narrow, or replace the direction. Batch-level full verification belongs at the integration boundary or final batch, not inside each task.
 
 ## Grilling
 

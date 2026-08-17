@@ -33,7 +33,7 @@ Unverified claim:
 | Creative direction search | Creative Search is active for explicit creative, standout, greenfield, or direction-risk work | Three cheap representative artifacts with materially different thesis, structure, or behavior, plus a like-for-like comparison and explicit choice |
 | Signature and subtraction | Creative Search is active and identity is part of the acceptance target | Source pointer or artifact record naming one memorable useful move and one removed generic or diluting element |
 | Blind audience read | Creative Search is active before commit | Brief-hidden read recording what was understood, the next action, what was remembered, and any mismatch; material mismatch resolved before commit |
-| Routed handoff | Delegated or model-routed execution is used | Actual dispatch record, bounded handoff, returned artifact, focused proof, and orchestrator reconciliation; add a Sol/xhigh verdict when risk triggers a distinct important review |
+| Routed handoff | Another execution context is used | Actual dispatch record, bounded handoff, returned artifact, focused proof, orchestrator reconciliation, and an independent verdict when risk triggers distinct review |
 | Batch verification | An integration boundary or final batch is closing | One batch-level tests/build/typecheck run; never use a full suite as per-task proof |
 | Source | Current/external facts or data conclusions matter | Primary source with version/date or repository-owned evidence |
 | Independent judgment | Subjective, high-risk, or baseline-sensitive claims remain | Blind reviewer over raw artifacts and rubric |
@@ -41,7 +41,7 @@ Unverified claim:
 
 Do not require mobile for desktop-only software, loading for synchronous artifacts, hostile execution without a sandbox, or visual originality when conformance to a design system is the target.
 
-Creative Search gates are conditional on the branch trigger and remain N/A for routine fixes or conformance work. The direction protocol owns the exact search record; this matrix only states the evidence needed to pass it. Orchestration gates defer to the handoff contract and actual dispatch record. Low-risk routed work may close through focused proof and orchestrator reconciliation; important or high-risk review uses the stronger route selected by Orchestration. Full tests, builds, and repository-wide typechecks run once at the integration boundary or final batch.
+Creative Search gates are conditional on the branch trigger and remain N/A for routine fixes or conformance work. The direction protocol owns the exact search record. This matrix only states the evidence needed to pass it. Orchestration gates defer to the handoff contract and actual dispatch record. Low-risk routed work may close through focused proof and orchestrator reconciliation. Important or high-risk work uses independent review when it can change acceptance. Full tests, builds, and repository-wide typechecks run once at the integration boundary or final batch.
 
 ## Evidence discipline
 

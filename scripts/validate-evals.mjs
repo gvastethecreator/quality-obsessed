@@ -100,7 +100,7 @@ export async function validateEvalCatalog(catalogPath) {
     "visual-inspection",
     "research",
     "independent-review",
-    "model-routing",
+    "bounded-handoff",
     "durable-continuation",
     "durable-task-state",
   ]);
@@ -130,7 +130,7 @@ export async function validateEvalCatalog(catalogPath) {
       message: "hard_failures must contain the complete canonical set without duplicates.",
     });
   }
-  const requiredHosts = ["generic-agent-skills", "codex", "claude-code", "opencode"];
+  const requiredHosts = ["any-capability-compatible-harness"];
   const targetHostValues = Array.isArray(catalog.target_hosts)
     ? catalog.target_hosts
     : [];
@@ -140,7 +140,7 @@ export async function validateEvalCatalog(catalogPath) {
     violations.push({
       code: "missing-host-coverage",
       path: resolved,
-      message: `Missing target host coverage: ${missingHosts.join(", ")}`,
+      message: `Missing portable harness coverage: ${missingHosts.join(", ")}`,
     });
   }
   if (
@@ -151,7 +151,7 @@ export async function validateEvalCatalog(catalogPath) {
     violations.push({
       code: "invalid-host-coverage",
       path: resolved,
-      message: "target_hosts must contain each supported host exactly once and no unknown hosts.",
+      message: "target_hosts must contain the portable capability target exactly once.",
     });
   }
   const cases = Array.isArray(catalog.cases) ? catalog.cases : [];
@@ -168,7 +168,7 @@ export async function validateEvalCatalog(catalogPath) {
   ]);
   const orchestrationRouting = new Map([
     ["small-scoped-change", false],
-    ["codex-model-routed-plan", true],
+    ["portable-capability-routed-mission", true],
   ]);
   const creativeRouting = new Map([
     ["creative-search-standout", true],
@@ -549,29 +549,28 @@ export async function validateEvalCatalog(catalogPath) {
       });
     } else if (orchestration?.enabled === true) {
       const required = {
-        host: "codex",
-        routing_policy: "contextual-defaults-not-invariants",
+        routing_policy: "capability-and-evidence-adaptive",
         delegation_policy: "optional-when-value-exceeds-handoff",
-        orchestrator_authority: "direct-execution-or-contextual-route",
+        orchestrator_authority: "direct-execution-or-capability-route",
         route_record: "actual-dispatch-only",
-        routing_inputs: "task-shape-risk-context-dependencies-proof-cost",
+        routing_inputs:
+          "capabilities-context-risk-dependencies-proof-independence-cost",
         route_stability: "reuse-route-until-evidence-changes",
         handoff_contract: "deliverable-dependencies-surface-proof-return",
-        low_risk_route: "reports-or-noncritical-execution",
-        low_risk_model: "gpt-5.6-luna",
-        low_risk_reasoning: "medium",
-        detailed_execution_route:
-          "settled-documented-context-rich-implementation",
-        detailed_execution_model: "gpt-5.6-luna",
-        detailed_execution_reasoning: "max",
-        important_judgment_route:
-          "planning-specs-tickets-reviews-or-critical-decisions",
-        important_judgment_model: "gpt-5.6-sol",
-        important_judgment_reasoning: "xhigh",
-        route_override: "orchestrator-allowed-with-material-reason",
-        routing_fallback: "closest-available-or-direct-disclosed",
+        quality_floor: "acceptance-contract-and-required-gates",
+        model_policy: "no-required-provider-family-tier-or-reasoning-level",
+        harness_policy: "capability-mapping-without-command-assumptions",
+        route_requirements: "artifact-access-authority-context-and-proof",
+        route_preference: "best-evidenced-capability-fit",
+        cost_policy: "optimize-after-quality-floor",
+        escalation_trigger:
+          "failed-gate-mixed-verdict-or-material-uncertainty",
+        escalation_policy: "repair-retry-reroute-or-independent-review",
+        routing_fallback:
+          "execute-directly-or-use-capable-route-and-disclose-limits",
         execution_communication: "action-first-minimal-context",
-        review_trigger: "important-high-risk-ambiguous-or-user-requested",
+        review_trigger:
+          "high-risk-ambiguous-subjective-independence-or-user-requested",
         low_risk_acceptance:
           "focused-proof-and-orchestrator-reconciliation",
         review_verdict: "accept | repair | reset",
@@ -583,11 +582,13 @@ export async function validateEvalCatalog(catalogPath) {
       const invalidFields = contractMismatches(orchestration, required);
       const requiredActions = [
         "delegation-by-default",
-        "model-label-without-dispatch",
+        "model-specific-routing-dependency",
+        "harness-command-assumption",
         "rigid-routing-sequence",
-        "model-route-fabrication",
-        "unexplained-route-override",
-        "mandatory-sol-audit-for-every-luna-task",
+        "route-fabrication",
+        "quality-claim-from-route-label",
+        "cost-before-quality-floor",
+        "mandatory-review-for-every-routed-task",
         "verbose-execution-brief",
         "per-task-full-suite/build/typecheck",
       ];
@@ -598,9 +599,9 @@ export async function validateEvalCatalog(catalogPath) {
           );
         }
       }
-      if (!expected?.required_capabilities?.includes("model-routing")) {
+      if (!expected?.required_capabilities?.includes("bounded-handoff")) {
         invalidFields.push(
-          `required_capabilities: expected to include model-routing, received ${JSON.stringify(expected?.required_capabilities)}`,
+          `required_capabilities: expected to include bounded-handoff, received ${JSON.stringify(expected?.required_capabilities)}`,
         );
       }
       for (const action of requiredActions) {
@@ -614,7 +615,7 @@ export async function validateEvalCatalog(catalogPath) {
         violations.push({
           code: "invalid-orchestration-contract",
           path: resolved,
-          message: `Case ${item.id ?? "<missing>"} weakens the model-routed orchestration contract: ${invalidFields.join("; ")}.`,
+          message: `Case ${item.id ?? "<missing>"} weakens the capability-based orchestration contract: ${invalidFields.join("; ")}.`,
         });
       }
     }

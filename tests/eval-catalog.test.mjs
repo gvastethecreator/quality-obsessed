@@ -41,7 +41,7 @@ test("rejects a catalog with no behavioral cases", async () => {
       catalogPath,
       JSON.stringify({
         version: 1,
-        target_hosts: ["generic-agent-skills", "codex", "claude-code", "opencode"],
+        target_hosts: ["any-capability-compatible-harness"],
         cases: [],
       }),
       "utf8",
@@ -68,7 +68,7 @@ test("rejects incompatible catalog metadata, hosts, and capabilities", async () 
     );
     catalog.version = "1";
     catalog.description = "   ";
-    catalog.target_hosts.push("codex", "invented-host");
+    catalog.target_hosts.push("any-capability-compatible-harness", "invented-host");
     catalog.cases.find(({ id }) => id === "deep-goal-mission").expected.required_capabilities =
       "durable-continuation";
     await writeFile(catalogPath, JSON.stringify(catalog), "utf8");
@@ -99,7 +99,7 @@ test("rejects malformed cases, invented states, references, and gates", async ()
       catalogPath,
       JSON.stringify({
         version: 1,
-        target_hosts: ["generic-agent-skills", "codex", "claude-code", "opencode"],
+        target_hosts: ["any-capability-compatible-harness"],
         cases: [
           null,
           {
@@ -243,7 +243,7 @@ test("rejects a goal eval that weakens deep persistence", async () => {
   }
 });
 
-test("rejects a catalog that omits a supported agent host", async () => {
+test("rejects a catalog that omits the portable harness target", async () => {
   const root = await mkdtemp(path.join(tmpdir(), "quality-evals-host-test-"));
   const catalogPath = path.join(root, "cases.json");
   try {
@@ -251,7 +251,7 @@ test("rejects a catalog that omits a supported agent host", async () => {
       catalogPath,
       JSON.stringify({
         version: 1,
-        target_hosts: ["generic-agent-skills", "codex", "claude-code"],
+        target_hosts: [],
         cases: [
           {
             id: "host-coverage",
@@ -445,7 +445,7 @@ test("rejects substitution of the inferred professional audio specialist", async
   }
 });
 
-test("rejects weakened Codex model routing", async () => {
+test("rejects weakened capability-based orchestration", async () => {
   const mutations = [
     ["rigid-policy", (expected) => {
       expected.orchestration.routing_policy = "mandatory-fixed-sequence";
@@ -459,23 +459,29 @@ test("rejects weakened Codex model routing", async () => {
     ["labels-without-dispatch", (expected) => {
       expected.orchestration.route_record = "every-plan-step";
     }],
-    ["wrong-light-effort", (expected) => {
-      expected.orchestration.low_risk_reasoning = "low";
+    ["weak-quality-floor", (expected) => {
+      expected.orchestration.quality_floor = "trust-route-label";
     }],
-    ["wrong-detailed-effort", (expected) => {
-      expected.orchestration.detailed_execution_reasoning = "medium";
+    ["required-model", (expected) => {
+      expected.orchestration.model_policy = "named-model-required";
     }],
-    ["wrong-judgment-model", (expected) => {
-      expected.orchestration.important_judgment_model = "gpt-5.6-luna";
+    ["fixed-harness-command", (expected) => {
+      expected.orchestration.harness_policy = "fixed-command";
     }],
-    ["lowered-judgment-effort", (expected) => {
-      expected.orchestration.important_judgment_reasoning = "high";
+    ["cost-first", (expected) => {
+      expected.orchestration.cost_policy = "cheapest-first";
+    }],
+    ["weak-route-fit", (expected) => {
+      expected.orchestration.route_preference = "label-first";
+    }],
+    ["disabled-escalation", (expected) => {
+      expected.orchestration.escalation_policy = "accept-first-return";
     }],
     ["missing-handoff", (expected) => {
       delete expected.orchestration.handoff_contract;
     }],
-    ["uncontrolled-override", (expected) => {
-      expected.orchestration.route_override = "silent-anytime";
+    ["weak-fallback", (expected) => {
+      expected.orchestration.routing_fallback = "claim-success";
     }],
     ["missing-reference", (expected) => {
       expected.required_references = expected.required_references.filter(
@@ -492,7 +498,7 @@ test("rejects weakened Codex model routing", async () => {
         await readFile(path.join(repoRoot, "evals", "cases.json"), "utf8"),
       );
       const expected = catalog.cases.find(
-        ({ id }) => id === "codex-model-routed-plan",
+        ({ id }) => id === "portable-capability-routed-mission",
       ).expected;
       mutate(expected);
       await writeFile(catalogPath, JSON.stringify(catalog), "utf8");
@@ -542,7 +548,7 @@ test("rejects forced orchestration for a small scoped change", async () => {
 test("rejects weakened risk-based review and deferred verification routing", async () => {
   const mutations = [
     ["review-every-task", (expected) => {
-      expected.orchestration.review_trigger = "every-luna-task";
+      expected.orchestration.review_trigger = "every-routed-task";
     }],
     ["weak-low-risk-acceptance", (expected) => {
       expected.orchestration.low_risk_acceptance = "trust-worker-summary";
@@ -575,7 +581,7 @@ test("rejects weakened risk-based review and deferred verification routing", asy
         await readFile(path.join(repoRoot, "evals", "cases.json"), "utf8"),
       );
       const expected = catalog.cases.find(
-        ({ id }) => id === "codex-model-routed-plan",
+        ({ id }) => id === "portable-capability-routed-mission",
       ).expected;
       mutate(expected);
       await writeFile(catalogPath, JSON.stringify(catalog), "utf8");
@@ -669,7 +675,7 @@ test("repository eval catalog covers the approved behavioral matrix", async () =
   assert.ok(catalog.cases.length >= 10);
   assert.deepEqual(
     new Set(catalog.target_hosts),
-    new Set(["generic-agent-skills", "codex", "claude-code", "opencode"]),
+    new Set(["any-capability-compatible-harness"]),
   );
 
   const ids = new Set(catalog.cases.map(({ id }) => id));
@@ -686,7 +692,7 @@ test("repository eval catalog covers the approved behavioral matrix", async () =
     "architecture-boundary",
     "delegation-unavailable",
      "proof-blocked",
-     "codex-model-routed-plan",
+     "portable-capability-routed-mission",
      "creative-search-standout",
      "routine-conformance",
   ]) {
@@ -910,17 +916,17 @@ test("repository eval catalog infers Council pressure across a second profession
   assert.ok(item.expected.forbidden_actions.includes("generic-domain-reviewer"));
 });
 
-test("repository eval catalog routes Codex judgment and execution models", async () => {
+test("repository eval catalog routes by capability and evidence", async () => {
   const catalog = JSON.parse(
     await readFile(path.join(repoRoot, "evals", "cases.json"), "utf8"),
   );
   const item = catalog.cases.find(
-    ({ id }) => id === "codex-model-routed-plan",
+    ({ id }) => id === "portable-capability-routed-mission",
   );
-  assert.ok(item, "missing eval case: codex-model-routed-plan");
+  assert.ok(item, "missing eval case: portable-capability-routed-mission");
   assert.equal(
     item.expected.orchestration.routing_policy,
-    "contextual-defaults-not-invariants",
+    "capability-and-evidence-adaptive",
   );
   assert.equal(
     item.expected.orchestration.delegation_policy,
@@ -928,28 +934,48 @@ test("repository eval catalog routes Codex judgment and execution models", async
   );
   assert.equal(
     item.expected.orchestration.orchestrator_authority,
-    "direct-execution-or-contextual-route",
+    "direct-execution-or-capability-route",
   );
   assert.equal(item.expected.orchestration.route_record, "actual-dispatch-only");
-  assert.equal(item.expected.orchestration.low_risk_model, "gpt-5.6-luna");
-  assert.equal(item.expected.orchestration.low_risk_reasoning, "medium");
   assert.equal(
-    item.expected.orchestration.detailed_execution_model,
-    "gpt-5.6-luna",
+    item.expected.orchestration.quality_floor,
+    "acceptance-contract-and-required-gates",
   );
-  assert.equal(item.expected.orchestration.detailed_execution_reasoning, "max");
   assert.equal(
-    item.expected.orchestration.important_judgment_model,
-    "gpt-5.6-sol",
+    item.expected.orchestration.model_policy,
+    "no-required-provider-family-tier-or-reasoning-level",
   );
-  assert.equal(item.expected.orchestration.important_judgment_reasoning, "xhigh");
+  assert.equal(
+    item.expected.orchestration.harness_policy,
+    "capability-mapping-without-command-assumptions",
+  );
+  assert.equal(
+    item.expected.orchestration.route_requirements,
+    "artifact-access-authority-context-and-proof",
+  );
+  assert.equal(
+    item.expected.orchestration.route_preference,
+    "best-evidenced-capability-fit",
+  );
+  assert.equal(
+    item.expected.orchestration.cost_policy,
+    "optimize-after-quality-floor",
+  );
+  assert.equal(
+    item.expected.orchestration.escalation_trigger,
+    "failed-gate-mixed-verdict-or-material-uncertainty",
+  );
+  assert.equal(
+    item.expected.orchestration.escalation_policy,
+    "repair-retry-reroute-or-independent-review",
+  );
   assert.equal(
     item.expected.orchestration.execution_communication,
     "action-first-minimal-context",
   );
   assert.equal(
     item.expected.orchestration.review_trigger,
-    "important-high-risk-ambiguous-or-user-requested",
+    "high-risk-ambiguous-subjective-independence-or-user-requested",
   );
   assert.equal(
     item.expected.orchestration.low_risk_acceptance,
@@ -960,36 +986,23 @@ test("repository eval catalog routes Codex judgment and execution models", async
     "accept | repair | reset",
   );
   assert.equal(
-    item.expected.orchestration.task_local_verification,
-    "focused-tests-and-current-file-checks-only",
-  );
-  assert.equal(
-    item.expected.orchestration.interim_typecheck,
-    "current-edited-file-only-or-skip",
-  );
-  assert.equal(
     item.expected.orchestration.full_verification_trigger,
     "integration-boundary-or-final-batch",
-  );
-  assert.equal(
-    item.expected.orchestration.full_verification_suite,
-    "tests-build-typecheck-once-per-batch",
   );
   assert.equal(
     item.expected.orchestration.handoff_contract,
     "deliverable-dependencies-surface-proof-return",
   );
-  assert.equal(
-    item.expected.orchestration.route_override,
-    "orchestrator-allowed-with-material-reason",
-  );
   assert.ok(item.expected.required_references.includes("orchestration.md"));
-  assert.ok(item.expected.required_capabilities.includes("model-routing"));
+  assert.ok(item.expected.required_capabilities.includes("bounded-handoff"));
   for (const action of [
     "delegation-by-default",
-    "model-label-without-dispatch",
+    "model-specific-routing-dependency",
+    "harness-command-assumption",
     "rigid-routing-sequence",
-    "mandatory-sol-audit-for-every-luna-task",
+    "quality-claim-from-route-label",
+    "cost-before-quality-floor",
+    "mandatory-review-for-every-routed-task",
     "verbose-execution-brief",
     "per-task-full-suite/build/typecheck",
   ]) {
@@ -1006,7 +1019,7 @@ test("repository eval catalog keeps small scoped work in the orchestrator", asyn
   assert.equal(item.expected.orchestration.enabled, false);
   assert.ok(item.expected.forbidden_actions.includes("delegation-by-default"));
   assert.ok(
-    item.expected.forbidden_actions.includes("model-label-without-dispatch"),
+    item.expected.forbidden_actions.includes("route-label-without-dispatch"),
   );
 });
 

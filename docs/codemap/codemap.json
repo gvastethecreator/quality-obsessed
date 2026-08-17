@@ -1,0 +1,203 @@
+{
+  "generated_at": "2026-08-15T04:59:50Z",
+  "generated_from_commit": "a111a5e8c19824bba05e52e2826db89e6aa289dc",
+  "scope": [
+    "."
+  ],
+  "nodes": [
+    {
+      "id": "external-dependencies",
+      "path": "scripts/validate-skill.mjs",
+      "role": "Represents external packages referenced by tracked source files.",
+      "type": "external",
+      "boundary": "External",
+      "entrypoints": [
+        "scripts/validate-skill.mjs:yaml"
+      ],
+      "tests": [],
+      "constraints": [
+        "Only dependencies with literal tracked-source references appear here."
+      ],
+      "evidence": {
+        "status": "verified",
+        "locations": [
+          {
+            "path": "scripts/validate-skill.mjs",
+            "symbol": "yaml"
+          }
+        ]
+      }
+    },
+    {
+      "id": "repository",
+      "path": "README.md",
+      "role": "Owns the tracked files for the repository module.",
+      "type": "module",
+      "boundary": "Repository",
+      "entrypoints": [
+        "README.md:Use it when"
+      ],
+      "tests": [],
+      "constraints": [
+        "This baseline uses tracked source and explicit dependency references only."
+      ],
+      "evidence": {
+        "status": "verified",
+        "locations": [
+          {
+            "path": "README.md",
+            "symbol": "Use it when"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scripts",
+      "path": "scripts",
+      "role": "Owns the tracked files for the scripts module.",
+      "type": "service",
+      "boundary": "Scripts",
+      "entrypoints": [
+        "scripts/compare-skill-copy.mjs:listFiles"
+      ],
+      "tests": [
+        "tests/discovery-smoke.test.mjs"
+      ],
+      "constraints": [
+        "This baseline uses tracked source and explicit dependency references only."
+      ],
+      "evidence": {
+        "status": "verified",
+        "locations": [
+          {
+            "path": "scripts/compare-skill-copy.mjs",
+            "symbol": "listFiles"
+          }
+        ]
+      }
+    },
+    {
+      "id": "project-site",
+      "path": "docs/index.html",
+      "role": "Presents the English public contract, installation route, mission modes, and sponsorship links on GitHub Pages.",
+      "type": "interface",
+      "boundary": "Documentation",
+      "entrypoints": [
+        "docs/index.html:main"
+      ],
+      "tests": [],
+      "constraints": [
+        "Static English-only surface with no JavaScript or user data access.",
+        "Published only through the GitHub Pages workflow."
+      ],
+      "evidence": {
+        "status": "verified",
+        "locations": [
+          {
+            "path": "docs/index.html",
+            "symbol": "main"
+          },
+          {
+            "path": ".github/workflows/pages.yml",
+            "symbol": "deploy"
+          }
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "repository",
+      "to": "scripts",
+      "type": "calls",
+      "evidence": {
+        "status": "verified",
+        "locations": [
+          {
+            "path": "package.json",
+            "symbol": "scripts/validate-skill.mjs"
+          },
+          {
+            "path": "package.json",
+            "symbol": "scripts/validate-evals.mjs"
+          },
+          {
+            "path": "package.json",
+            "symbol": "scripts/smoke-package.mjs"
+          },
+          {
+            "path": "package.json",
+            "symbol": "scripts/smoke-skills-cli.mjs"
+          }
+        ]
+      }
+    },
+    {
+      "from": "scripts",
+      "to": "external-dependencies",
+      "type": "imports",
+      "evidence": {
+        "status": "verified",
+        "locations": [
+          {
+            "path": "scripts/validate-skill.mjs",
+            "symbol": "yaml"
+          }
+        ]
+      }
+    },
+    {
+      "from": "project-site",
+      "to": "repository",
+      "type": "reads",
+      "evidence": {
+        "status": "verified",
+        "locations": [
+          {
+            "path": "docs/index.html",
+            "symbol": "github.com/gvastethecreator/quality-obsessed"
+          },
+          {
+            "path": "README.md",
+            "symbol": "Project site"
+          }
+        ]
+      }
+    }
+  ],
+  "flows": [
+    {
+      "trigger": "GitHub Pages request for /quality-obsessed/",
+      "steps": [
+        "project-site",
+        "repository"
+      ],
+      "outcome": "The static project site explains the quality contract and routes readers to installation, source, and sponsorship."
+    },
+    {
+      "trigger": "Tracked reference package.json:scripts/validate-skill.mjs",
+      "steps": [
+        "repository",
+        "scripts",
+        "external-dependencies"
+      ],
+      "outcome": "The verified dependency path reaches external-dependencies through 2 step(s)."
+    },
+    {
+      "trigger": "Tracked reference package.json:scripts/validate-skill.mjs to scripts",
+      "steps": [
+        "repository",
+        "scripts"
+      ],
+      "outcome": "The verified dependency path reaches scripts through 1 step(s)."
+    },
+    {
+      "trigger": "Tracked reference scripts/validate-skill.mjs:yaml",
+      "steps": [
+        "scripts",
+        "external-dependencies"
+      ],
+      "outcome": "The verified dependency path reaches external-dependencies through 1 step(s)."
+    }
+  ]
+}
