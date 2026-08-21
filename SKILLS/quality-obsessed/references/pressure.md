@@ -1,21 +1,10 @@
 # Decision Pressure
 
-Use pressure when it can change the artifact, backlog, proof, scope, decision, or final verdict. Broad, quality-sensitive, recovery, review/audit, and explicitly obsessive missions always require the compact pre-final autopsy below. Reviewer count and ceremony are not quality.
-
-## Contents
-
-- [Select lenses](#select-lenses)
-- [Context-adaptive Council](#context-adaptive-council)
-- [Adversarial autopsy](#adversarial-autopsy)
-- [Brief and reconciliation](#brief-and-reconciliation)
-- [Ambition leap](#ambition-leap)
-- [Creative Search pressure](#creative-search-pressure)
-- [Grilling](#grilling)
-- [Final disclosure](#final-disclosure)
+Use when it can change the artifact, backlog, proof, scope, decision, or final verdict. Broad, quality-sensitive, recovery, review/audit, and explicitly obsessive missions always require pre-final autopsy. Reviewer count and ceremony are not quality.
 
 ## Select lenses
 
-- **Critic:** locate the highest-impact weaknesses in real output.
+- **Critic:** locate highest-impact weaknesses in real output.
 - **Adversary:** attack assumptions, hostile inputs, recovery, and unsafe proof.
 - **Context specialist:** use the artifact-specific professional role whose craft judgment matters.
 - **Proof reviewer:** test whether evidence supports each claim.
@@ -24,13 +13,13 @@ Use pressure when it can change the artifact, backlog, proof, scope, decision, o
 
 ## Context-adaptive Council
 
-Convene Council only when the user explicitly requests it or two or more materially different failure modes need judgment together. Choose 2-4 non-overlapping lenses from the artifact, outcome, risk, and professional domain; never add a personality just to fill seats.
+Convene Council only when the user explicitly requests it or two or more materially different failure modes need judgment together. Choose 2-4 non-overlapping lenses from artifact, outcome, risk, and professional domain; never add a personality just to fill seats.
 
-Every Council includes one lens representing the artifact's relevant professional practice without claiming real-world credentials. For a realtime VFX authoring app, use a **Professional VFX Artist / Technical Director** lens to judge compositing, effect quality, control range, production workflow, and visual artifacts. Complement it only where useful, such as realtime graphics engineering, creative-tool UX, or proof/reliability. Adapt the specialist to other domains instead of reusing a generic reviewer.
+Every Council includes one lens for the artifact's relevant professional practice, without claiming real-world credentials. Realtime VFX authoring app: **Professional VFX Artist / Technical Director** for compositing, effect quality, control range, production workflow, and visual artifacts. Complement only where useful: realtime graphics engineering, creative-tool UX, or proof/reliability. Adapt the specialist to other domains; do not reuse a generic reviewer.
 
-Every lens inspects the same real artifact and evidence, then returns its role and reason, finding or opportunity, location, user or professional harm, concrete cut or fix, and closing proof. Record tension only when evidence creates it; never force disagreement. Reconcile to one decision, next artifact move, and proof rather than an options menu. Council counts only when it changes the artifact, backlog, proof, scope, or decision.
+Every lens inspects the same real artifact and evidence, then returns role, reason, finding or opportunity, location, harm, concrete cut or fix, and closing proof. Record tension only when evidence creates it; never force disagreement. Reconcile to one decision, next artifact move, and proof — not an options menu. Council counts only when it changes the artifact, backlog, proof, scope, or decision.
 
-Internal lenses are structured self-review, never independent review. Only a fresh external or delegated reviewer working from raw evidence qualifies as independent, and its availability must be disclosed honestly.
+Internal lenses are structured self-review, never independent review. Only a fresh external or delegated reviewer working from raw evidence qualifies as independent; disclose availability honestly.
 
 ```text
 council_pass: explicit-or-multiple-material-lenses
@@ -42,9 +31,9 @@ council_value: artifact-backlog-proof-scope-or-decision-change
 council_independence: internal-lenses-are-not-independent-review
 ```
 
-For substantial or high-risk missions, use one fresh independent reviewer when available and when a bounded role can expose a failure the main agent may miss. Give raw artifacts and the minimum task-local context, not the expected answer or prior diagnosis.
+Substantial or high-risk: one fresh independent reviewer when available and a bounded role can expose a failure the main agent may miss. Give raw artifacts and minimum task-local context, not expected answer or prior diagnosis.
 
-After two consecutive `mixed` verdicts, escalate to a fresh reviewer when available and when independent evidence can change the direction; otherwise run one named adversarial lens and disclose that it was not independent. This supplements the Protocol's earlier reset for two consecutive `flat` or `worse` verdicts.
+After two consecutive `mixed` verdicts, escalate to a fresh reviewer when available and independent evidence can change the direction; otherwise run one named adversarial lens and disclose that it was not independent. This supplements Protocol's earlier reset for two consecutive `flat` or `worse` verdicts.
 
 ```text
 review_escalation: two-consecutive-mixed-when-decision-relevant
@@ -52,7 +41,7 @@ review_escalation: two-consecutive-mixed-when-decision-relevant
 
 ## Adversarial autopsy
 
-Before final status for broad, quality-sensitive, recovery, review/audit, or explicitly obsessive work, inspect the real artifact again from a fresh skeptical stance. Record the strongest remaining objection, its location and user harm, likely source cause, the concrete cut/fix, proof that would close it, and unresolved severity. Repair it when mutation is authorized; in diagnose/audit mode, preserve read-only scope and let the finding control the artifact verdict. This self-critique is mandatory but is not independent review.
+Before final status for broad, quality-sensitive, recovery, review/audit, or explicitly obsessive work, inspect the real artifact again from a fresh skeptical stance. Record the strongest remaining objection: location, user harm, likely source cause, concrete cut/fix, proof that would close it, unresolved severity. Repair when mutation is authorized; in diagnose/audit, keep read-only scope and let the finding control the artifact verdict. Mandatory self-critique; not independent review.
 
 ```text
 adversarial_autopsy: required-before-final-for-broad-quality-recovery-review
@@ -82,9 +71,7 @@ If opinions conflict, run the smallest safe proof that decides. Do not average t
 
 ## Ambition leap
 
-When the user explicitly asks for standout, baseline-beating, superior, or unusually ambitious quality, delegate direction generation and comparison to [Creative Search](creative-search.md). Keep this Ambition Leap branch focused on boundary, authority, tradeoff, and proof pressure: state the extra user value, what weak or generic element is cut, the tradeoff, and how the artifact will prove the difference. Adopt a direction only inside the existing authorization envelope; ask before a dependency, architecture, product, budget, release, or other boundary-crossing choice.
-
-Do not run this exercise for routine fixes, and do not use “ambition” to inflate surface area without a measurable outcome.
+When the user explicitly asks for standout, baseline-beating, superior, or unusually ambitious quality, delegate direction generation and comparison to [Creative Search](creative-search.md). This branch owns boundary, authority, tradeoff, and proof: extra user value, what weak or generic element is cut, the tradeoff, and how the artifact will prove the difference. Adopt a direction only inside the existing authorization envelope; ask before a dependency, architecture, product, budget, release, or other boundary-crossing choice. Skip routine fixes; do not use “ambition” to inflate surface area without a measurable outcome.
 
 ```text
 ambition_leap: explicit-standout-within-authority
@@ -92,17 +79,17 @@ ambition_leap: explicit-standout-within-authority
 
 ## Creative Search pressure
 
-When the Creative Search branch is active, pressure-test the three representative direction artifacts as competing theses, structures, or behaviors. The Critic names the user-value difference, the Context specialist tests craft and audience fit, and the Proof reviewer checks that the comparison is like-for-like. Converge on one explicit choice; a hybrid is a new decision requiring evidence, not a safe compromise.
+When Creative Search is active, pressure-test the three representative artifacts as competing theses, structures, or behaviors. Critic: user-value difference. Context specialist: craft and audience fit. Proof reviewer: like-for-like comparison. Converge on one explicit choice; a hybrid is a new decision requiring evidence, not a safe compromise.
 
-Before commit, require a useful signature and a concrete subtraction of one generic or diluting element. Run the blind audience read with the brief hidden and record understood, action, memory, and mismatch. A material mismatch is an unresolved gate: repair it or reset the direction before acceptance. Routine fixes and conformance work do not receive this creative pressure pass.
+Before commit: one useful signature, one generic/diluting element removed, and a brief-hidden blind read (understood, action, memory, mismatch). A material mismatch is an unresolved gate: repair or reset before acceptance. Routine fixes and conformance skip this pass.
 
-For routed execution, apply review pressure where it can change acceptance. Focused proof and orchestrator reconciliation are enough for low-risk work. Do not require independent review for every routed task. For important, high-risk, ambiguous, subjective, or user-requested work, use a capable independent reviewer when available. Keep that lane pending until the review returns `accept`, `repair`, or `reset`. Then close, narrow, or replace the direction. Batch-level full verification belongs at the integration boundary or final batch, not inside each task.
+Routed execution: apply review pressure where it can change acceptance. Low-risk: focused proof and orchestrator reconciliation — not independent review on every task. Important, high-risk, ambiguous, subjective, or user-requested work: capable independent reviewer when available; keep pending until `accept`, `repair`, or `reset`, then close, narrow, or replace the direction. Batch-level full verification at the integration boundary or final batch, not inside each task.
 
 ## Grilling
 
-Use internal council or grilling as compact decision pressure when delegation is unavailable. Ask the user only for decisions that repository inspection, primary sources, and safe defaults cannot settle. Ask one decision at a time and include the recommended choice, its material tradeoff, and the default you will use if the decision is non-blocking.
+Internal council or grilling when delegation is unavailable. Ask the user only for decisions that repository inspection, primary sources, and safe defaults cannot settle. One decision at a time: recommended choice, material tradeoff, and the default if non-blocking.
 
-When the user explicitly asks to be grilled before implementation, hold target mutation until the requested understanding or decision is confirmed. The hold does not prevent read-only inspection or preparation that helps ask a better question, and it ends once the agreed decision boundary is clear.
+When the user explicitly asks to be grilled before implementation, hold target mutation until the requested understanding or decision is confirmed. Read-only inspection and prep that improve the question are allowed; the hold ends once the agreed decision boundary is clear.
 
 ```text
 grilling_hold: explicit-preimplementation-request
@@ -110,7 +97,7 @@ grilling_hold: explicit-preimplementation-request
 
 ## Final disclosure
 
-In the final record, state whether independent review was used. If used, name the bounded role and the artifact, decision, backlog, or proof it changed. If it was applicable but unavailable or unlikely to change the result, state that it was omitted and why. Do not imply independent judgment from an internal self-review.
+In the final record, state whether independent review was used. If used, name the bounded role and what artifact, decision, backlog, or proof it changed. If applicable but unavailable or unlikely to change the result, state omitted and why. Do not imply independent judgment from internal self-review.
 
 ```text
 review_disclosure: report-used-or-omitted
