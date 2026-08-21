@@ -1,12 +1,12 @@
 # Orchestration
 
-Use this branch when another execution context can improve capability, isolation, parallelism, or independence. A local multi-step plan alone does not require it. Keep the orchestrator responsible for scope, acceptance, dependencies, reconciliation, and the final artifact verdict.
+Use when another execution context can improve capability, isolation, parallelism, or independence. A local multi-step plan alone does not require it. Orchestrator owns scope, acceptance, dependencies, reconciliation, and final artifact verdict.
 
 ## Quality before route
 
-Set the deliverable, quality floor, and required gates before selecting a route. Judge every returned artifact against the same contract. A provider, model family, tier, benchmark, or reasoning level never proves quality.
+Set deliverable, quality floor, and required gates before selecting a route. Judge every returned artifact against same contract. Provider, model family, tier, benchmark, or reasoning level never proves quality.
 
-Execute directly when the current context has the required capabilities. Route only when another context adds enough value to justify its handoff. Use cost and latency only after a route meets the quality floor.
+Execute directly when current context has required capabilities; route only when another context adds enough value to justify handoff. Cost and latency only after a route meets quality floor.
 
 ```text
 routing_policy: capability-and-evidence-adaptive
@@ -37,24 +37,26 @@ full_verification_suite: tests-build-typecheck-once-per-batch
 
 ## Select a capable route
 
-For routine work, prefer direct execution or a low-handoff context that can satisfy the gates. For implementation, preserve settled context, writable access, and focused proof. For important judgment, prioritize domain fit and real independence when risk warrants it.
+- Routine: prefer direct execution or low-handoff context that can satisfy the gates.
+- Implementation: preserve settled context, writable access, and focused proof.
+- Important judgment: prioritize domain fit and real independence when risk warrants it.
 
-Record only actual dispatches. Record the selected capabilities, material constraints, deliverable, and proof. Do not add decorative route labels to local plan steps. Keep a compatible route stable until evidence changes its fit.
+Record only actual dispatches — selected capabilities, material constraints, deliverable, and proof. No decorative route labels on local plan steps. Keep compatible route stable until evidence changes its fit.
 
-The current harness chooses how to provide the selected capabilities. It can use one agent, another agent, a queued worker, a separate session, a tool, or a human reviewer. The contract does not require a vendor, model, command, or reasoning control.
+Current harness chooses how to provide selected capabilities: one agent, another agent, queued worker, separate session, tool, or human reviewer. No required vendor, model, command, or reasoning control.
 
 ## Handoff and reconciliation
 
-Each dispatched step names its deliverable, dependencies, writable surface, acceptance proof, and return condition. Keep the brief action-first. Include only the context needed to act. Do not hide unresolved product decisions inside an execution brief.
+Each dispatched step names deliverable, dependencies, writable surface, acceptance proof, and return condition. Brief is action-first; include only context needed to act. Do not hide unresolved product decisions inside execution brief.
 
-Inspect every return against scope and evidence. Accept low-risk work after focused proof and orchestrator reconciliation. For important or high-risk work, use a fresh independent reviewer when that review can change acceptance. A formal review returns `accept`, `repair`, or `reset`:
+Inspect every return against scope and evidence. Low-risk: accept after focused proof and orchestrator reconciliation. Important or high-risk: fresh independent reviewer when it can change acceptance. Formal review returns `accept`, `repair`, or `reset`:
 
-- `accept` admits the deliverable into the batch.
+- `accept` admits deliverable into the batch.
 - `repair` returns a narrower action-first brief.
-- `reset` rejects the direction and sends the unresolved decision back to judgment.
+- `reset` rejects the direction and sends unresolved decision back to judgment.
 
-If a gate fails, diagnose the failure before changing routes. Repair missing context, a weak brief, an unsuitable tool, or the artifact when that is the cause. Then retry, select a better-fit route, or request independent review. If no available route can close the gate, report limited verification or a real blocker.
+If a gate fails, diagnose before changing routes. Repair missing context, a weak brief, an unsuitable tool, or the artifact. Then retry, select a better-fit route, or request independent review. If no available route can close the gate, report limited verification or a real blocker.
 
 ## Verification budget
 
-For each task, run focused tests for the changed behavior. Run a real file-level check when one exists. If no focused check exists, record `N/A` with the reason. Run repository-wide tests, builds, and typechecks once at the integration boundary or final batch.
+Per task: focused tests for changed behavior. Real file-level check when one exists; else `N/A` with the reason. Repository-wide tests, builds, and typechecks once at the integration boundary or final batch.
