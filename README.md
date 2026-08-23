@@ -72,7 +72,7 @@ Every evidence gate is selected as required, conditional, or not applicable. Des
 
 ## Execution discipline
 
-The skill captures the purpose that changes acceptance, acts once the minimum facts are known, and reuses settled facts and decisions until new evidence changes them. An approval, access, or user-input blocker stops only its own lane while safe independent work remains. Milestone and final claims must point to current evidence or a durable proof record tied to the same artifact revision.
+The skill captures the purpose that changes acceptance, acts once the minimum facts are known, and reuses settled facts and decisions until new evidence changes them. An approval, access, or user-input blocker stops only its own lane while safe independent work remains. Milestone and final claims must point to current evidence or a durable proof record tied to the same artifact revision. Prior captured output is not re-execution; declared checks are run again when the claim could have drifted. A selected gate with pending evidence stays unmet and is not deleted.
 
 Code changes receive a final structural check for ad-hoc branches, thin pass-through wrappers, leaked feature logic, and avoidable file sprawl. Before ending, the skill completes any safe in-scope work still promised by its response. A requested plan, audit, or explanation counts as the deliverable; other work ends when the requested result is done or explicitly blocked.
 

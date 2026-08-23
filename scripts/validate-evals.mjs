@@ -578,6 +578,8 @@ export async function validateEvalCatalog(catalogPath) {
         interim_typecheck: "current-edited-file-only-or-skip",
         full_verification_trigger: "integration-boundary-or-final-batch",
         full_verification_suite: "tests-build-typecheck-once-per-batch",
+        parent_reverify: "rerun-declared-oracles",
+        verification_hierarchy: "leaf-self-check-parent-rerun-integration",
       };
       const invalidFields = contractMismatches(orchestration, required);
       const requiredActions = [
@@ -591,6 +593,8 @@ export async function validateEvalCatalog(catalogPath) {
         "mandatory-review-for-every-routed-task",
         "verbose-execution-brief",
         "per-task-full-suite/build/typecheck",
+        "stale-evidence-as-reverify",
+        "checkbox-without-evidence",
       ];
       for (const reference of ["orchestration.md"]) {
         if (!arrays.required_references.includes(reference)) {

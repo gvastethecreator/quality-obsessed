@@ -42,7 +42,7 @@ Comments, docs, renames, refactors: count only when they improve the mission art
 
 ## Evidence and routing
 
-Read [Evidence](references/evidence.md) for the gate manifest. Every selected gate: `required`, `conditional`, or `N/A` with a reason. Missing runtime/visual capability → verification limited; never silently green.
+Read [Evidence](references/evidence.md) for the gate manifest. Every selected gate: `required`, `conditional`, or `N/A` with a reason. Missing or pending evidence leaves the gate unmet. Do not drop an applicable gate because it cannot currently pass; keep `blocked` or `N/A` with a reason. Missing runtime/visual capability → verification limited; never silently green.
 
 Normal missions load Protocol, Evidence, and one domain profile:
 
@@ -71,7 +71,7 @@ Read Persistence before the first counted loop for explicit deep missions and fo
 
 Substantial/high-risk: one fresh reviewer when available and independence can change a decision. Reconcile accepted and rejected findings; reviewer volume is not proof.
 
-Orchestration: set acceptance contract and required proof before a route. Execute directly when the current context can meet them; route only for material capability, isolation, parallelism, or independence. Select by capability fit, context, risk, and evidence. Provider, model family, tier, benchmark, or reasoning level never proves quality. Same gates on every return; failed gate → repair or pick a better-fit available route. Low-risk: focused proof plus orchestrator reconciliation. High-risk, ambiguous, subjective, or requested work may require independent review. Full tests, builds, and typechecks once at the integration boundary or final batch.
+Orchestration: set acceptance contract and required proof before a route. Execute directly when the current context can meet them; route only for material capability, isolation, parallelism, or independence. Select by capability fit, context, risk, and evidence. Provider, model family, tier, benchmark, or reasoning level never proves quality. Same gates on every return; re-run declared oracles — prior evidence is not re-execution. Failed gate → repair or pick a better-fit available route. Low-risk: focused proof plus orchestrator reconciliation. High-risk, ambiguous, subjective, or requested work may require independent review. Full tests, builds, and typechecks once at the integration boundary or final batch. Leaf self-check, then parent re-run, then integration.
 
 Before final status for broad, quality-sensitive, recovery, review/audit, or explicitly obsessive work, run Pressure's fresh adversarial autopsy on the real artifact. Required even without independent review; grants no mutation authority in diagnose/audit.
 

@@ -88,8 +88,8 @@ test("public guidance preserves substantial unbounded persistence without confla
   assert.match(examples, /does not require a durable goal/i);
   assert.match(readme, /10 valid loops once Deep Persistence activates/i);
   assert.match(skill, /Loop 10 verdict/i);
-  assert.match(skill, /require 10 valid loops/i);
-  assert.match(persistence, /10-loop floor is mandatory/i);
+  assert.match(skill, /Once active: 10 valid loops/i);
+  assert.match(persistence, /10-loop floor/);
   assert.match(persistence, /Do not stop before Loop 10/i);
   assert.doesNotMatch(persistence, /may stop earlier/i);
   assert.doesNotMatch(readme, /30 valid loops|Loop 30/i);
@@ -149,6 +149,8 @@ test("public guidance documents model- and harness-agnostic orchestration", asyn
   assert.match(orchestration, /interim_typecheck: current-edited-file-only-or-skip/);
   assert.match(orchestration, /full_verification_trigger: integration-boundary-or-final-batch/);
   assert.match(orchestration, /full_verification_suite: tests-build-typecheck-once-per-batch/);
+  assert.match(orchestration, /parent_reverify: rerun-declared-oracles/);
+  assert.match(orchestration, /verification_hierarchy: leaf-self-check-parent-rerun-integration/);
   assert.match(metadata, /capability-based orchestration/i);
   assert.doesNotMatch(
     [skill, orchestration].join("\n"),
@@ -174,7 +176,7 @@ test("public guidance documents the Creative Search contract", async () => {
     ),
   ]);
 
-  assert.match(skill, /For Creative Search missions/i);
+  assert.match(skill, /Creative Search: load the reference/i);
   for (const contract of [
     "creative_search: diverge-prototype-compare-commit",
     "creative_trigger: explicit-creative-standout-greenfield-or-direction-risk",
@@ -242,7 +244,7 @@ test("public discovery and examples explain the context-adaptive Council", async
     "utf8",
   );
 
-  assert.match(skill, /^description:.*context-adaptive quality councils/im);
+  assert.match(skill, /^description:.*quality councils/im);
   assert.match(skill, /2-4 non-overlapping lenses/i);
   assert.match(readme, /context-adaptive Council/i);
   assert.match(readme, /Professional VFX Artist \/ Technical Director/i);
@@ -270,6 +272,16 @@ test("evidence matrix defines the mandatory adversarial autopsy gate", async () 
   assert.ok(row, "missing Adversarial autopsy gate row");
   for (const term of ["location", "harm", "cause", "cut/fix", "proof", "severity"]) {
     assert.match(row, new RegExp(term, "i"));
+  }
+  for (const contract of [
+    "pending_evidence: unmet",
+    "gate_retention: keep-applicable-visible",
+    "oracle_observe: named-artifact-or-seam",
+    "oracle_success: marker-after-all-assertions",
+    "absence_control: known-positive-must-fail",
+    "supplied_figure: measure-independently",
+  ]) {
+    assert.match(evidence, new RegExp(contract.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   }
 });
 
@@ -305,9 +317,13 @@ test("public guidance documents action-ready execution discipline", async () => 
   assert.match(readme, /## Execution discipline/);
   assert.match(skill, /Purpose and enabling outcome:/);
   assert.match(skill, /reuse settled context/i);
-  assert.match(skill, /continue safe independent work/i);
+  assert.match(skill, /continue safe work around a blocked lane/i);
   assert.match(skill, /requested deliverable is done or explicitly blocked/i);
   assert.match(protocol, /milestone_provenance: current-run-or-durable-evidence-ledger/);
+  assert.match(
+    protocol,
+    /Prior captured evidence is not re-execution/,
+  );
   assert.match(
     codeProfile,
     /structural_self_check: inspect-ad-hoc-branches-thin-wrappers-and-avoidable-sprawl/,

@@ -488,6 +488,12 @@ test("rejects weakened capability-based orchestration", async () => {
         (reference) => reference !== "orchestration.md",
       );
     }],
+    ["trust-stale-evidence", (expected) => {
+      expected.orchestration.parent_reverify = "trust-worker-evidence";
+    }],
+    ["leaf-only-hierarchy", (expected) => {
+      expected.orchestration.verification_hierarchy = "leaf-self-check-only";
+    }],
   ];
 
   for (const [name, mutate] of mutations) {
@@ -570,6 +576,9 @@ test("rejects weakened risk-based review and deferred verification routing", asy
     }],
     ["wrong-full-suite", (expected) => {
       expected.orchestration.full_verification_suite = "tests-build-typecheck-per-task";
+    }],
+    ["stale-parent-evidence", (expected) => {
+      expected.orchestration.parent_reverify = "trust-worker-evidence";
     }],
   ];
 
@@ -762,6 +771,7 @@ test("repository eval catalog covers the approved behavioral matrix", async () =
 
   const limited = catalog.cases.find(({ id }) => id === "limited-visual-evidence");
   assert.equal(limited.expected.verification_state, "limited");
+  assert.ok(limited.expected.forbidden_actions.includes("drop-unmet-gate"));
 
   for (const item of catalog.cases) {
     assert.ok(["completed", "blocked"].includes(item.expected.task_state));
@@ -990,6 +1000,14 @@ test("repository eval catalog routes by capability and evidence", async () => {
     "integration-boundary-or-final-batch",
   );
   assert.equal(
+    item.expected.orchestration.parent_reverify,
+    "rerun-declared-oracles",
+  );
+  assert.equal(
+    item.expected.orchestration.verification_hierarchy,
+    "leaf-self-check-parent-rerun-integration",
+  );
+  assert.equal(
     item.expected.orchestration.handoff_contract,
     "deliverable-dependencies-surface-proof-return",
   );
@@ -1005,6 +1023,8 @@ test("repository eval catalog routes by capability and evidence", async () => {
     "mandatory-review-for-every-routed-task",
     "verbose-execution-brief",
     "per-task-full-suite/build/typecheck",
+    "stale-evidence-as-reverify",
+    "checkbox-without-evidence",
   ]) {
     assert.ok(item.expected.forbidden_actions.includes(action), action);
   }

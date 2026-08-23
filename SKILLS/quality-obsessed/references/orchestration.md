@@ -33,6 +33,8 @@ task_local_verification: focused-tests-and-current-file-checks-only
 interim_typecheck: current-edited-file-only-or-skip
 full_verification_trigger: integration-boundary-or-final-batch
 full_verification_suite: tests-build-typecheck-once-per-batch
+parent_reverify: rerun-declared-oracles
+verification_hierarchy: leaf-self-check-parent-rerun-integration
 ```
 
 ## Select a capable route
@@ -56,6 +58,16 @@ Inspect every return against scope and evidence. Low-risk: accept after focused 
 - `reset` rejects the direction and sends unresolved decision back to judgment.
 
 If a gate fails, diagnose before changing routes. Repair missing context, a weak brief, an unsuitable tool, or the artifact. Then retry, select a better-fit route, or request independent review. If no available route can close the gate, report limited verification or a real blocker.
+
+## Verification hierarchy
+
+Local completion does not imply integration.
+
+1. **Leaf self-check.** Focused proof in the execution context. Self-certification.
+2. **Parent re-run.** Re-execute declared oracles with the same required toolchain and environment when they affect the result. A prior evidence line or checkbox is not re-execution.
+3. **Batch integration.** Interface, end-to-end, and regression checks across joined work.
+
+Do not mark a returned leaf verified solely because its checkboxes are checked.
 
 ## Verification budget
 

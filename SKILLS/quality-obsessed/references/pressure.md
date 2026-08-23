@@ -2,6 +2,17 @@
 
 Use when it can change the artifact, backlog, proof, scope, decision, or final verdict. Broad, quality-sensitive, recovery, review/audit, and explicitly obsessive missions always require pre-final autopsy. Reviewer count and ceremony are not quality.
 
+## Contents
+
+- [Select lenses](#select-lenses)
+- [Context-adaptive Council](#context-adaptive-council)
+- [Adversarial autopsy](#adversarial-autopsy)
+- [Brief and reconciliation](#brief-and-reconciliation)
+- [Ambition leap](#ambition-leap)
+- [Creative Search pressure](#creative-search-pressure)
+- [Grilling](#grilling)
+- [Final disclosure](#final-disclosure)
+
 ## Select lenses
 
 - **Critic:** locate highest-impact weaknesses in real output.

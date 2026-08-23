@@ -220,7 +220,7 @@
         "conditional_gates": ["independent-judgment"],
         "blocked_gates": ["viewport-platform", "adversarial-autopsy"],
         "na_gates": [],
-        "forbidden_actions": ["target-write", "visual-gate-passed-from-source", "false-verified"]
+        "forbidden_actions": ["target-write", "visual-gate-passed-from-source", "false-verified", "drop-unmet-gate"]
       }
     },
     {
@@ -457,14 +457,16 @@
           "task_local_verification": "focused-tests-and-current-file-checks-only",
           "interim_typecheck": "current-edited-file-only-or-skip",
           "full_verification_trigger": "integration-boundary-or-final-batch",
-          "full_verification_suite": "tests-build-typecheck-once-per-batch"
+          "full_verification_suite": "tests-build-typecheck-once-per-batch",
+          "parent_reverify": "rerun-declared-oracles",
+          "verification_hierarchy": "leaf-self-check-parent-rerun-integration"
         },
         "required_references": ["protocol.md", "evidence.md", "code-profile.md", "orchestration.md"],
         "required_gates": ["scope", "acceptance", "regression", "claim-provenance"],
         "conditional_gates": ["independent-judgment"],
         "na_gates": ["user-states", "viewport-platform", "first-impression"],
         "blocked_gates": [],
-        "forbidden_actions": ["delegation-by-default", "model-specific-routing-dependency", "harness-command-assumption", "rigid-routing-sequence", "route-fabrication", "quality-claim-from-route-label", "cost-before-quality-floor", "execution-before-settled-brief", "mandatory-review-for-every-routed-task", "verbose-execution-brief", "per-task-full-suite/build/typecheck"]
+        "forbidden_actions": ["delegation-by-default", "model-specific-routing-dependency", "harness-command-assumption", "rigid-routing-sequence", "route-fabrication", "quality-claim-from-route-label", "cost-before-quality-floor", "execution-before-settled-brief", "mandatory-review-for-every-routed-task", "verbose-execution-brief", "per-task-full-suite/build/typecheck", "stale-evidence-as-reverify", "checkbox-without-evidence"]
       }
     },
     {

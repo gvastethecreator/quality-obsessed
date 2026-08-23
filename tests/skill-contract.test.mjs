@@ -1114,3 +1114,57 @@ test("rejects a code profile that loses the structural self-check", async () => 
     );
   });
 });
+
+test("rejects evidence guidance that loses oracle or retention contracts", async () => {
+  const contracts = [
+    "pending_evidence: unmet",
+    "gate_retention: keep-applicable-visible",
+    "oracle_observe: named-artifact-or-seam",
+    "oracle_success: marker-after-all-assertions",
+    "absence_control: known-positive-must-fail",
+    "supplied_figure: measure-independently",
+  ];
+  for (const contract of contracts) {
+    await withRepositorySkillCopy(async (skillPath) => {
+      const referencePath = path.join(skillPath, "references", "evidence.md");
+      const content = await readFile(referencePath, "utf8");
+      assert.ok(content.includes(contract), `missing fixture contract: ${contract}`);
+      await writeFile(referencePath, content.replace(contract, ""), "utf8");
+
+      const result = runValidator(skillPath);
+      assert.equal(result.status, 1, `${contract}: ${result.stderr}`);
+      const report = JSON.parse(result.stdout);
+      assert.ok(
+        report.violations.some(({ code }) => code === "semantic-parity-contract"),
+        `${contract}: ${JSON.stringify(report, null, 2)}`,
+      );
+    });
+  }
+});
+
+test("rejects orchestration that loses parent re-verification", async () => {
+  const contracts = [
+    "parent_reverify: rerun-declared-oracles",
+    "verification_hierarchy: leaf-self-check-parent-rerun-integration",
+  ];
+  for (const contract of contracts) {
+    await withRepositorySkillCopy(async (skillPath) => {
+      const referencePath = path.join(
+        skillPath,
+        "references",
+        "orchestration.md",
+      );
+      const content = await readFile(referencePath, "utf8");
+      assert.ok(content.includes(contract), `missing fixture contract: ${contract}`);
+      await writeFile(referencePath, content.replace(contract, ""), "utf8");
+
+      const result = runValidator(skillPath);
+      assert.equal(result.status, 1, `${contract}: ${result.stderr}`);
+      const report = JSON.parse(result.stdout);
+      assert.ok(
+        report.violations.some(({ code }) => code === "semantic-parity-contract"),
+        `${contract}: ${JSON.stringify(report, null, 2)}`,
+      );
+    });
+  }
+});

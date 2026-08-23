@@ -43,7 +43,7 @@ Mode from the user's verb, not from the repo being editable. Two modes: keep per
 - Ask only when missing input would force incompatible work, cross a boundary, or require a choice only the user can make. Once minimum facts known, act.
 - Reuse established facts, current baseline, and settled decisions. Reopen only on conflicting evidence or a stale artifact. Record changed evidence; do not replay the debate.
 - Blocked lane: record it; continue safe independent work inside scope. Never bypass the gate. Mark `blocked` only after no meaningful authorized lane remains.
-- Before a milestone or final report, map claims to evidence from the current run or a durable evidence ledger tied to same artifact revision. Refresh drift-prone proof. Report a missing or failed check as such.
+- Before a milestone or final report, map claims to evidence from the current run or a durable evidence ledger tied to same artifact revision. Prior captured evidence is not re-execution; re-run declared oracles when the claim, artifact revision, environment, or proof method could have drifted. Refresh drift-prone proof. Report a missing, pending, or failed check as such.
 - Before ending the turn, inspect pending deliverable; execute any safe in-scope work the response still promises. A requested plan, audit, or explanation can itself be the completed deliverable; otherwise end only when the requested deliverable is done or an explicit blocker prevents further work.
 
 ## State axes
@@ -71,6 +71,8 @@ SETUP -> BASELINE -> SELECT_GATES -> INSPECT -> ACT_IF_AUTHORIZED
 ```
 
 Freeze accepted scope and risk register after initial discovery. Add a newly discovered issue only when it is inside that boundary or invalidates current result; otherwise defer it visibly.
+
+Substantial `change` closeout: finish the deliverable, reread as the relevant expert, hunt remaining defects, then apply low-cost polish. Stop that pass only when a full reread finds nothing material.
 
 `change`/`recovery`/`goal` stop: acceptance met, no in-scope blocker or P1, every applicable gate has an honest state, and no bounded high-value action with a credible proof path remains.
 

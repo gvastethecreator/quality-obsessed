@@ -460,6 +460,22 @@ export async function validateSkill(skillPath) {
           "integration-boundary-or-final-batch",
         ],
         ["full_verification_suite", "tests-build-typecheck-once-per-batch"],
+        ["parent_reverify", "rerun-declared-oracles"],
+        [
+          "verification_hierarchy",
+          "leaf-self-check-parent-rerun-integration",
+        ],
+      ]),
+    ],
+    [
+      "references/evidence.md",
+      new Map([
+        ["pending_evidence", "unmet"],
+        ["gate_retention", "keep-applicable-visible"],
+        ["oracle_observe", "named-artifact-or-seam"],
+        ["oracle_success", "marker-after-all-assertions"],
+        ["absence_control", "known-positive-must-fail"],
+        ["supplied_figure", "measure-independently"],
       ]),
     ],
     [

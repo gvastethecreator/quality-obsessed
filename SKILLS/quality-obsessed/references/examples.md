@@ -34,7 +34,11 @@ Mark mobile `N/A`, preserve design system, capture before/after at supported dim
 
 ## Limited evidence
 
-Screenshot capability unavailable. Check source and static claims, set verification to `limited`, name missing visual claims, and give exact screenshot proof still required.
+Screenshot capability unavailable. Check source and static claims, set verification to `limited`, name missing visual claims, and give exact screenshot proof still required. Keep the visual gate in the manifest as `blocked`; do not delete it.
+
+## Returned leaf
+
+A worker returns checked gates. Orchestrator re-runs the declared oracles. The worker's evidence line is not verification.
 
 ## Context-adaptive Council
 
@@ -52,7 +56,7 @@ Load Persistence, build a dynamic evidence-backed backlog, count only valid loop
 
 Request: “Use quality-obsessed to reconcile this broad refactor with the baseline, repair regressions, and prove the final state.”
 
-Explicitly invoked for substantial work with no budget, time limit, or loop count: load Persistence and apply same 10-loop floor while meaningful in-scope risks remain. No durable goal required: persist in current task unless user separately requests goal-like continuation.
+Explicitly invoked for substantial work with no budget, time limit, or loop count: load Persistence and apply same 10-loop floor while meaningful in-scope risks remain. This does not require a durable goal: persist in current task unless user separately requests goal-like continuation.
 
 ## Capability-routed mission
 

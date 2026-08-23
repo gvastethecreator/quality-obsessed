@@ -14,7 +14,12 @@ State:
 Unverified claim:
 ```
 
-`N/A` needs a concrete reason. `blocked` names the external constraint. A gate passes only when another reviewer could inspect the captured evidence.
+`N/A` needs a concrete reason. `blocked` names the external constraint. A gate passes only when another reviewer could inspect the captured evidence. Missing or pending evidence leaves the gate unmet. Do not delete an applicable gate; keep it `blocked` or `N/A` with a concrete reason and list it in the final record.
+
+```text
+pending_evidence: unmet
+gate_retention: keep-applicable-visible
+```
 
 ## Gate matrix
 
@@ -47,7 +52,19 @@ Creative Search gates: N/A for routine fixes or conformance; the direction proto
 
 Map every claim to the narrowest evidence. Static reading can establish source structure, text, configuration, and documented contracts — not runtime behavior, visual output, performance, or recovery.
 
-Independent expected values for tests: literals, specifications, worked examples, fixtures, or prior observed behavior. A test that recomputes implementation logic is not proof.
+Independent expected values for tests: literals, specifications, worked examples, fixtures, or prior observed behavior. A test that recomputes implementation logic is not proof. A runnable check is an oracle: the command, not the English title, decides pass or fail.
+
+- Observe the artifact or seam the gate names.
+- Emit a success-only marker after every assertion passes. Nonzero exit never passes because error text contains the expected token.
+- Before trusting an absence check, run the same logic against a known positive control and confirm it fails.
+- Measure supplied figures from source data. Do not copy a brief number into the expected output as its own proof.
+
+```text
+oracle_observe: named-artifact-or-seam
+oracle_success: marker-after-all-assertions
+absence_control: known-positive-must-fail
+supplied_figure: measure-independently
+```
 
 Subjective work: combine deterministic checks with a blind judge. Self-assigned scores may guide planning but never pass a gate by themselves.
 
