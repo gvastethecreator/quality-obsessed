@@ -8,6 +8,7 @@ Quality Obsessed is a portable Agent Skills package. Keep changes agent-agnostic
 2. Run `pnpm run check`.
 3. Run `pnpm run smoke:discovery` when changing package layout, metadata, or discovery guidance.
 4. Update the nearest behavioral case when a contract changes.
-5. Keep public documentation and examples in English.
+5. Keep public documentation and examples in American English.
 
 Do not weaken an assertion to make a behavior change pass. Explain any platform-specific limitation in the pull request.
+

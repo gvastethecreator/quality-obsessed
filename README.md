@@ -148,8 +148,9 @@ Managed workspace installations should use direct junctions or symbolic links to
 
 ## Status
 
-Preview. The package is contract-tested and agent-agnostic; release tagging remains a maintainer action, while package relocation and host discovery have executable gates.
+The package is contract-tested and agent-agnostic. Package relocation and host discovery have executable gates.
 
 ## Support
 
 If this workflow helps you ship more honest work, support its maintenance through [GitHub Sponsors](https://github.com/sponsors/gvastethecreator) or [Ko-fi](https://ko-fi.com/gvaste). Security reports belong in the private channel documented in [SECURITY.md](SECURITY.md).
+
