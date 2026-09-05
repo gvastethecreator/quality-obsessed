@@ -29,12 +29,12 @@ execution_communication: action-first-minimal-context
 review_trigger: high-risk-ambiguous-subjective-independence-or-user-requested
 low_risk_acceptance: focused-proof-and-orchestrator-reconciliation
 review_verdict: accept | repair | reset
-task_local_verification: focused-tests-and-current-file-checks-only
-interim_typecheck: current-edited-file-only-or-skip
+task_local_verification: diff-first-diagnostic-only-when-blocking
+interim_typecheck: only-when-next-edit-depends-on-diagnostic
 full_verification_trigger: integration-boundary-or-final-batch
-full_verification_suite: tests-build-typecheck-once-per-batch
-parent_reverify: rerun-declared-oracles
-verification_hierarchy: leaf-self-check-parent-rerun-integration
+full_verification_suite: risk-selected-checks-once-per-final-batch
+parent_reverify: reuse-matching-evidence-rerun-on-drift-or-gap
+verification_hierarchy: leaf-evidence-parent-reconciliation-scoped-integration
 ```
 
 ## Select a capable route
@@ -63,12 +63,12 @@ If a gate fails, diagnose before changing routes. Repair missing context, a weak
 
 Local completion does not imply integration.
 
-1. **Leaf self-check.** Focused proof in the execution context. Self-certification.
-2. **Parent re-run.** Re-execute declared oracles with the same required toolchain and environment when they affect the result. A prior evidence line or checkbox is not re-execution.
-3. **Batch integration.** Interface, end-to-end, and regression checks across joined work.
+1. **Leaf evidence.** Return the artifact revision, command or observed path, relevant environment, result, and limitations. Coordinate final checks; each worker need not run a broad gate.
+2. **Parent reconciliation.** Inspect scope and evidence provenance. Reuse a result when it matches final bytes, environment, and claim. Rerun only for drift, insufficient evidence, or an integration risk the leaf could not observe.
+3. **Batch integration.** Run the smallest applicable final checks for uncovered cross-boundary behavior. Do not repeat unchanged passing gates or duplicate layers that prove the same claim.
 
 Do not mark a returned leaf verified solely because its checkboxes are checked.
 
 ## Verification budget
 
-Per task: focused tests for changed behavior. Real file-level check when one exists; else `N/A` with the reason. Repository-wide tests, builds, and typechecks once at the integration boundary or final batch.
+During edits: inspect the diff and use a focused diagnostic only when its answer blocks the next edit. At final integration: select checks for the changed risk and repository contract. Tests, builds, typechecks, and runtime proof are options with distinct purposes, not an automatic chain. Small behavior-preserving edits need no product suite. Report what ran and why other checks were unnecessary or unavailable.

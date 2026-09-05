@@ -539,7 +539,7 @@ test("rejects vendor and concrete model dependencies in runtime Markdown", async
         "low_risk_model: provider-model-v1",
       ].join("\n"),
       "references/protocol.md": "# Protocol\\n\\nmission_mode: change | diagnose | audit | recovery | goal\\ntask_state: completed | blocked\\nartifact_verdict: win | tie | loss | not-assessed\\nverification_state: verified | limited | unverified\\nloop_verdict: better | mixed | flat | worse\\nseverity: blocker | P1 | P2 | P3\\ngate_state: passed | failed | blocked | N/A\\nscope_rule: explicit-user-boundaries-win\\n",
-      "references/persistence.md": "# Persistence\\n\\nminimum_valid_loops: 10\\nhard_maximum: none\\nloop_10_verdict: continue | ask | stop\\nbacklog_policy: dynamic-evidence-only\\ndefault_activation: substantial-unbounded-quality-mission\\ngoal_activation: explicit-user-request\\n",
+      "references/persistence.md": "# Persistence\\n\\nminimum_valid_loops: 0\\nhard_maximum: none\\ncheckpoint_verdict: continue | ask | stop\\nbacklog_policy: dynamic-evidence-only\\ndefault_activation: substantial-unbounded-quality-mission\\ngoal_activation: explicit-user-request\\n",
     },
     (skillPath) => {
       const result = runValidator(skillPath);
@@ -588,7 +588,7 @@ test("rejects long references without an early contents index", async () => {
   );
 });
 
-test("rejects persistence policy that loses the deep 10-loop contract", async () => {
+test("rejects persistence policy that loses the evidence-led persistence contract", async () => {
   await withFixture(
     {
       "LICENSE": "MIT License\n",
@@ -1144,8 +1144,8 @@ test("rejects evidence guidance that loses oracle or retention contracts", async
 
 test("rejects orchestration that loses parent re-verification", async () => {
   const contracts = [
-    "parent_reverify: rerun-declared-oracles",
-    "verification_hierarchy: leaf-self-check-parent-rerun-integration",
+    "parent_reverify: reuse-matching-evidence-rerun-on-drift-or-gap",
+    "verification_hierarchy: leaf-evidence-parent-reconciliation-scoped-integration",
   ];
   for (const contract of contracts) {
     await withRepositorySkillCopy(async (skillPath) => {

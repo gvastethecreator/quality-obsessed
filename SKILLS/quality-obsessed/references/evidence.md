@@ -28,18 +28,18 @@ gate_retention: keep-applicable-visible
 | Scope | Every mission | Diff/surface audit vs explicit boundaries |
 | Acceptance or baseline | Improvement or comparison claimed | Before/after artifact, fixture, spec, or user reference |
 | Claim provenance | Every nontrivial final claim | Test, screenshot, command, source pointer, or measured diff |
-| Regression | Target mutation occurred | Focused tests + relevant integration/runtime path |
+| Regression | Changed behavior has regression risk | Existing focused coverage or the cheapest observable check; another layer only for a distinct uncovered risk |
 | Structural integrity | Code change can add branching, indirection, ownership drift, or file sprawl | Diff + call-site inspection; behavior parity when structure changes |
 | Runtime behavior | Behavior is runnable and authorized | Executed public seam or sandbox scenario |
 | Hostile input | Relevant code boundary changed and a safe fixture exists | Malformed, boundary, concurrency, or dependency-failure test |
 | User states | Touched visual flow can enter those states | Rendered supported states that actually exist |
-| Viewport/platform | Target supports that viewport or platform | Screenshot/runtime capture at supported dimensions |
+| Viewport/platform | Changed user-visible path needs runtime proof | One desktop viewport by default; additional sizes/platforms only for the affected contract or explicit responsive/release scope |
 | First impression | Quality target includes hierarchy or identity | Blind five-second read on actual output |
 | Creative direction search | Creative Search active (explicit creative, standout, greenfield, or direction-risk) | Three cheap artifacts differing in thesis, structure, or behavior; like-for-like comparison; explicit choice |
 | Signature and subtraction | Creative Search active; identity part of acceptance | Source pointer or artifact record: one memorable useful move and one removed generic or diluting element |
 | Blind audience read | Creative Search before commit | Brief-hidden read: understood, next action, remembered, mismatch; material mismatch resolved before commit |
 | Routed handoff | Another execution context is used | Dispatch record, bounded handoff, returned artifact, focused proof, orchestrator reconciliation; independent verdict when risk triggers distinct review |
-| Batch verification | Integration boundary or final batch closing | One batch-level tests/build/typecheck run; never use a full suite as per-task proof |
+| Batch verification | Integration boundary or substantial final batch closing | Risk-selected tests, build, typecheck, or runtime proof once; reuse matching evidence and avoid duplicate gates |
 | Source | Current/external facts or data conclusions matter | Primary source with version/date or repository-owned evidence |
 | Independent judgment | Subjective, high-risk, or baseline-sensitive claims remain | Blind reviewer over raw artifacts and rubric |
 | Adversarial autopsy | Broad, quality-sensitive, recovery, review/audit, or explicitly obsessive work before final | Fresh artifact objection: location, harm, cause, concrete cut/fix, closing proof, unresolved severity |

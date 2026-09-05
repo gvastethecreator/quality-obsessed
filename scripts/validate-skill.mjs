@@ -305,9 +305,9 @@ export async function validateSkill(skillPath) {
 
   const persistencePath = path.join(resolved, "references", "persistence.md");
   const persistenceContract = new Map([
-    ["minimum_valid_loops", "10"],
+    ["minimum_valid_loops", "0"],
     ["hard_maximum", "none"],
-    ["loop_10_verdict", "continue | ask | stop"],
+    ["checkpoint_verdict", "continue | ask | stop"],
     ["backlog_policy", "dynamic-evidence-only"],
     ["default_activation", "substantial-unbounded-quality-mission"],
     ["goal_activation", "explicit-user-request"],
@@ -452,18 +452,18 @@ export async function validateSkill(skillPath) {
         ["review_verdict", "accept | repair | reset"],
         [
           "task_local_verification",
-          "focused-tests-and-current-file-checks-only",
+          "diff-first-diagnostic-only-when-blocking",
         ],
-        ["interim_typecheck", "current-edited-file-only-or-skip"],
+        ["interim_typecheck", "only-when-next-edit-depends-on-diagnostic"],
         [
           "full_verification_trigger",
           "integration-boundary-or-final-batch",
         ],
-        ["full_verification_suite", "tests-build-typecheck-once-per-batch"],
-        ["parent_reverify", "rerun-declared-oracles"],
+        ["full_verification_suite", "risk-selected-checks-once-per-final-batch"],
+        ["parent_reverify", "reuse-matching-evidence-rerun-on-drift-or-gap"],
         [
           "verification_hierarchy",
-          "leaf-self-check-parent-rerun-integration",
+          "leaf-evidence-parent-reconciliation-scoped-integration",
         ],
       ]),
     ],
@@ -572,7 +572,7 @@ export async function validateSkill(skillPath) {
     const vendorRuntime = /\b(?:Codex|Claude Code|OpenCode)\b|(?:^|\s)\/goal\b|\$quality-obsessed\b/im;
     const concreteModelRuntime = /\b(?:gpt|claude|gemini|grok|llama|mistral|deepseek|qwen)[-_][a-z0-9][\w.-]*\b|^[ \t]{0,3}(?:low_risk|detailed_execution|important_judgment)_(?:model|reasoning)\s*:/im;
     const canonicalDefinition = /^[ \t]{0,3}(mission_mode|task_state|artifact_verdict|verification_state|loop_verdict|severity|gate_state|scope_rule|mutation_stop|analysis_stop|intent_capture|action_threshold|settled_context|blocker_isolation|milestone_provenance|turn_exit)\s*:/gm;
-    const persistenceDefinition = /^[ \t]{0,3}(minimum_valid_loops|hard_maximum|loop_10_verdict|backlog_policy|default_activation|goal_activation)\s*:/gm;
+    const persistenceDefinition = /^[ \t]{0,3}(minimum_valid_loops|hard_maximum|checkpoint_verdict|backlog_policy|default_activation|goal_activation)\s*:/gm;
     for (const file of markdownFiles) {
       const content = await readFile(file, "utf8");
       const relative = path.relative(resolved, file).replaceAll("\\", "/");

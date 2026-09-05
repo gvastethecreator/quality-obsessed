@@ -88,13 +88,13 @@ Creative Search activates only for an explicit creative, standout, greenfield, o
 
 ## Deep persistence
 
-Deep persistence activates when the user explicitly asks for an obsessive, exhaustive, no-limit, baseline-beating, or durable goal-like mission. It also activates by default for an explicitly invoked substantial, broad, or quality-sensitive mission when the user supplies no budget, time limit, or loop count and meaningful in-scope weaknesses remain. A routine small or explicitly bounded task does not inherit 10 loops, and loading durable task-record guidance alone does not activate them. Persistent work inside the current task does not require a durable goal:
+Deep persistence supports explicit exhaustive work and substantial, broad, or quality-sensitive missions with meaningful in-scope weaknesses. It respects the user's budget and ends from acceptance and evidence. Persistent work inside the current task does not require a durable goal:
 
-- Exactly one mandatory floor: 10 valid loops once Deep Persistence activates.
-- No hard maximum.
-- Dynamic evidence-backed backlog; no pre-invented quota of 10 weaknesses.
-- Compact epochs of five loops.
-- Loop 10 verdict: `continue`, `ask`, or `stop`; repeat the judgment at later epoch boundaries while continuing.
+- No mandatory loop floor or fixed verification quota.
+- No skill-imposed maximum; user time and budget limits still apply.
+- Dynamic evidence-backed backlog; no pre-invented weaknesses.
+- Checkpoints at meaningful phase changes and final integration.
+- Checkpoint verdict: `continue`, `ask`, or `stop`, based on remaining authorized work.
 - A host-specific durable-run capability is used only when the user explicitly requests it.
 
 Loop count is never the quality claim. The artifact and its proof decide the verdict.
@@ -105,7 +105,7 @@ Set the acceptance contract and required gates before selecting a route. Delegat
 
 Select routes by capability fit, context, risk, dependencies, proof, and independence. Use cost and latency only after a route meets the quality floor. Do not use a provider, model family, tier, benchmark, or reasoning level as quality evidence. The current harness maps the required capabilities to its available execution contexts.
 
-Judge every return against the same gates. If a gate fails, repair the cause, retry, select a better-fit route, or request independent review. Focused proof plus orchestrator reconciliation can close low-risk output. Important or high-risk work uses independent review when it can change acceptance. Per task, run focused checks only. Run repository-wide tests, builds, and typechecks once at the integration boundary or final batch. See [orchestration.md](./SKILLS/quality-obsessed/references/orchestration.md) for the full contract.
+Judge every return against the same gates and reconcile its evidence with the final artifact and environment. Reuse matching proof; rerun for drift, a failed gate, or an uncovered integration risk. Important or high-risk work uses independent review when it can change acceptance and is authorized. During edits, inspect the diff and use a focused diagnostic only when it determines the next edit. Select applicable checks once at the integration boundary or final batch; tests, builds, and typechecks are not a mandatory chain. See [orchestration.md](./SKILLS/quality-obsessed/references/orchestration.md) for the full contract.
 
 ## Package layout
 

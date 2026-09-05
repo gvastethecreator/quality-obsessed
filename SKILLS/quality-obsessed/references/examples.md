@@ -50,17 +50,17 @@ Request: “Convene a quality council for this professional realtime VFX authori
 
 Request: “Use this skill obsessively; keep going until the artifact beats the baseline.”
 
-Load Persistence, build a dynamic evidence-backed backlog, count only valid loops, reach Loop 10 verdict. Decide `continue`, `ask`, or `stop` from artifact and proof; reissue at later epoch boundaries if work continues. Do not manufacture 10 findings.
+Load Persistence and build a dynamic evidence-backed backlog. Decide `continue`, `ask`, or `stop` from artifact and proof at meaningful checkpoints. Stop once acceptance and applicable evidence are complete; do not manufacture findings or iterations.
 
 ## Substantial unbounded mission
 
 Request: “Use quality-obsessed to reconcile this broad refactor with the baseline, repair regressions, and prove the final state.”
 
-Explicitly invoked for substantial work with no budget, time limit, or loop count: load Persistence and apply same 10-loop floor while meaningful in-scope risks remain. This does not require a durable goal: persist in current task unless user separately requests goal-like continuation.
+Explicitly invoked for substantial work with no budget, time limit, or loop count: load Persistence and resolve meaningful in-scope risks without a loop quota. This does not require a durable goal: persist in the current task unless the user separately requests goal-like continuation.
 
 ## Capability-routed mission
 
-Mixed mission: short report, detailed implementation, spec with tickets, important final review. Set quality floor and required gates first. Execute directly when current context can meet them; another context only for material capability, isolation, parallelism, or independence. Every dispatch: bounded deliverable and proof. Keep compatible work on same route until evidence changes its fit. Same gates on every return; failed gate → repair or pick a better-fit available route. Low-risk: focused proof plus orchestrator reconciliation. Important or high-risk work may require independent review. Full tests, builds, and typechecks once at integration boundary or final batch.
+Mixed mission: short report, implementation, spec, and final review. Set acceptance and required evidence first. Execute directly when capable; another context needs authorization and a material benefit. Every dispatch has bounded ownership and proof. Reconcile returned evidence against final bytes and environment. Run only applicable uncovered checks at the integration boundary or final batch; avoid each worker repeating a broad gate.
 
 ## Creative Search
 

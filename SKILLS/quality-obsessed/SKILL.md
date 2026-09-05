@@ -67,11 +67,11 @@ Creative Search: load the reference before choosing a direction. Three cheap rep
 
 ## Persistence and pressure
 
-Read Persistence before the first counted loop for explicit deep missions and for substantial, broad, or quality-sensitive missions with no budget, time limit, or loop count. Once active: 10 valid loops, no hard max, then Loop 10 verdict. Routine small or explicitly bounded work skips the floor. Never pre-invent 10 weaknesses or fragment one change to pad the count.
+Read Persistence for explicit deep missions and substantial, broad, or quality-sensitive missions that need sustained work. With no budget, time limit, or loop count, continue until acceptance and meaningful in-scope risks are resolved. There is no mandatory loop floor; use a checkpoint verdict at meaningful boundaries. Never invent weaknesses or fragment a change to pad a count.
 
-Substantial/high-risk: one fresh reviewer when available and independence can change a decision. Reconcile accepted and rejected findings; reviewer volume is not proof.
+Substantial/high-risk: one fresh reviewer when authorized, available, and independence can change a decision. Reconcile findings; reviewer volume is not proof.
 
-Orchestration: set acceptance contract and required proof before a route. Execute directly when the current context can meet them; route only for material capability, isolation, parallelism, or independence. Select by capability fit, context, risk, and evidence. Provider, model family, tier, benchmark, or reasoning level never proves quality. Same gates on every return; re-run declared oracles — prior evidence is not re-execution. Failed gate → repair or pick a better-fit available route. Low-risk: focused proof plus orchestrator reconciliation. High-risk, ambiguous, subjective, or requested work may require independent review. Full tests, builds, and typechecks once at the integration boundary or final batch. Leaf self-check, then parent re-run, then integration.
+Orchestration: set acceptance and proof before a route. Execute directly when capable; delegate only within authorization for a material benefit. Model or route labels never prove quality. Inspect returned artifacts and reuse evidence tied to matching bytes, environment, and claim. Rerun for drift or an uncovered integration risk. Batch applicable tests, builds, typechecks, or runtime proof at the integration boundary or final batch; do not run them all by default. Use leaf evidence, parent reconciliation, then scoped integration.
 
 Before final status for broad, quality-sensitive, recovery, review/audit, or explicitly obsessive work, run Pressure's fresh adversarial autopsy on the real artifact. Required even without independent review; grants no mutation authority in diagnose/audit.
 

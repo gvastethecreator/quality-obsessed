@@ -288,9 +288,9 @@ test("rejects inversion of small and substantial persistence routing", async () 
     const small = catalog.cases.find(({ id }) => id === "small-scoped-change");
     small.expected.persistence = {
       enabled: true,
-      minimum_valid_loops: 10,
+      minimum_valid_loops: 0,
       hard_maximum: null,
-      loop_10_verdicts: ["continue", "ask", "stop"],
+      checkpoint_verdicts: ["continue", "ask", "stop"],
       backlog_policy: "dynamic-evidence-only",
     };
     small.expected.required_capabilities = [
@@ -716,7 +716,7 @@ test("repository eval catalog covers the approved behavioral matrix", async () =
 
   const deep = catalog.cases.find(({ id }) => id === "deep-goal-mission");
   assert.equal(deep.expected.persistence.enabled, true);
-  assert.equal(deep.expected.persistence.minimum_valid_loops, 10);
+  assert.equal(deep.expected.persistence.minimum_valid_loops, 0);
   assert.equal(deep.expected.persistence.hard_maximum, null);
   assert.ok(deep.expected.required_capabilities.includes("durable-continuation"));
   assert.doesNotMatch(deep.prompt, /\/goal|\$quality-obsessed/);
@@ -726,10 +726,10 @@ test("repository eval catalog covers the approved behavioral matrix", async () =
   );
   assert.equal(unbounded.expected.mission_mode, "change");
   assert.equal(unbounded.expected.persistence.enabled, true);
-  assert.equal(unbounded.expected.persistence.minimum_valid_loops, 10);
+  assert.equal(unbounded.expected.persistence.minimum_valid_loops, 0);
   assert.equal(unbounded.expected.persistence.hard_maximum, null);
   assert.deepEqual(
-    unbounded.expected.persistence.loop_10_verdicts,
+    unbounded.expected.persistence.checkpoint_verdicts,
     ["continue", "ask", "stop"],
   );
   assert.equal(
@@ -757,7 +757,7 @@ test("repository eval catalog covers the approved behavioral matrix", async () =
     ({ id }) => id === "recovery-after-rejection",
   );
   assert.equal(recovery.expected.persistence.enabled, true);
-  assert.equal(recovery.expected.persistence.minimum_valid_loops, 10);
+  assert.equal(recovery.expected.persistence.minimum_valid_loops, 0);
   assert.equal(recovery.expected.persistence.hard_maximum, null);
   assert.ok(recovery.expected.required_references.includes("persistence.md"));
   assert.ok(recovery.expected.required_references.includes("pressure.md"));
@@ -832,7 +832,7 @@ test("repository eval catalog covers an authorized standout ambition leap", asyn
   const item = catalog.cases.find(({ id }) => id === "standout-ambition-leap");
   assert.ok(item, "missing eval case: standout-ambition-leap");
   assert.equal(item.expected.persistence.enabled, true);
-  assert.equal(item.expected.persistence.minimum_valid_loops, 10);
+  assert.equal(item.expected.persistence.minimum_valid_loops, 0);
   assert.equal(item.expected.persistence.hard_maximum, null);
   assert.ok(item.expected.required_references.includes("persistence.md"));
   assert.ok(item.expected.required_references.includes("pressure.md"));
@@ -1001,11 +1001,11 @@ test("repository eval catalog routes by capability and evidence", async () => {
   );
   assert.equal(
     item.expected.orchestration.parent_reverify,
-    "rerun-declared-oracles",
+    "reuse-matching-evidence-rerun-on-drift-or-gap",
   );
   assert.equal(
     item.expected.orchestration.verification_hierarchy,
-    "leaf-self-check-parent-rerun-integration",
+    "leaf-evidence-parent-reconciliation-scoped-integration",
   );
   assert.equal(
     item.expected.orchestration.handoff_contract,

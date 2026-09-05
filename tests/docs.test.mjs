@@ -86,12 +86,12 @@ test("public guidance preserves substantial unbounded persistence without confla
   assert.match(skill, /no budget, time limit, or loop count/i);
   assert.match(examples, /substantial unbounded mission/i);
   assert.match(examples, /does not require a durable goal/i);
-  assert.match(readme, /10 valid loops once Deep Persistence activates/i);
-  assert.match(skill, /Loop 10 verdict/i);
-  assert.match(skill, /Once active: 10 valid loops/i);
-  assert.match(persistence, /10-loop floor/);
-  assert.match(persistence, /Do not stop before Loop 10/i);
-  assert.doesNotMatch(persistence, /may stop earlier/i);
+  assert.match(readme, /No mandatory loop floor/i);
+  assert.match(skill, /checkpoint verdict/i);
+  assert.match(skill, /There is no mandatory loop floor/i);
+  assert.match(persistence, /minimum_valid_loops: 0/);
+  assert.match(persistence, /Stop when the accepted outcome and applicable evidence are complete/i);
+  assert.doesNotMatch(persistence, /Do not stop before Loop 10/i);
   assert.doesNotMatch(readme, /30 valid loops|Loop 30/i);
 });
 
@@ -145,12 +145,12 @@ test("public guidance documents model- and harness-agnostic orchestration", asyn
   assert.match(orchestration, /review_trigger: high-risk-ambiguous-subjective-independence-or-user-requested/);
   assert.match(orchestration, /low_risk_acceptance: focused-proof-and-orchestrator-reconciliation/);
   assert.match(orchestration, /review_verdict: accept \| repair \| reset/);
-  assert.match(orchestration, /task_local_verification: focused-tests-and-current-file-checks-only/);
-  assert.match(orchestration, /interim_typecheck: current-edited-file-only-or-skip/);
+  assert.match(orchestration, /task_local_verification: diff-first-diagnostic-only-when-blocking/);
+  assert.match(orchestration, /interim_typecheck: only-when-next-edit-depends-on-diagnostic/);
   assert.match(orchestration, /full_verification_trigger: integration-boundary-or-final-batch/);
-  assert.match(orchestration, /full_verification_suite: tests-build-typecheck-once-per-batch/);
-  assert.match(orchestration, /parent_reverify: rerun-declared-oracles/);
-  assert.match(orchestration, /verification_hierarchy: leaf-self-check-parent-rerun-integration/);
+  assert.match(orchestration, /full_verification_suite: risk-selected-checks-once-per-final-batch/);
+  assert.match(orchestration, /parent_reverify: reuse-matching-evidence-rerun-on-drift-or-gap/);
+  assert.match(orchestration, /verification_hierarchy: leaf-evidence-parent-reconciliation-scoped-integration/);
   assert.match(metadata, /capability-based orchestration/i);
   assert.doesNotMatch(
     [skill, orchestration].join("\n"),

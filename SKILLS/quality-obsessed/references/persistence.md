@@ -1,28 +1,28 @@
 # Deep Persistence
 
-Use when the user explicitly requests obsessive, exhaustive, no-limit, baseline-beating, or goal-like quality. Default-enter for a substantial, broad, or quality-sensitive mission with no user budget, time limit, or loop count while meaningful in-scope weaknesses remain. A routine small or explicitly bounded fix/review does not enter merely because no time limit was stated. Loading this branch only for resumable task state does not activate the 10-loop floor.
+Use when the user explicitly requests obsessive, exhaustive, no-limit, baseline-beating, or goal-like quality. Default-enter for a substantial, broad, or quality-sensitive mission while meaningful in-scope weaknesses remain. Respect any user budget or time limit. A routine small fix/review does not enter merely because no limit was stated. Loading resumable task guidance does not impose a loop quota.
 
 ## Machine-checkable contract
 
 ```text
-minimum_valid_loops: 10
+minimum_valid_loops: 0
 hard_maximum: none
-loop_10_verdict: continue | ask | stop
+checkpoint_verdict: continue | ask | stop
 backlog_policy: dynamic-evidence-only
 default_activation: substantial-unbounded-quality-mission
 goal_activation: explicit-user-request
 durable_task_record: required-when-capable-and-resumable
 ```
 
-Default activation needs substantial in-scope work that can support valid loops; already-saturated work does not activate it merely because the skill was loaded. An explicit deep request still activates the floor. Do not stop before Loop 10 or count padding: each loop must address distinct evidence-backed risk, artifact value, decision, or proof.
+There is no mandatory loop floor. Stop when the accepted outcome and applicable evidence are complete; continue while a material authorized weakness remains. A user-requested iteration count is a task constraint, not permission to invent work. Each useful iteration addresses a distinct risk, artifact improvement, decision, or missing proof.
 
 ## Durable task record
 
-If the host exposes durable task state and the mission spans sessions, delegated work, or multiple vertical slices, update the workplan or task record. Keep only accepted outcome and boundaries, material decisions, current frontier, evidence, blockers, deferred items, and exact next resumable action; refresh after each completed or blocked slice so continuation does not depend on conversation memory. If unavailable, same compact checkpoint in the current task; disclose the limitation. Never claim background persistence. Independent from durable-goal activation — does not by itself turn an ordinary multi-slice change into a 10-loop mission.
+If the host exposes durable task state and the mission spans sessions or needs handoff, update the existing workplan at meaningful phase changes. Keep accepted outcome, boundaries, decisions, current frontier, evidence, blockers, and the next resumable action. Otherwise keep a compact checkpoint in the task. Never claim background persistence or create a durable goal without an explicit request.
 
 ## Dynamic backlog
 
-Seed only findings supported by baseline, applicable gates, executed output, source inspection, recovery autopsy, or independent review. Do not pre-create 10 weaknesses. Replenish as new evidence appears inside frozen mission scope. Prioritize blocker, P1, then systemic P2. Batch findings that share one source cause; one systemic fix may close several findings.
+Seed only findings supported by baseline, applicable gates, executed output, source inspection, recovery autopsy, or independent review. Do not pre-create a quota of weaknesses. Replenish only from new in-scope evidence. Prioritize blocker, P1, then systemic P2. Batch findings that share one source cause.
 
 ## Valid loop
 
@@ -42,20 +42,20 @@ Expand only for blocker/P1, mixed/flat/worse verdicts, scope decisions, or exter
 
 ## Epochs and checkpoints
 
-Epochs of five valid loops. At each boundary:
+Use checkpoints at meaningful phase changes or final integration, not after every small edit:
 
 - compare against the best prior artifact or acceptance target.
 - remove closed and duplicate findings.
 - confirm the next item remains in scope and has a proof path.
 - reset direction after two consecutive flat or worse verdicts.
 
-One fresh reviewer before Loop 10 when the surface is substantial and independent evidence can change the backlog. At Loop 10, inspect the artifact and issue exactly one continuation verdict:
+Use a fresh reviewer only when authorized and a distinct unresolved risk warrants it. At a checkpoint, inspect the artifact and choose a continuation verdict:
 
 - `continue`: meaningful in-scope risks remain; next loop is actionable.
 - `ask`: next valuable move needs a user decision, new authority, or tradeoff.
 - `stop`: acceptance met, applicable gates honest, further loops would be padding.
 
-Continue beyond Loop 10 with no hard maximum while the verdict remains `continue`. Reissue at each later epoch boundary; loop count alone never justifies continuing or stopping.
+Continue while the verdict remains `continue` and the user's budget permits. Batch normal test runs and complete validation at final integration; a focused diagnostic may run earlier only when the next edit depends on it. Loop count never proves quality.
 
 ## Goal integration
 

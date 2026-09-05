@@ -574,12 +574,12 @@ export async function validateEvalCatalog(catalogPath) {
         low_risk_acceptance:
           "focused-proof-and-orchestrator-reconciliation",
         review_verdict: "accept | repair | reset",
-        task_local_verification: "focused-tests-and-current-file-checks-only",
-        interim_typecheck: "current-edited-file-only-or-skip",
+        task_local_verification: "diff-first-diagnostic-only-when-blocking",
+        interim_typecheck: "only-when-next-edit-depends-on-diagnostic",
         full_verification_trigger: "integration-boundary-or-final-batch",
-        full_verification_suite: "tests-build-typecheck-once-per-batch",
-        parent_reverify: "rerun-declared-oracles",
-        verification_hierarchy: "leaf-self-check-parent-rerun-integration",
+        full_verification_suite: "risk-selected-checks-once-per-final-batch",
+        parent_reverify: "reuse-matching-evidence-rerun-on-drift-or-gap",
+        verification_hierarchy: "leaf-evidence-parent-reconciliation-scoped-integration",
       };
       const invalidFields = contractMismatches(orchestration, required);
       const requiredActions = [
@@ -682,10 +682,10 @@ export async function validateEvalCatalog(catalogPath) {
 
     if (expected?.mission_mode === "goal" || expected?.persistence?.enabled === true) {
       const persistence = expected?.persistence ?? {};
-      const verdicts = persistence.loop_10_verdicts ?? [];
+      const verdicts = persistence.checkpoint_verdicts ?? [];
       const valid =
         persistence.enabled === true &&
-        persistence.minimum_valid_loops === 10 &&
+        persistence.minimum_valid_loops === 0 &&
         persistence.hard_maximum === null &&
         JSON.stringify(verdicts) === JSON.stringify(["continue", "ask", "stop"]) &&
         persistence.backlog_policy === "dynamic-evidence-only";
