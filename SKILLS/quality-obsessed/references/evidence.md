@@ -46,7 +46,7 @@ gate_retention: keep-applicable-visible
 
 Do not require mobile for desktop-only software, loading for synchronous artifacts, hostile execution without a sandbox, or visual originality when conformance to a design system is the target.
 
-Creative Search gates: N/A for routine fixes or conformance; the direction protocol owns the exact search record. Orchestration gates defer to the handoff contract and actual dispatch record. Low-risk routed work: focused proof and orchestrator reconciliation. Important or high-risk work uses independent review when it can change acceptance. Full tests, builds, and repository-wide typechecks once at the integration boundary or final batch.
+Creative Search gates: N/A for routine fixes or conformance; the direction protocol owns the exact search record. Orchestration gates defer to the handoff contract and actual dispatch record. Low-risk routed work: focused proof and orchestrator reconciliation. Important or high-risk work uses independent review when it can change acceptance. At final integration, select affected checks; a full suite needs an explicit request, required gate, or shared impact that cannot be bounded. Builds and typechecks need a distinct claim. Do not duplicate matching leaf evidence or add tests to raise a quality score.
 
 ## Evidence discipline
 
