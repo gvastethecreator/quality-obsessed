@@ -65,7 +65,7 @@ Artifact and outcome:
 Baseline or acceptance:
 Evidence to inspect:
 Reviewer role:
-Find 3-5 highest-impact issues with location, harm, fix, and proof.
+Find distinct material issues with location, harm, fix, and proof. Do not pad the findings to a quota.
 Do not restate generic advice or certify from prose.
 ```
 

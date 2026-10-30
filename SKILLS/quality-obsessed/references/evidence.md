@@ -14,7 +14,7 @@ State:
 Unverified claim:
 ```
 
-`N/A` needs a concrete reason. `blocked` names the external constraint. A gate passes only when another reviewer could inspect the captured evidence. Missing or pending evidence leaves the gate unmet. Do not delete an applicable gate; keep it `blocked` or `N/A` with a concrete reason and list it in the final record.
+`N/A` needs a reason the gate does not apply. `blocked` names the constraint preventing an applicable gate from passing. A gate passes only when another reviewer could inspect the captured evidence. Missing or pending evidence leaves an applicable gate `blocked`; retain it in the final record.
 
 ```text
 pending_evidence: unmet

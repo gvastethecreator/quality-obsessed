@@ -38,7 +38,7 @@ Screenshot capability unavailable. Check source and static claims, set verificat
 
 ## Returned leaf
 
-A worker returns checked gates. Orchestrator re-runs the declared oracles. The worker's evidence line is not verification.
+A worker returns checked gates. Inspect the actual evidence and its artifact revision; reuse it when the bytes, environment and claim match. Re-run only for drift or an uncovered integration risk. Checkboxes alone are not verification.
 
 ## Context-adaptive Council
 

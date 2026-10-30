@@ -1,6 +1,6 @@
 ---
 name: quality-obsessed
-description: "Quality missions: model- and harness-agnostic evidence-gated improvement, obsessive/exhaustive loops, baseline beating, recovery, creative/standout/greenfield direction, quality councils, persistent eval loops. Do not invoke implicitly for routine fixes, conformance, ordinary reviews, explanations, or status checks."
+description: "Evidence-gated quality missions, baseline comparison, quality councils and sustained improvement. Skip routine fixes, ordinary reviews and status checks."
 license: MIT
 ---
 
@@ -12,7 +12,7 @@ Obsession = better artifact + proof. Inspect real output, name the highest-value
 
 Read [Protocol](references/protocol.md) before acting. Mode from the user's verb and permissions. Explicit user boundaries outrank ambition, persistence, adjacent findings, and reviewer suggestions; this skill grants no extra authority.
 
-Before broad work, record a compact contract:
+Before broad work, record a compact contract in the conversation or existing task record; no new file is required:
 
 ```text
 Artifact and user outcome:
@@ -42,7 +42,7 @@ Comments, docs, renames, refactors: count only when they improve the mission art
 
 ## Evidence and routing
 
-Read [Evidence](references/evidence.md) for the gate manifest. Every selected gate: `required`, `conditional`, or `N/A` with a reason. Missing or pending evidence leaves the gate unmet. Do not drop an applicable gate because it cannot currently pass; keep `blocked` or `N/A` with a reason. Missing runtime/visual capability → verification limited; never silently green.
+Read [Evidence](references/evidence.md) for the gate manifest. Every selected gate: `required`, `conditional`, or `N/A` with a reason. Missing or pending evidence leaves an applicable gate `blocked`; `N/A` means the gate does not apply. Missing runtime/visual capability → verification limited; never silently green.
 
 Normal missions load Protocol, Evidence, and one domain profile:
 
@@ -63,7 +63,7 @@ Load extra branches only when the mission requires them:
 
 Use the smallest relevant stack. A domain or proof skill counts only if it changes the artifact, decision, or evidence.
 
-Creative Search: load the reference before choosing a direction. Three cheap representative artifacts with different thesis, structure, or behavior; compare, choose explicitly, no default hybrid; one signature, one subtraction, blind read (understood, action, memory, mismatch); resolve mismatch before commit.
+Creative Search: load the reference before choosing a direction; it owns the comparison, selection and audience-read contract.
 
 ## Persistence and pressure
 
@@ -71,7 +71,7 @@ Read Persistence for explicit deep missions and substantial, broad, or quality-s
 
 Substantial/high-risk: one fresh reviewer when authorized, available, and independence can change a decision. Reconcile findings; reviewer volume is not proof.
 
-Orchestration: set acceptance and proof before a route. Execute directly when capable; delegate only within authorization for a material benefit. Model or route labels never prove quality. Inspect returned artifacts and reuse evidence tied to matching bytes, environment, and claim. Rerun for drift or an uncovered integration risk. Batch applicable tests, builds, typechecks, or runtime proof at the integration boundary or final batch; do not run them all by default. Use leaf evidence, parent reconciliation, then scoped integration.
+Orchestration: execute directly when capable; delegate only within authorization for a material benefit. The reference owns handoff, review and evidence reuse. Select uncovered checks at the integration boundary or final batch.
 
 Before final status for broad, quality-sensitive, recovery, review/audit, or explicitly obsessive work, run Pressure's fresh adversarial autopsy on the real artifact. Required even without independent review; grants no mutation authority in diagnose/audit.
 
