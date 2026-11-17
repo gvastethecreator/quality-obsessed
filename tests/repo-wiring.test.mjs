@@ -23,16 +23,16 @@ test("repository wiring exposes one complete validation command", async () => {
   assert.equal(packageJson.devDependencies.yaml, "2.9.0");
 });
 
-test("CI runs the complete check on Linux and Windows", async () => {
+test("CI runs the complete check in one Linux job", async () => {
   const workflow = await readFile(
     path.join(repoRoot, ".github", "workflows", "validate.yml"),
     "utf8",
   );
-  assert.match(workflow, /ubuntu-latest/);
-  assert.match(workflow, /windows-latest/);
-  assert.match(workflow, /pnpm run check/);
-  assert.match(workflow, /pnpm run smoke:discovery/);
+  assert.match(workflow, /runs-on: ubuntu-latest/);
+  assert.doesNotMatch(workflow, /matrix:/);
   assert.match(workflow, /pnpm install --frozen-lockfile/);
+  assert.equal(workflow.match(/^\s+- run: /gm)?.length, 2);
+  assert.match(workflow, /- run: pnpm run check/);
 });
 
 test("repository normalizes text files for cross-platform copy parity", async () => {
